@@ -1,14 +1,14 @@
 <?php
-require_once "model\PuppiModel.php";
-require_once "view\PuppiView.php";
+require_once "model\PuppendModel.php";
+require_once "view\PuppendView.php";
 
 class PuppiController {
     private $model;
     private $view;
 
     public function __construct(){
-        $this->model = new PuppiModel();
-        $this->view = new PuppiView();
+        $this->model = new PuppendModel();
+        $this->view = new PuppendView();
     }
 
     public function __destruct(){
