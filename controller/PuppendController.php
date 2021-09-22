@@ -2,7 +2,7 @@
 require_once "model\PuppendModel.php";
 require_once "view\PuppendView.php";
 
-class PuppiController {
+class PuppendController {
     private $model;
     private $view;
 

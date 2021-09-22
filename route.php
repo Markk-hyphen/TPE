@@ -13,7 +13,7 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$PuppendController= new PuppendController();
+$PuppendController = new PuppendController();
 
 
 // determina que camino seguir según la acción
@@ -21,16 +21,11 @@ switch ($params[0]) {
     case 'home': 
         $PuppendController->showHome(); 
         break;
-    // case 'genre': 
-    //     $MovieController->showMoviesByGenre($params[1]); 
-    //     break;
-    // case 'studio': 
-    //     $MovieController->showMoviesByStudio($params[1]); 
-    //     break;
 
-    // default: 
-    //     echo('404 Page not found'); 
-    //     break;
+
+    default: 
+        echo('404 Page not found'); 
+        break;
 }
 
 

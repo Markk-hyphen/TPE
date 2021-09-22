@@ -6,4 +6,4 @@ require_once "./controller/PuppendController.php";
 //para que lo corras y pruebes que te funciona. Despues lo borramos.
 
 $controller = new PuppendController();
-// $controller->testingController();
+$controller->showHome();

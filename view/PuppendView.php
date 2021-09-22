@@ -15,4 +15,6 @@ class PuppendView {
                 <tr>
                     <td>$animal->title</td> ";
              
+                   }
+         }
 }
