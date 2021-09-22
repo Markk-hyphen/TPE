@@ -18,7 +18,7 @@ class PuppendController {
     function showHome (){
        
        //mostrar los animales
-         $animales= $this->model->getAnimals($animales);
+         $animales= $this->model->getAnimals();
          //mostrar los animales en la vista
          $this->view->renderAnimals($animales);
     }

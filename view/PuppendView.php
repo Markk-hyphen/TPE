@@ -9,7 +9,7 @@ class PuppendView {
     //     $this->smarty = new Smarty();
     // }
 
-    function renderAnimals($animales){
+    function showHome($animales){
         foreach($animales as $animal) {
             echo "
                 <tr>
