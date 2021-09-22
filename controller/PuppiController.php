@@ -11,17 +11,16 @@ class PuppiController {
         $this->view = new PuppendView();
     }
 
-    public function __destruct(){
-        $this->model = null;
-        $this->view = null;
+    // public function __destruct(){
+    //     $this->model = null;
+    //     $this->view = null;
+    // }                                     ->  NO SE PARA Q ES ESTO
+    function showHome (){
+       
+       //mostrar los animales
+         $animales= $this->model->getAnimals($animales);
+         //mostrar los animales en la vista
+         $this->view->renderAnimals($animales);
     }
 
-    public function testingController(){
-        echo "Llamando desde el controller al resto de pichones";
-        echo "<br>";
-        $this->model->pruebaPupiModel();
-        echo "<br>";
-        $this->view->pruebaView();
-        echo "<br>";
-    }
 }

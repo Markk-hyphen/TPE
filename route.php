@@ -18,9 +18,9 @@ $PuppendController= new PuppendController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
-    // case 'home': 
-    //     $MovieController->showHome(); 
-    //     break;
+    case 'home': 
+        $PuppendController->showHome(); 
+        break;
     // case 'genre': 
     //     $MovieController->showMoviesByGenre($params[1]); 
     //     break;
