@@ -9,17 +9,12 @@ class CarreraController {
     public function __construct(){
         $this->model = new CarreraModel();
         $this->view = new CarreraView();
-    }
+    }   
 
-    // public function __destruct(){
-    //     $this->model = null;
-    //     $this->view = null;
-    // }
-
-    public function showHome (){
+    public function showHome(){
        
        //mostrar los animales
-         $carreras = $this->model->getCarreras();
+         $carreras = $this->model->getCarrera();
          //mostrar los animales en la vista
          $this->view->renderCarreras($carreras);
     }
