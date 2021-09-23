@@ -11,10 +11,10 @@ class CarreraController {
         $this->view = new CarreraView();
     }
 
-    public function __destruct(){
-        $this->model = null;
-        $this->view = null;
-    }
+    // public function __destruct(){
+    //     $this->model = null;
+    //     $this->view = null;
+    // }
 
     public function showHome (){
        
