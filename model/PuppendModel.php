@@ -15,11 +15,11 @@ class PuppendModel{
         return new PDO('mysql:host=localhost;'.'dbname=db_puppend;charset=utf8', 'root', '');
     }
     //mostrar animales
-    public function getAnimals($animales){
+    public function getAnimals(){
         // Obtiene la lista de peliculas de la DB según género
       
         $sentencia = $this->db->prepare('SELECT animal FROM animal ');
-        $sentencia->execute(array($animales)); 
+        $sentencia->execute(array('perro', 'gato', 'pez', 'ave')); 
         $animales = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $animales;
 }

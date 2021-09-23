@@ -1,5 +1,5 @@
 <?php
-require_once "Controller/PuppendController.php";
+require_once "controller/PuppendController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -13,7 +13,7 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$PuppendController= new PuppendController();
+$PuppendController= new PuppendController(); //NO PODES MANDAR EL NOMBRE DE UNA VARIABLE EN MAYUSCULAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 
 // determina que camino seguir según la acción

@@ -2,7 +2,7 @@
 require_once "model\PuppendModel.php";
 require_once "view\PuppendView.php";
 
-class PuppiController {
+class PuppendController {
     private $model;
     private $view;
 
@@ -18,7 +18,7 @@ class PuppiController {
     function showHome (){
        
        //mostrar los animales
-         $animales= $this->model->getAnimals($animales);
+         $animales = $this->model->getAnimals();
          //mostrar los animales en la vista
          $this->view->renderAnimals($animales);
     }
