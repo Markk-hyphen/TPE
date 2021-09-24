@@ -18,7 +18,6 @@ class CarreraController {
 
     public function filtrarMateria($id_materia){
         $materia = $this->model->getMateria($id_materia);
-        echo "dksaljlkdasjkldaslkdjlkasjlkdsalk";
         $this->view->renderMateria($materia);
     }
 

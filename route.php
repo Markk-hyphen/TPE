@@ -14,7 +14,6 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 $carreraController = new CarreraController();
 
-
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
@@ -22,14 +21,18 @@ switch ($params[0]) {
         break;
         
     case 'carrera':{
-        if ( isset($params[1]) && isset($params[2]) ) {
-            $carreraController->filtrarCarrera($params[2], $params[1]);
+        if ( isset($params[3]) ){ 
+            $carreraController->filtrarMateria($params[3]);
         }else {
-            $carreraController->showHome();
+            if ( isset($params[1]) && isset($params[2]) ) {
+                $carreraController->filtrarCarrera($params[2], $params[1]);
+            }else {
+                $carreraController->showHome();
+            }
         }
         }
         break;
-        
+
     case 'detalle':
         $carreraController->filtrarMateria($params[3]);
         break;

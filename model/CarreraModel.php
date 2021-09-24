@@ -61,6 +61,7 @@ class CarreraModel{
     public function filtrarCarrera($id_carrera){  
         $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
         $sentencia->execute(array($id_carrera));
+        
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
  
     }

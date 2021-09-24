@@ -28,7 +28,7 @@ class CarreraView {
     }
 
     public function renderMateria($materia){
-        echo "dasjkdjklasjlkdasljkdajslkdjlkasjlkdasjlkdljkas";
-        echo "A terminar";
+        $this->smarty->assign('materia', $materia);
+        $this->smarty->display("templates/detalle.tpl");
     }
 }
