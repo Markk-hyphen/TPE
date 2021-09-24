@@ -16,10 +16,10 @@ class CarreraController {
     //     $this->view = null;
     // }
 
-    public function showHome (){
+    public function renderCarreras (){
        
        //mostrar los animales
-         $carreras = $this->model->getCarreras();
+         $carreras = $this->model->getCarreras($carreras);
          //mostrar los animales en la vista
          $this->view->renderCarreras($carreras);
     }
