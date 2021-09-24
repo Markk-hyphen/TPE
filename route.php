@@ -13,13 +13,14 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$carreraController= new CarreraController();
+$carreraController = new CarreraController();
 
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
+      
         break;
 
     // case 'filtrar':

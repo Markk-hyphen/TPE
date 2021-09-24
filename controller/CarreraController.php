@@ -13,34 +13,34 @@ class CarreraController {
 
     public function showHome(){
        
-       //mostrar los animales
+
          $carreras = $this->model->getCarrera();
-         //mostrar los animales en la vista
-         $this->view->renderCarreras($carreras);
+   
+         $this->view->showHome($carreras);
     }
 
-    public function filtrarMateria($nombre){
-        $this->model->filtrarMateria($nombre);
-        //Completar para la view
-    }
+    // public function filtrarMateria($nombre){
+    //     $this->model->filtrarMateria($nombre);
+    //     //Completar para la view
+    // }
 
-    public function filtrarCarrera($id_carrera){
-        $this->model->filtrarCarrera($id_carrera);
-        //Completar para la view
-    }
+    // public function filtrarCarrera($id_carrera){
+    //     $this->model->filtrarCarrera($id_carrera);
+    //     //Completar para la view
+    // }
 
-    public function insertarMateria($nombre, $profesor, $materia){
-        $this->model->insertarMateria($nombre, $profesor, $materia);
-    }
+    // public function insertarMateria($nombre, $profesor, $materia){
+    //     $this->model->insertarMateria($nombre, $profesor, $materia);
+    // }
 
-    public function borrarMateria($id_materia){
-        $this->model->borrarMateria($id_materia);
-        //Completar para la view
-    }
+    // public function borrarMateria($id_materia){
+    //     $this->model->borrarMateria($id_materia);
+    //     //Completar para la view
+    // }
 
-    public function modificarMateria($id_materia, $nombre, $profesor, $carrera){
-        $this->model->modificarMateria($id_materia, $nombre, $profesor, $carrera);
-        //Completar para la view
-    }
+    // public function modificarMateria($id_materia, $nombre, $profesor, $carrera){
+    //     $this->model->modificarMateria($id_materia, $nombre, $profesor, $carrera);
+    //     //Completar para la view
+    // }
 
 }
