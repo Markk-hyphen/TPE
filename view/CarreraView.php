@@ -19,7 +19,7 @@ class CarreraView {
             array_push($carreras,$carrera);
         }
 
-        $this->smarty->assign('carrera',$carreras);
+        $this->smarty->assign('carreras',$carreras);
         $this->smarty->display('templates/carreras.tpl');
      
     }

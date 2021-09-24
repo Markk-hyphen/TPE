@@ -12,7 +12,7 @@ class CarreraModel{
     }
 
     function getCarrera(){
-        $sentencia = $this->db->prepare('SELECT nombre FROM carrera');
+        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
         $sentencia->execute(array());
       $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return  $carreras;
