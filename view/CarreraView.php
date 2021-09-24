@@ -1,7 +1,7 @@
 <?php
 
 
-require_once "libs\smarty-3.1.39\libs\Smarty.class.php";
+require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
 
 class CarreraView {
 
@@ -11,20 +11,15 @@ class CarreraView {
         $this->smarty = new Smarty();
     }
 
-    function showHome(){
+    function showHome($carreras){
      
-        $this->smarty->display('templates\carreras.tpl');
-    }
-
-
-  
-    function renderCarreras($carreras){
+       
      
         foreach($carreras as $carrera){
             array_push($carreras,$carrera);
         }
 
-        $this->smarty->assign('carrera',"lista de carreras");
+        $this->smarty->assign('carrera',"carreras");
         $this->smarty->display('templates\carreras.tpl');
      
     }
