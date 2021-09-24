@@ -21,10 +21,7 @@ switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
         break;
-
-    case 'carrera':
-        $carreraController->    
-
+        
     case 'filtrar':
         $carreraController->filtrarMateria($_POST["input_buscador"]);
         break;
