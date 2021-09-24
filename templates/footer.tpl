@@ -1,5 +1,5 @@
 <footer>
-  <img src="imagenes/LogoExactas.png" class="logoexactas">
+  <img src="templates/imagenes/LogoExactas.png" class="logoexactas">
 </footer>
     </body>
     </html>
