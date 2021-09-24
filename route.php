@@ -20,6 +20,7 @@ $carreraController= new CarreraController();
 switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
+        $carreraController->renderCarreras(); 
         break;
 
     // case 'filtrar':

@@ -1,7 +1,7 @@
 <?php
-require_once "controller/CarreraController.php";
 
-require_once "libs\smarty-3.1.39";
+
+require_once "libs\smarty-3.1.39\libs\Smarty.class.php";
 
 class CarreraView {
 
@@ -13,7 +13,7 @@ class CarreraView {
 
     function showHome(){
      
-        $this->smarty->display('C:\xampp\htdocs\TrabajoPracticoEspecial\templates\header.tpl');
+        $this->smarty->display('templates\carreras.tpl');
     }
 
 
