@@ -7,25 +7,24 @@ class CarreraView {
 
     private $smarty;
 
-    function __construct() {
+    public function __construct() {
         $this->smarty = new Smarty();
     }
 
-    function showHome($carreras){
-     
-       
-     
-        foreach($carreras as $carrera){
-            array_push($carreras,$carrera);
-        }
-
+    public function showHome($carreras){
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display('templates/carreras.tpl');
      
     }
-    function showHomeLocation(){
+
+    public function renderCarrera($materias, $nombre){
+        $this->smarty->assign('materias', $materias);
+        $this->smarty->assign('nombre_carrera', $nombre);
+        $this->smarty->display('templates/materias.tpl');
+    }
+    
+    public function showHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
 
-    
 }

@@ -22,14 +22,13 @@ switch ($params[0]) {
         $carreraController->showHome(); 
       
         break;
-
-    // case 'filtrar':
-    //     $carreraController->filtrarMateria($_POST["input_buscador"]);
-    //     break;
-
-    // case 'filtrarCarrera':
-    //     $carreraController->filtrarCarrera($_POST["input_buscador_materias"]);
-    //     break;
+        
+    case 'carrera':
+        $carreraController->filtrarCarrera($params[2], $params[1]);
+        break;
+            // case 'filtrar':
+            //     $carreraController->filtrarMateria($_POST["input_buscador"]);
+            //     break;
 
     // case 'insert':
     //     $carreraController->insertarMateria($_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
