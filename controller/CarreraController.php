@@ -29,7 +29,7 @@ class CarreraController {
         //Completar para la view
     }
 
-    public function filtrarCarrera($id_carrera){
+    public function filtroCarrera($id_carrera){
         $this->model->filtrarCarrera($id_carrera);
         //Completar para la view
     }

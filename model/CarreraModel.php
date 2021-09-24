@@ -62,9 +62,11 @@ class CarreraModel{
 
     //arreglar desde controller
     public function filtrarCarrera($id_carrera){  
-        $sentencia = $db->prepare( "SELECT a.nombre, b.nombre FROM materia a LEFT JOIN carrera b ON a.id_carrera = b.id WHERE id_carrera='?'");
+        $sentencia = $db->prepare( "SELECT carrera.id_carrera, materia.nombre FROM materia LEFT JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE id_carrera='?'");
         $sentencia->execute( array($id_carrera));
-        header("Location: ".BASE_URL."home");
+        
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+
         
     }
     

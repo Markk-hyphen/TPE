@@ -22,12 +22,15 @@ switch ($params[0]) {
         $carreraController->showHome(); 
         break;
 
+    case 'carrera':
+        $carreraController->    
+
     case 'filtrar':
         $carreraController->filtrarMateria($_POST["input_buscador"]);
         break;
-
-    case 'filtrarCarrera':
-        $carreraController->filtrarCarrera($_POST["input_buscador_materias"]);
+//SEGUI FILTRO DE MATERIAS X CATEGORIA
+    case 'carrera':
+        $carreraController->filtroCarrera($_POST["input_buscador_materias"]);
         break;
 
     case 'insert':
