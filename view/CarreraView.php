@@ -7,14 +7,12 @@ class CarreraView {
 
     private $smarty;
 
-    function __construct() {
+    public function __construct() {
         $this->smarty = new Smarty();
     }
 
-    function showHome($carreras){
-     
-       
-     
+    public function showHome($carreras){
+
         foreach($carreras as $carrera){
             array_push($carreras,$carrera);
         }
@@ -23,9 +21,13 @@ class CarreraView {
         $this->smarty->display('templates/carreras.tpl');
      
     }
-    function showHomeLocation(){
+
+    public function renderCarrera(){
+        echo  "en view renderCarrera";
+    }
+    
+    public function showHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
 
-    
 }

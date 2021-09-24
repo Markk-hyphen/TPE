@@ -59,11 +59,10 @@ class CarreraModel{
     // }
 
     // //arreglar desde controller
-    // public function filtrarCarrera($id_carrera){  
-    //     $sentencia =$this->db->prepare( "SELECT a.nombre, b.nombre FROM materia a LEFT JOIN carrera b ON a.id_carrera = b.id WHERE id_carrera='?'");
-    //     $sentencia->execute( array($id_carrera));
-    //     header("Location: ".BASE_URL."home");
-        
-    // }
+    public function filtrarCarrera($id_carrera){  
+        $sentencia =$this->db->prepare( "SELECT a.nombre, b.nombre FROM materia a LEFT JOIN carrera b ON a.id_carrera = b.id WHERE id_carrera='?'");
+        $sentencia->execute( array($id_carrera));
+        header("Location: ".BASE_URL."home"); 
+    }
     
 }
