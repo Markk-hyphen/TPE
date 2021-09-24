@@ -12,7 +12,6 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-
 $carreraController = new CarreraController();
 
 
@@ -20,11 +19,19 @@ $carreraController = new CarreraController();
 switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
-      
         break;
         
-    case 'carrera':
-        $carreraController->filtrarCarrera($params[2], $params[1]);
+    case 'carrera':{
+        if ( isset($params[1]) && isset($params[2]) ) {
+            $carreraController->filtrarCarrera($params[2], $params[1]);
+        }else {
+            $carreraController->showHome();
+        }
+        }
+        break;
+        
+    case 'detalle':
+        $carreraController->filtrarMateria($params[3]);
         break;
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
@@ -43,7 +50,7 @@ switch ($params[0]) {
     //     break;
     
     default:
-        echo "404 page not found";
+        $carreraController->showHome();
         break;
    
 }

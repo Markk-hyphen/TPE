@@ -27,4 +27,8 @@ class CarreraView {
         header("Location: ".BASE_URL."home");
     }
 
+    public function renderMateria($materia){
+        echo "dasjkdjklasjlkdasljkdajslkdjlkasjlkdasjlkdljkas";
+        echo "A terminar";
+    }
 }

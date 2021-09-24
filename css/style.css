@@ -29,9 +29,11 @@ header {
   
  
 }
+
 select{
     text-align: center;
 }
+
 footer{
   margin:0;
     height: 400px;

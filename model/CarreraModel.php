@@ -50,13 +50,12 @@ class CarreraModel{
            
     // }
 
-    //     //arreglar desde controller
-    // public function filtrarMateria($nombre){
-    //     $sentencia =$this->db->prepare( "SELECT * FROM materia WHERE nombre = '?' ");
-    //     $sentencia->execute( array($nombre));
-    //     header("Location: ".BASE_URL."home");
-           
-    // }
+         //arreglar desde controller
+    public function getMateria($id_materia){
+        $sentencia =$this->db->prepare( "SELECT * FROM materia WHERE id_materia = ?");
+        $sentencia->execute( array($id_materia) );
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
 
     // //arreglar desde controller
     public function filtrarCarrera($id_carrera){  

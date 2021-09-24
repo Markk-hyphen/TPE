@@ -12,17 +12,15 @@ class CarreraController {
     }   
 
     public function showHome(){
-       
-
          $carreras = $this->model->getCarrera();
-   
          $this->view->showHome($carreras);
     }
 
-    // public function filtrarMateria($nombre){
-    //     $this->model->filtrarMateria($nombre);
-    //     //Completar para la view
-    // }
+    public function filtrarMateria($id_materia){
+        $materia = $this->model->getMateria($id_materia);
+        echo "dksaljlkdasjkldaslkdjlkasjlkdsalk";
+        $this->view->renderMateria($materia);
+    }
 
     public function filtrarCarrera($id_carrera, $nombre_carrera){
 
