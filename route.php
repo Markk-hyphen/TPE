@@ -24,8 +24,7 @@ switch ($params[0]) {
         break;
         
     case 'carrera':
-        var_dump($params[1]);
-        $carreraController->filtrarCarrera($params[1]);
+        $carreraController->filtrarCarrera($params[2], $params[1]);
         break;
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);

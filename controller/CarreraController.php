@@ -24,10 +24,11 @@ class CarreraController {
     //     //Completar para la view
     // }
 
-    public function filtrarCarrera($id_carrera){
-        echo "OOOOOOOE";
-        $this->model->filtrarCarrera($id_carrera);
-        $this->view->renderCarrera();
+    public function filtrarCarrera($id_carrera, $nombre_carrera){
+
+        $nombre_con_espacios = str_replace('-', ' ', $nombre_carrera);
+        $materias = $this->model->filtrarCarrera($id_carrera);
+        $this->view->renderCarrera($materias, $nombre_con_espacios);
     }
 
     // public function insertarMateria($nombre, $profesor, $materia){

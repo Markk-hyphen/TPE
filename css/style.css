@@ -2,6 +2,11 @@
     color:#191919;
 }
 
+
+a{
+    text-decoration: none;
+}
+
 header {
     text-align: center;
     background-color: rgb(127, 220, 220);
@@ -32,6 +37,7 @@ footer{
     height: 400px;
     background-color: rgb(55, 51, 52);
 }
+
 .logoexactas{
     width:80%;
     margin: 40px;

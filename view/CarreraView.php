@@ -12,18 +12,15 @@ class CarreraView {
     }
 
     public function showHome($carreras){
-
-        foreach($carreras as $carrera){
-            array_push($carreras,$carrera);
-        }
-
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display('templates/carreras.tpl');
      
     }
 
-    public function renderCarrera(){
-        echo  "en view renderCarrera";
+    public function renderCarrera($materias, $nombre){
+        $this->smarty->assign('materias', $materias);
+        $this->smarty->assign('nombre_carrera', $nombre);
+        $this->smarty->display('templates/materias.tpl');
     }
     
     public function showHomeLocation(){
