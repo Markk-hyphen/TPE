@@ -11,7 +11,8 @@ class CarreraView {
     }
     function showHome(){
      
-        $smarty->display('libs\smarty-3.1.39\libs\templates\header.tpl')
+      //  $smarty->display('libs\smarty-3.1.39\libs\templates\header.tpl'); Asi esta mal
+      //Es algo como $smarty->display('templates\unTemplate.tpl');
     }
     
 
@@ -23,7 +24,7 @@ class CarreraView {
             array_push($carreras,$carrera);
         }
 
-        $this->$smarty->assign('carrera',"lista de carreras");
+      //  $this->$smarty->assign('carrera',"lista de carreras"); Le pasas un string "lista de  carreras" y deberias pasarle una variable, por algo hiciste el foreach de arriba
       $smarty->display('libs\smarty-3.1.39\libs\templates\carreras.tpl')
      
     }
