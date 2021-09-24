@@ -19,8 +19,8 @@ class CarreraView {
             array_push($carreras,$carrera);
         }
 
-        $this->smarty->assign('carrera',"carreras");
-        $this->smarty->display('templates\carreras.tpl');
+        $this->smarty->assign('carrera',$carreras);
+        $this->smarty->display('templates/carreras.tpl');
      
     }
     function showHomeLocation(){

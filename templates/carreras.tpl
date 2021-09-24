@@ -2,7 +2,7 @@
 
 <div class="container">
 {foreach from=$carreras item=$carrera}
-                <div class="carrera"><p>.{$carreras->$carrera} </p>
+                <div class="carrera"><p>{$carrera->nombre} </p>
                 {* <select name="select">
                     <option value="value1">Value 1</option>
                     <option value="value2" >Value 2</option>
@@ -13,11 +13,4 @@
       
     
     </div>
-    
-    
-    <footer>
-      <img src="imagenes/logoexactas.png" class="logoexactas">
-    </footer>
-    
-    </body>
-    </html>
+{include file='templates/footer.tpl'}
