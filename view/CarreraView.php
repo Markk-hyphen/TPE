@@ -13,7 +13,7 @@ class CarreraView {
 
     function showHome(){
      
-        $this->smarty->display('libs\smarty-3.1.39\libs\templates\header.tpl');
+        $this->smarty->display('C:\xampp\htdocs\TrabajoPracticoEspecial\templates\header.tpl');
     }
 
 
@@ -25,7 +25,7 @@ class CarreraView {
         }
 
         $this->smarty->assign('carrera',"lista de carreras");
-        $this->smarty->display('libs\smarty-3.1.39\libs\templates\carreras.tpl');
+        $this->smarty->display('templates\carreras.tpl');
      
     }
     function showHomeLocation(){

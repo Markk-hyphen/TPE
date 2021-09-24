@@ -14,8 +14,8 @@ class CarreraModel{
     function getCarrera(){
         $sentencia = $this->db->prepare('SELECT nombre FROM carrera');
         $sentencia->execute();
-      $carreras=$sentencia->fetchAll(PDO::FETCH_OBJ);
-        return   $carreras;
+      $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return  $carreras;
     }      
 
      function getMateria($materia){

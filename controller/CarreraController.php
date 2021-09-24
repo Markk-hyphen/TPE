@@ -19,7 +19,7 @@ class CarreraController {
     public function renderCarreras (){
        
        //mostrar los animales
-         $carreras = $this->model->getCarreras($carreras);
+         $carreras = $this->model->getCarrera();
          //mostrar los animales en la vista
          $this->view->renderCarreras($carreras);
     }
