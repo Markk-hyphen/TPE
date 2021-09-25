@@ -31,4 +31,10 @@ class CarreraView {
         $this->smarty->assign('materia', $materia);
         $this->smarty->display("templates/detalle.tpl");
     }
+
+    //FORMULARIO
+    
+    public function renderFormMateria(){
+        $this->smarty->display("templates/formulario.tpl");
+    }
 }

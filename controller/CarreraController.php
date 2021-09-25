@@ -28,9 +28,13 @@ class CarreraController {
         $this->view->renderCarrera($materias, $nombre_con_espacios);
     }
 
-    // public function insertarMateria($nombre, $profesor, $materia){
-    //     $this->model->insertarMateria($nombre, $profesor, $materia);
-    // }
+    public function insertarMateria(){
+        
+        $this->view->renderFormMateria();
+     
+        $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
+   
+    }
 
     // public function borrarMateria($id_materia){
     //     $this->model->borrarMateria($id_materia);
