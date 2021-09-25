@@ -39,7 +39,7 @@ class CarreraModel{
   
     //INSERTAR materia            
     //arreglar desde controller
-    function insertarMateria($nombre, $profesor, $id_carrera){
+    function insertarMaterias($nombre, $profesor, $id_carrera){
         $sentencia =$this-> db->prepare( "INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
         $sentencia ->execute(array($nombre, $profesor, $id_carrera));
   

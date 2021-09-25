@@ -37,7 +37,7 @@ switch ($params[0]) {
         $carreraController->filtrarMateria($params[3]);
         break;
      case 'administrador':
-        $carreraController->insertarMateria();
+        $carreraController->insertMateria();
         break;
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
