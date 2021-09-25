@@ -52,7 +52,7 @@ INSERT INTO `carrera` (`id_carrera`, `nombre`, `duracion`) VALUES
 
 CREATE TABLE `materia` (
   `id_materia` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
   `profesor` varchar(45) NOT NULL,
   `id_carrera` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

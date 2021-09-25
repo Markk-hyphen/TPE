@@ -39,9 +39,15 @@ class CarreraModel{
   
     //INSERTAR materia            
     //arreglar desde controller
-    function insertarMaterias($nombre, $profesor, $id_carrera){
-        $sentencia =$this-> db->prepare( "INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
-        $sentencia ->execute(array($nombre, $profesor, $id_carrera));
+    function insertarMaterias($nombre, $profesor,$id_carrera){
+        $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
+        $sentencia->execute(array($nombre,$profesor,$id_carrera));
+  
+        header("Location: ".BASE_URL."administrador");     
+    }
+    function insertarCarrera($nombre, $duracion){
+        $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
+        $sentencia->execute(array($nombre,$duracion));
   
         header("Location: ".BASE_URL."administrador");     
     }
