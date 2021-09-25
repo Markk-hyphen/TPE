@@ -27,4 +27,8 @@ class CarreraView {
         header("Location: ".BASE_URL."home");
     }
 
+    public function renderMateria($materia){
+        $this->smarty->assign('materia', $materia);
+        $this->smarty->display("templates/detalle.tpl");
+    }
 }
