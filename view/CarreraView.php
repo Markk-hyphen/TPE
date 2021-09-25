@@ -9,6 +9,8 @@ class CarreraView {
 
     public function __construct() {
         $this->smarty = new Smarty();
+        $this->smarty->assign('mostrarTodo', true);
+        $this->smarty->assign('nombre_carrera', "");
     }
 
     public function showHome($carreras){
@@ -30,5 +32,11 @@ class CarreraView {
     public function renderMateria($materia){
         $this->smarty->assign('materia', $materia);
         $this->smarty->display("templates/detalle.tpl");
+    }
+
+    public function renderMaterias($materias, $mostrarTodo = false){
+        $this->smarty->assign('materias', $materias);
+        $this->smarty->assign('mostrarTodo', $mostrarTodo);
+        $this->smarty->display("templates/materias.tpl");
     }
 }

@@ -28,6 +28,11 @@ class CarreraController {
         $this->view->renderCarrera($materias, $nombre_con_espacios);
     }
 
+    public function showMaterias(){
+        $materias = $this->model->getMaterias();
+        $this->view->renderMaterias($materias, false);
+    }
+
     // public function insertarMateria($nombre, $profesor, $materia){
     //     $this->model->insertarMateria($nombre, $profesor, $materia);
     // }

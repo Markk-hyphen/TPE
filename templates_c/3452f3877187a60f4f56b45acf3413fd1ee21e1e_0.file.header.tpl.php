@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-24 23:52:30
+/* Smarty version 3.1.39, created on 2021-09-25 17:54:41
   from 'C:\xampp\htdocs\TPE_backend\TrabajoPracticoEspecialWeb2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_614e489e023e77_45778384',
+  'unifunc' => 'content_614f464185a5a5_41005299',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3452f3877187a60f4f56b45acf3413fd1ee21e1e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE_backend\\TrabajoPracticoEspecialWeb2\\templates\\header.tpl',
-      1 => 1632520347,
+      1 => 1632585031,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_614e489e023e77_45778384 (Smarty_Internal_Template $_smarty_tpl) {
+function content_614f464185a5a5_41005299 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -33,8 +33,7 @@ function content_614e489e023e77_45778384 (Smarty_Internal_Template $_smarty_tpl)
         <link rel="stylesheet" href="<?php echo BASE_URL;?>
 boostrap\css\bootstrap.min.css">
         <link rel="stylesheet"  href="<?php echo BASE_URL;?>
-css/style.css">
-     
+css/style.css"> 
     </head>
 <body><?php }
 }

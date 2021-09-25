@@ -18,12 +18,11 @@ class CarreraModel{
         return  $carreras;
     }      
 
-    //  function getMateria($materia){
-    //     $sentencia = $this->db->prepare('SELECT * FROM materia');
-    //     $sentencia->execute(array($materia));
-    
-    //     return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    // }
+    function getMaterias(){
+       $sentencia = $this->db->prepare('SELECT * FROM materia');
+       $sentencia->execute(array());
+       return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
     
   
     // //INSERTAR materia            

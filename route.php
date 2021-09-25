@@ -34,8 +34,13 @@ switch ($params[0]) {
         break;
 
     case 'detalle':
-        $carreraController->filtrarMateria($params[3]);
+        if ( isset($params[3]) ){
+            $carreraController->filtrarMateria($params[3]);
+        }else { $carreraController->filtrarMateria($params[1]); }
         break;
+
+    case 'materias';
+        $carreraController->showMaterias();
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
             //     break;
