@@ -6,5 +6,6 @@
         <li class="list-group-item">Profesor | {$materia->profesor}</li>
     </ul>
 </div>
+<a href="../{$materia->id_carrera}">Volver</a>
 
 {include file="templates/footer.tpl"}
