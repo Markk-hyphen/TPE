@@ -58,21 +58,12 @@ class CarreraModel{
            
     // }
 
-<<<<<<< HEAD
-    //arreglar desde controller
-    public function filtrarCarrera($id_carrera){  
-        $sentencia =$this->db->prepare( "SELECT a.nombre, b.nombre FROM materia a LEFT JOIN carrera b ON a.id_carrera = b.id WHERE id_carrera='?'");
-        $sentencia->execute( array($id_carrera));
-        header("Location: ".BASE_URL."home");
-        
-=======
     // //arreglar desde controller
     public function filtrarCarrera($id_carrera){  
         $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
         $sentencia->execute(array($id_carrera));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
  
->>>>>>> 00be06c3c506b21c713200e9c00e870e9dc168c7
     }
     
 }
