@@ -27,13 +27,13 @@ class CarreraModel{
     }
 
     // //arreglar desde controller
-    public function filtrarCarrera($id_carrera){  
-        $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
-        $sentencia->execute(array($id_carrera));
+    // public function filtrarCarrera($id_carrera){  
+    //     $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
+    //     $sentencia->execute(array($id_carrera));
         
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    //     return $sentencia->fetchAll(PDO::FETCH_OBJ);
  
-    }
+    // }
   //insertar carrera
     function insertarCarrera($nombre,$duracion){
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
@@ -57,7 +57,7 @@ class CarreraModel{
         $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
         $sentencia->execute(array($id_carrera));
     
-        header("Location: ".BASE_URL."borrarcarrera");
+        
     }
     //     //arreglar desde controller
     // public function borrarMateria($materia_id){

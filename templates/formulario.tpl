@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 --------------------------------------------------------------
-                    {* AGREGAR CARRERA *}
+                               {* AGREGAR CARRERA *}
 
 <div class="container">
    <div class="row mt-4">
@@ -27,7 +27,7 @@
 
            <h2>BORRAR CARRERA</h2>
 
-            <form class="form-alta" action="borrarcarrera" method="POST"> 
+            <form class="form-alta" action="borrarcarrera" method="post"> 
                 <select name="id_carrera">
                     {foreach from=$carreras item=$carrera}
                        <option value="{$carrera->id_carrera}">{$carrera->nombre}</option>
@@ -42,7 +42,7 @@
 
 
  ------------------------------------------------------
-
+                                    {* INSERTAR MATERIA *}
    <div class="row mt-4">
         <div class="col-md-4">
 

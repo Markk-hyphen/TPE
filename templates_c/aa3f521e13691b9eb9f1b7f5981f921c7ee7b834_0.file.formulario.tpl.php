@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-26 17:42:17
+/* Smarty version 3.1.39, created on 2021-09-26 18:31:08
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\formulario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_615094d9cde971_52575844',
+  'unifunc' => 'content_6150a04c3b8262_91532886',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa3f521e13691b9eb9f1b7f5981f921c7ee7b834' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\formulario.tpl',
-      1 => 1632670936,
+      1 => 1632673851,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_615094d9cde971_52575844 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6150a04c3b8262_91532886 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 --------------------------------------------------------------
@@ -51,7 +51,7 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
 
            <h2>BORRAR CARRERA</h2>
 
-            <form class="form-alta" action="borrarcarrera" method="POST"> 
+            <form class="form-alta" action="borrarcarrera" method="post"> 
                 <select name="id_carrera">
                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['carreras']->value, 'carrera');

@@ -50,7 +50,7 @@ class CarreraController {
                         
             $id_carrera_nombre=  $this->model->getCarrera();  //traigo el id y el nombr de la base de datos para el select
             $this->view->renderFormMateria($id_carrera_nombre);
-            
+     
             $this->model->borrarCarrera($_POST['id_carrera']);
          }
 
