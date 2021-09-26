@@ -34,23 +34,24 @@ class CarreraModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
  
     }
-
-    
-  
-    //INSERTAR materia            
-    //arreglar desde controller
-    function insertarMaterias($nombre, $profesor,$id_carrera){
-        $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
-        $sentencia->execute(array($nombre,$profesor,$id_carrera));
-  
-        header("Location: ".BASE_URL."administrador");     
-    }
-    function insertarCarrera($nombre, $duracion){
+  //insertar carrera
+    function insertarCarrera($nombre,$duracion){
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
         $sentencia->execute(array($nombre,$duracion));
   
-        header("Location: ".BASE_URL."administrador");     
+        header("Location: ".BASE_URL."carreras");     
     }
+  
+    //INSERTAR materia            
+
+    function insertarMateria($nombre, $profesor,$id_carrera){
+        $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
+        $sentencia->execute(array($nombre,$profesor,$id_carrera));
+  
+        header("Location: ".BASE_URL."materias");     
+    }
+
+
     //     //arreglar desde controller
     // public function borrarMateria($materia_id){
     //     $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id=?");

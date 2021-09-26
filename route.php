@@ -20,26 +20,30 @@ switch ($params[0]) {
         $carreraController->showHome(); 
         break;
         
-    case 'carrera':{
-        if ( isset($params[3]) ){ 
-            $carreraController->filtrarMateria($params[3]);
-        }else {
-            if ( isset($params[1]) && isset($params[2]) ) {
-                $carreraController->filtrarCarrera($params[2], $params[1]);
-            }else {
-                $carreraController->showHome();
-            }
-        }
-        }
-        break;
+    // case 'carrera':{
+    //     if ( isset($params[3]) ){ 
+    //         $carreraController->filtrarMateria($params[3]);
+    //     }else {
+    //         if ( isset($params[1]) && isset($params[2]) ) {
+    //             $carreraController->filtrarCarrera($params[2], $params[1]);
+    //         }else {
+    //             $carreraController->showHome();
+    //         }
+    //     }
+    //     }
+    //     break;
 
-    case 'detalle':
-        $carreraController->filtrarMateria($params[3]);
-        break;
-     case 'administrador':
-        $carreraController->insert();
-     
-        break;
+    // case 'detalle':
+    //     $carreraController->filtrarMateria($params[3]);
+    //     break;
+     case 'carreras':
+        $carreraController->insertCarrera();
+          break;
+        case 'materias':
+         $carreraController->insertMateria();
+             break;
+    
+
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
             //     break;

@@ -22,10 +22,7 @@ class CarreraView {
         $this->smarty->assign('nombre_carrera', $nombre);
         $this->smarty->display('templates/materias.tpl');
     }
-    
-    public function showHomeLocation(){
-        header("Location: ".BASE_URL."home");
-    }
+
 
     public function renderMateria($materia){
         $this->smarty->assign('materia', $materia);
@@ -37,5 +34,10 @@ class CarreraView {
     public function renderFormMateria($carreras){
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display("templates/formulario.tpl");
+    }
+
+        
+    public function showHomeLocation(){
+        header("Location: ".BASE_URL."home");
     }
 }
