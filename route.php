@@ -43,7 +43,10 @@ switch ($params[0]) {
         case 'agregarmateria':
          $carreraController->insertMateria();
              break;
-    
+        
+    case 'borrarcarrera':
+        $carreraController->borrarCarreras();
+        break;
 
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
@@ -53,9 +56,7 @@ switch ($params[0]) {
     //     $carreraController->insertarMateria($_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
     //     break;
     
-    // case 'delete':
-    //     $carreraController->borrarMateria($partesURL[1]);
-    //     break;
+
 
     // case 'modificar':
     //     $carreraController->modificarMateria($partesURL[1], $_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);

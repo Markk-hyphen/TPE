@@ -10,7 +10,7 @@ class CarreraModel{
     public function __destruct(){
         $this->db = null;
     }
-
+   //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
     function getCarrera(){
         $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
         $sentencia->execute(array());
@@ -52,6 +52,13 @@ class CarreraModel{
     }
 
 
+        //BORRAR CARRERA
+    public function borrarCarrera($id_carrera){
+        $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
+        $sentencia->execute(array($id_carrera));
+    
+        header("Location: ".BASE_URL."borrarcarrera");
+    }
     //     //arreglar desde controller
     // public function borrarMateria($materia_id){
     //     $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id=?");

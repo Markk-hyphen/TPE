@@ -30,20 +30,30 @@ class CarreraController {
  //FORMULARIO------------------------------------------------------------------
           //INSERTAR MATERIA
     public function insertMateria(){
+            
+            $id_carrera=  $this->model->getCarrera();
+            $this->view->renderFormMateria($id_carrera);
         
-        $id_carrera=  $this->model->getCarrera();
-        $this->view->renderFormMateria($id_carrera);
-      
-        $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
+            $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
     }
          //INSERTAR CARRERA
         public function insertCarrera(){
           
-        $id_carrera=  $this->model->getCarrera();
-        $this->view->renderFormMateria($id_carrera);
-        $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
-   
-}
+            $id_carrera_nombre=  $this->model->getCarrera();
+            $this->view->renderFormMateria($id_carrera_nombre);
+
+            $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
+    
+               }
+         //BORRAR CARRERA
+         Public function borrarCarreras(){
+                        
+            $id_carrera_nombre=  $this->model->getCarrera();  //traigo el id y el nombr de la base de datos para el select
+            $this->view->renderFormMateria($id_carrera_nombre);
+            
+            $this->model->borrarCarrera($_POST['id_carrera']);
+         }
+
 
     // public function borrarMateria($id_materia){
     //     $this->model->borrarMateria($id_materia);
