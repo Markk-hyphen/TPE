@@ -7,7 +7,7 @@
 
            <h2>CARRERA</h2>
 
-            <form class="form-alta" action="carreras" method="POST"> 
+            <form class="form-alta" action="agregarcarrera" method="POST"> 
                      <label for="nombre">Nombre de LA CARRERA</label>
                     <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
                  <label for="duracion">duracion</label>
@@ -29,7 +29,7 @@
 
            <h2>MATERIA</h2>
 
-            <form class="form-alta" action="materias" method="POST"> 
+            <form class="form-alta" action="agregarmateria" method="POST"> 
                 <select name="id_carrera">
                     {foreach from=$carreras item=$carrera}
                        <option value="{$carrera->id_carrera}">{$carrera->nombre}</option>
@@ -39,10 +39,10 @@
 
                     <label for="nombre">Nombre de la materia</label>
                     <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                 <label for="profesor">Profesor</label>
-                 <input placeholder="profesor" type="text" name="profesor" id="profesor" required>
+                    <label for="profesor">Profesor</label>
+                    <input placeholder="profesor" type="text" name="profesor" id="profesor" required>
     
-                <input type="submit" class="btn btn-primary">
+                    <input type="submit" class="btn btn-primary">
             </form>
         </div>
     </div>

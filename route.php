@@ -20,26 +20,27 @@ switch ($params[0]) {
         $carreraController->showHome(); 
         break;
         
-    // case 'carrera':{
-    //     if ( isset($params[3]) ){ 
-    //         $carreraController->filtrarMateria($params[3]);
-    //     }else {
-    //         if ( isset($params[1]) && isset($params[2]) ) {
-    //             $carreraController->filtrarCarrera($params[2], $params[1]);
-    //         }else {
-    //             $carreraController->showHome();
-    //         }
-    //     }
-    //     }
-    //     break;
+    case 'carrera':{
+        if ( isset($params[3]) ){ 
+            $carreraController->filtrarMateria($params[3]);
+        }else {
+            if ( isset($params[1]) && isset($params[2]) ) {
+                $carreraController->filtrarCarrera($params[2], $params[1]);
+            }else {
+                $carreraController->showHome();
+            }
+        }
+        }
+        break;
 
-    // case 'detalle':
-    //     $carreraController->filtrarMateria($params[3]);
-    //     break;
-     case 'carreras':
+    case 'detalle':
+        $carreraController->filtrarMateria($params[3]);
+        break;
+ 
+     case 'agregarcarrera':
         $carreraController->insertCarrera();
           break;
-        case 'materias':
+        case 'agregarmateria':
          $carreraController->insertMateria();
              break;
     

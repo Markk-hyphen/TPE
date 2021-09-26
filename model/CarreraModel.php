@@ -39,7 +39,7 @@ class CarreraModel{
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
         $sentencia->execute(array($nombre,$duracion));
   
-        header("Location: ".BASE_URL."carreras");     
+        header("Location: ".BASE_URL."agregarcarrera");     
     }
   
     //INSERTAR materia            
@@ -48,7 +48,7 @@ class CarreraModel{
         $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
         $sentencia->execute(array($nombre,$profesor,$id_carrera));
   
-        header("Location: ".BASE_URL."materias");     
+        header("Location: ".BASE_URL."agregarmateria");     
     }
 
 
