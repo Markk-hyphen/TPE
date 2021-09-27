@@ -71,7 +71,28 @@
 
 
 --------------------------------
+----------------------------------------------------------------------------------
+                                       {* BORRAR MATERIA*}
+   <div class="row mt-4">
+        <div class="col-md-4">
 
+           <h2>BORRAR MATERIA</h2>
+
+            <form class="form-alta" action="borrarmateria" method="post"> 
+                <select name="id_materia">
+                    {foreach from=$materias item=materia}
+                       <option value="{$materia->id_materia}">{$materia->nombre}</option>
+                    {/foreach}
+                </select>
+                     
+    
+                <button type="submit" class="btn btn-primary">BORRAR</button>
+            </form>
+        </div>
+    </div>
+
+
+ ------------------------------------------------------
 
 
 

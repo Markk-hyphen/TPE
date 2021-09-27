@@ -17,10 +17,16 @@ class CarreraModel{
         $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return  $carreras;
     }      
+         //OBTENER LAS MATERIAS PARA EL SELECT
+         public function getMateria(){
+            $sentencia =$this->db->prepare( "SELECT nombre, id_materia FROM materia");
+            $sentencia->execute( array() );
+           $materias =$sentencia->fetchAll(PDO::FETCH_OBJ);
+           return $materias;
+        }
 
-
-         //arreglar desde controller
-    public function getMateria($id_materia){
+         //MATERIAS POR id
+    public function getMateriaPorId($id_materia){
         $sentencia =$this->db->prepare( "SELECT * FROM materia WHERE id_materia = ?");
         $sentencia->execute( array($id_materia) );
         return $sentencia->fetch(PDO::FETCH_OBJ);
@@ -57,15 +63,16 @@ class CarreraModel{
         $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
         $sentencia->execute(array($id_carrera));
     
-        
+        header("Location: ".BASE_URL."borrarcarrera");   
     }
-    //     //arreglar desde controller
-    // public function borrarMateria($materia_id){
-    //     $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id=?");
-    //     $sentencia->execute(array($materia_id));
-    //     header("Location: ".BASE_URL."home");
-    
-    // }
+        //BORRAR MATERIA
+            public function borrarMateria($id_materia){
+                $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id_materia=?");
+                $sentencia->execute(array($id_materia));
+                header("Location: ".BASE_URL."borrarmateria"); 
+                
+            }
+
     //     //arreglar desde controller
     // public function modificarMateria($materia_id, $nombre, $profesor, $carrera){
     //     $sentencia =$this->db->prepare("UPDATE materia SET materia(nombre,profesor,id_carrera) VALUES(?,?,?) WHERE id = :materia_id");

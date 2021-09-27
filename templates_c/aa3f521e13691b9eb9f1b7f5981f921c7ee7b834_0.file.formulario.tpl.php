@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-26 18:31:08
+/* Smarty version 3.1.39, created on 2021-09-27 17:55:04
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\formulario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6150a04c3b8262_91532886',
+  'unifunc' => 'content_6151e95873d534_07583674',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa3f521e13691b9eb9f1b7f5981f921c7ee7b834' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\formulario.tpl',
-      1 => 1632673851,
+      1 => 1632758102,
       2 => 'file',
     ),
   ),
@@ -22,11 +22,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6150a04c3b8262_91532886 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6151e95873d534_07583674 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 --------------------------------------------------------------
-                    
+                               
 <div class="container">
    <div class="row mt-4">
         <div class="col-md-4">
@@ -75,8 +75,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
  ------------------------------------------------------
-
-   <div class="row mt-4">
+                                       <div class="row mt-4">
         <div class="col-md-4">
 
            <h2>MATERIA</h2>
@@ -113,7 +112,36 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
 --------------------------------
+----------------------------------------------------------------------------------
+                                          <div class="row mt-4">
+        <div class="col-md-4">
 
+           <h2>BORRAR MATERIA</h2>
+
+            <form class="form-alta" action="borrarmateria" method="post"> 
+                <select name="id_materia">
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['materias']->value, 'materia');
+$_smarty_tpl->tpl_vars['materia']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['materia']->value) {
+$_smarty_tpl->tpl_vars['materia']->do_else = false;
+?>
+                       <option value="<?php echo $_smarty_tpl->tpl_vars['materia']->value->id_materia;?>
+"><?php echo $_smarty_tpl->tpl_vars['materia']->value->nombre;?>
+</option>
+                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                </select>
+                     
+    
+                <button type="submit" class="btn btn-primary">BORRAR</button>
+            </form>
+        </div>
+    </div>
+
+
+ ------------------------------------------------------
 
 
 

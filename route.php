@@ -48,6 +48,9 @@ switch ($params[0]) {
     case 'borrarcarrera':
         $carreraController->borrarCarreras();
         break;
+        case 'borrarmateria':
+            $carreraController->borrarMaterias();
+            break;
 
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
