@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-27 17:55:04
+/* Smarty version 3.1.39, created on 2021-09-27 22:07:32
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\formulario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6151e95873d534_07583674',
+  'unifunc' => 'content_61522484abaf62_50194446',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa3f521e13691b9eb9f1b7f5981f921c7ee7b834' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\formulario.tpl',
-      1 => 1632758102,
+      1 => 1632773248,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6151e95873d534_07583674 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61522484abaf62_50194446 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 --------------------------------------------------------------

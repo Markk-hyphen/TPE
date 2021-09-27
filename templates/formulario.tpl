@@ -80,7 +80,7 @@
 
             <form class="form-alta" action="borrarmateria" method="post"> 
                 <select name="id_materia">
-                    {foreach from=$materias item=materia}
+                    {foreach from=$materias item=$materia}
                        <option value="{$materia->id_materia}">{$materia->nombre}</option>
                     {/foreach}
                 </select>

@@ -1,9 +1,6 @@
 {include file='templates/header.tpl'}
 
-    <header>
-                <h1>CARRERAS</h1>
-                <h2>INFORMATICA</h2>
-    </header>
+
 
 <div class="container">
 {foreach from=$carreras item=$carrera}
