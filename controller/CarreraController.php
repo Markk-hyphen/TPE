@@ -28,40 +28,57 @@ class CarreraController {
     //     $this->view->renderCarrera($materias, $nombre_con_espacios);
     // }
  //FORMULARIO------------------------------------------------------------------
-          //INSERTAR MATERIA
-    public function insertMateria(){
-            
-            $id_carrera=  $this->model->getCarrera();
-            $this->view->renderFormCarrera($id_carrera);
-        
-            $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
-    }
-         //INSERTAR CARRERA
+        //  INSERTAR CARRERA
         public function insertCarrera(){
-          
-            $id_carrera_nombre=  $this->model->getCarrera();
-            $this->view->renderFormMateria($id_carrera_nombre);
-
-            $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
+          $this->view->renderFormAgregarCarrera();
+          $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
     
                }
-         //BORRAR CARRERA
-         Public function borrarCarreras(){
+          //INSERTAR MATERIA
+        public function insertMateria(){
+            
+            $id_carrera_nombre=$this->model->getCarrera(); //le paso el nombre y el id para el select
+            $this->view->renderFormAgregarMateria($id_carrera_nombre); //se lo mando a la vista
+            $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
+    }
+       //mostrar tabla materias:
+         Public function tablaEditarBorrar(){
                         
-            $id_carrera_nombre=  $this->model->getCarrera();  //traigo el id y el nombr de la base de datos para el select
-            $this->view->renderFormCarrera($id_carrera_nombre);
-     
-            $this->model->borrarCarrera($_POST['id_carrera']);
-         }
-      //BORRAR MATERIA
-          Public function borrarMaterias(){
-                        
-            $id_materia_nombre=  $this->model->getMateria();  //traigo el id y el nombr de la base de datos para el select
-             $this->view->renderFormMateria($id_materia_nombre);
-             
-            $this->model->borrarMateria($_POST['id_materia']);
+            $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
+             $this->view->RendertablaMateria($tablasMaterias);
+          
             }
-
+                //   BORRAR MATERIA
+          Public function borrarMaterias($id){
+   
+             $this->model->borrarMateria($id);
+            }
+        //  BORRAR CARRERA
+        //  Public function borrarCarreras(){
+                        
+        //     $id_carrera_nombre=  $this->model->getCarrera();  //traigo el id y el nombr de la base de datos para el select
+        //     $this->view->renderFormCarrera($id_carrera_nombre);
+     
+        //     $this->model->borrarCarrera($_POST['id_carrera']);
+        //  }
+    //   BORRAR MATERIA
+        //   Public function borrarMaterias(){
+                        
+        //     $tablasMaterias =  $this->model->getMateria();  //traigo el id y el nombr de la base de datos para el select
+        //      $this->view->renderFormMateria( $tablasMaterias );
+             
+        //     $this->model->borrarMateria($_POST['id_materia']);
+        //     }
+    //         //EDITAR MATERIAS TABLA
+    //         Public function editarMateria(){
+             
+    //             $tablaMaterias= $this->model-> getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
+    //              $this->view->tablaMateria($tablaMaterias);
+              
+    //              $this->model-> editarMateria($_POST['$materia_id'],$_POST['$nombre'],$_POST['$profesor'],$_POST['$id_carrera']); 
+                 
+               
+    //             }
 
  
 

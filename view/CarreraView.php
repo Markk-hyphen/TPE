@@ -30,15 +30,21 @@ class CarreraView {
     }
 
     //FORMULARIO
-    
-    public function renderFormCarrera($carreras){
-        $this->smarty->assign('carreras',$carreras);
-        $this->smarty->display("templates/formulario.tpl");
+    //vista carrera
+    public function renderFormAgregarCarrera(){
+ 
+        $this->smarty->display("templates/ingresacarrera.tpl");
     }
         
-    public function renderFormMateria($materias){
-        $this->smarty->assign('materias',$materias);
-        $this->smarty->display("templates/formulario.tpl");
+    public function renderFormAgregarMateria($carreras){
+        $this->smarty->assign('carreras',$carreras);
+        $this->smarty->display("templates/ingresamateria.tpl");
+  
+    }
+    public function rendertablaMateria($tablaMaterias){
+        $this->smarty->assign('tablaMaterias', $tablaMaterias);
+     
+        $this->smarty->display("templates/editarborrarmateria.tpl");
     }
 
         

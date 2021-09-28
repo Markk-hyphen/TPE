@@ -23,7 +23,7 @@
 ----------------------------------------------------------------------------------
                                        {* BORRAR CARRERA *}
    <div class="row mt-4">
-        <div class="col-md-4">
+     
 
            <h2>BORRAR CARRERA</h2>
 
@@ -37,14 +37,14 @@
     
                 <button type="submit" class="btn btn-primary">BORRAR</button>
             </form>
-        </div>
+     
     </div>
 
+-----------------------------------------------------------------------------------------------
 
- ------------------------------------------------------
                                     {* INSERTAR MATERIA *}
    <div class="row mt-4">
-        <div class="col-md-4">
+     
 
            <h2>MATERIA</h2>
 
@@ -64,17 +64,15 @@
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
-    </div>
+
  </div>
   
 
 
 
---------------------------------
-----------------------------------------------------------------------------------
                                        {* BORRAR MATERIA*}
    <div class="row mt-4">
-        <div class="col-md-4">
+ 
 
            <h2>BORRAR MATERIA</h2>
 
@@ -88,12 +86,39 @@
     
                 <button type="submit" class="btn btn-primary">BORRAR</button>
             </form>
-        </div>
+ 
     </div>
 
 
  ------------------------------------------------------
+<table style= 'border-collapse:collapse'>
+   <thead>
 
+     <tr>
+
+      <th style="border: 3px solid #73568C">id_materia</td> 
+      <th style="border: 3px solid #73568C">nombre</th> 
+      <th style="border: 3px solid #73568C">profesor</th>
+      <th style="border: 3px solid #73568C">id_carrera</th>
+       <th style="border: 3px solid #73568C">EDITAR</th>
+
+     </tr>
+
+     </thead>
+   <tr style=text-align:center>
+   {foreach from=$tablaMaterias item=$item}
+         
+         <td style='border: 3px solid #73568C '><input type="text" name="id_materia" placeholder="{$item->id_materia}"></td>
+         <td style='border: 3px solid #73568C'><input type="text" name="nombre" placeholder="{$item->nombre}"></td>
+         <td style='border: 3px solid #73568C'><input type="text" name="profesor" placeholder="{$item->profesor}"></td>
+          <td style='border: 3px solid #73568C'><input type="text" name="id_carrera" placeholder="{$item->id_carrera}"></td>
+         <td style='border: 3px solid #73568C'> 
+         <a class="btn btn-primary" href="{$item->id_materia}">EDITAR</a>
+         </td>
+     
+         </tr>
+ {/foreach}
+</table>
 
 
 {include file="templates/footer.tpl"}

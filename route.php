@@ -16,9 +16,9 @@ $carreraController = new CarreraController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
-    // case 'home': 
-    //     $carreraController->showHome(); 
-    //     break;
+    case 'home': 
+        $carreraController->showHome(); 
+        break;
         
     // case 'carrera':{
     //     if ( isset($params[3]) ){ 
@@ -31,36 +31,46 @@ switch ($params[0]) {
     //          }
     //      }
     //     }
-    //     break;
+        // break;
 
-    // case 'detalle':
-    //     $carreraController->filtrarMateria($params[3]);
-    //     break;
- 
-        
-     case 'agregarcarrera':
-        $carreraController->insertCarrera();
-          break;
-        case 'agregarmateria':
-         $carreraController->insertMateria();
-             break;
-        
-    case 'borrarcarrera':
-        $carreraController->borrarCarreras();
+    case 'detalle':
+        $carreraController->filtrarMateria($params[3]);
         break;
-        case 'borrarmateria':
-            $carreraController->borrarMaterias();
-            break;
+ 
+      case 'administrador':
+
+           if(isset($params[1]) && $params[1]=='agregacarrera'){
+            $carreraController->insertCarrera();
+          
+        }elseif(isset($params[1]) && $params[1]=='agregamateria'){
+            $carreraController->insertMateria();
+        
+        }elseif(isset($params[1]) && $params[1]=='agregamateria'){
+            $carreraController->insertMateria();
+        
+        }elseif(isset($params[1]) && $params[1]=='tabla'){
+            $carreraController->tablaEditarBorrar();
+        if(isset($params[1]) == 'borrarmateria' && isset($params[2])){
+            $carreraController->borrarMaterias($params[3]);
+          
+               }
+        }
+          break;
+
+    // case 'borrarcarrera':
+    //     $carreraController->borrarCarreras();
+    //     break;
+    //     case 'borrarmateria':
+    //         $carreraController->borrarMaterias();
+    //         break;
+    //         case 'editarmateria':
+    //             $carreraController->editarMateria();
+    //             break;
 
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
             //     break;
 
-
-    // case 'modificar':
-    //     $carreraController->modificarMateria($partesURL[1], $_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
-    //     break;
-    
     default:
         $carreraController->showHome();
         break;

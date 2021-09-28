@@ -10,6 +10,12 @@ class CarreraModel{
     public function __destruct(){
         $this->db = null;
     }
+    function getTablaMaterias(){
+        $sentencia = $this->db->prepare('SELECT * FROM materia');
+        $sentencia->execute(array());
+        $tablaMaterias = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return  $tablaMaterias;
+    }      
    //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
     function getCarrera(){
         $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
@@ -45,7 +51,7 @@ class CarreraModel{
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
         $sentencia->execute(array($nombre,$duracion));
   
-        header("Location: ".BASE_URL."agregarcarrera");     
+        header("Location: ".BASE_URL."administrador/agregarcarrera");     
     }
   
     //INSERTAR materia            
@@ -54,31 +60,31 @@ class CarreraModel{
         $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
         $sentencia->execute(array($nombre,$profesor,$id_carrera));
   
-        header("Location: ".BASE_URL."agregarmateria");     
-    }
-
-
-        //BORRAR CARRERA
-    public function borrarCarrera($id_carrera){
-        $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
-        $sentencia->execute(array($id_carrera));
-    
-        header("Location: ".BASE_URL."borrarcarrera");   
+        header("Location: ".BASE_URL."administrador/agregamateria");     
     }
         //BORRAR MATERIA
-            public function borrarMateria($id_materia){
-                $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id_materia=?");
-                $sentencia->execute(array($id_materia));
-                header("Location: ".BASE_URL."borrarmateria"); 
-                
-            }
+        public function borrarMateria($id_materia){
+            $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id_materia=?");
+            $sentencia->execute(array($id_materia));
+            // header("Location: ".BASE_URL."administrador/tabla"); 
+            
+        }
 
-    //     //arreglar desde controller
-    // public function modificarMateria($materia_id, $nombre, $profesor, $carrera){
+        //BORRAR CARRERA
+    // public function borrarCarrera($id_carrera){
+    //     $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
+    //     $sentencia->execute(array($id_carrera));
+    
+    //     header("Location: ".BASE_URL."borrarcarrera");   
+    // }
+
+
+        //arreglar desde controller
+    // public function editarMateria($id_materia, $nombre, $profesor, $id_carrera){
     //     $sentencia =$this->db->prepare("UPDATE materia SET materia(nombre,profesor,id_carrera) VALUES(?,?,?) WHERE id = :materia_id");
-    //     $sentencia->bindParam(':materia_id', $materia_id, PDO::PARAM_STR);
-    //     $sentencia->execute(array($nombre, $profesor, $carrera));
-    //     header("Location: ".BASE_URL."home");
+    //     // $sentencia->bindParam(':materia_id', $materia_id, PDO::PARAM_STR);
+    //     $sentencia->execute(array($id_materia,$nombre, $profesor, $id_carrera));
+    //     header("Location: ".BASE_URL."editarmateria");
            
     // }
     
