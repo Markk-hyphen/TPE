@@ -51,4 +51,15 @@ class CarreraView {
     public function showHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
+    public function showAgregarCarreraLocation(){
+
+        header("Location: ".BASE_URL."agregarcarrera");   
+    }
+    public function showAgregarMateriaLocation(){
+
+        header("Location: ".BASE_URL."agregarmateria");   
+    }
+    public function showTablaLocation(){
+        header("Location: ".BASE_URL."tabla");
+    }
 }

@@ -1,26 +1,28 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-28 13:04:21
+/* Smarty version 3.1.39, created on 2021-09-29 17:19:46
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\ingresamateria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6152f6b523e9f1_34850733',
+  'unifunc' => 'content_61548412f290d3_67571014',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9122e3790812d3812e338292a75130933dd85cd' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\ingresamateria.tpl',
-      1 => 1632827034,
+      1 => 1632928785,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:templates/header.tpl' => 1,
   ),
 ),false)) {
-function content_6152f6b523e9f1_34850733 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61548412f290d3_67571014 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 -----------------------------------------------------------------------------------------------
 
@@ -29,7 +31,7 @@ function content_6152f6b523e9f1_34850733 (Smarty_Internal_Template $_smarty_tpl)
 
            <h2>AGREGAR MATERIA</h2>
 
-            <form class="form-alta" action="agregamateria" method="POST"> 
+            <form class="form-alta" action="agregarmateria" method="POST"> 
                 <select name="id_carrera">
                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['carreras']->value, 'carrera');

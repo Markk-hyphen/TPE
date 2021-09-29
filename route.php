@@ -14,7 +14,7 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 $carreraController = new CarreraController();
 
-// determina que camino seguir según la acción
+
 switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
@@ -31,31 +31,38 @@ switch ($params[0]) {
     //          }
     //      }
     //     }
-        // break;
+    //     break;
 
     case 'detalle':
         $carreraController->filtrarMateria($params[3]);
         break;
- 
-      case 'administrador':
-
-           if(isset($params[1]) && $params[1]=='agregacarrera'){
-            $carreraController->insertCarrera();
-          
-        }elseif(isset($params[1]) && $params[1]=='agregamateria'){
+  
+      case 'agregarcarrera':
+          $carreraController->insertCarrera();
+            break;
+       case 'agregarmateria':
             $carreraController->insertMateria();
+            break;
+        case 'tabla':
+         $carreraController->tablaEditarBorrar();
+         break;
+         case 'borrarmateria':
+            $carreraController->borrarMaterias($params[1]);
+            break;
+        //  if(isset($params[1]) && $params[1]=='borrarmateria'){
+        //     $carreraController->borrarMaterias($params[2]);
+        //  }
+        //  elseif(isset($params[1]) && $params[1]=='editarmateria'){
+        //     $carreraController->modificarMateria($params[2]);
+        //  }
+            // break;
+        case 'editarmateria':
+            if(isset($params[1])) {
+                $carreraController->modificarMateria($params[1]);
+            }
+                break;
         
-        }elseif(isset($params[1]) && $params[1]=='agregamateria'){
-            $carreraController->insertMateria();
-        
-        }elseif(isset($params[1]) && $params[1]=='tabla'){
-            $carreraController->tablaEditarBorrar();
-        if(isset($params[1]) == 'borrarmateria' && isset($params[2])){
-            $carreraController->borrarMaterias($params[3]);
-          
-               }
-        }
-          break;
+      
 
     // case 'borrarcarrera':
     //     $carreraController->borrarCarreras();

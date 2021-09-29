@@ -1,4 +1,4 @@
-
+{include file='templates/header.tpl'}
 -----------------------------------------------------------------------------------------------
 
                                     {* INSERTAR MATERIA *}
@@ -7,7 +7,7 @@
 
            <h2>AGREGAR MATERIA</h2>
 
-            <form class="form-alta" action="agregamateria" method="POST"> 
+            <form class="form-alta" action="agregarmateria" method="POST"> 
                 <select name="id_carrera">
                     {foreach from=$carreras item=$carrera}
                        <option value="{$carrera->id_carrera}">{$carrera->nombre}</option>
