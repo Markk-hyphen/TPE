@@ -5,10 +5,12 @@ require_once "view\CarreraView.php";
 class CarreraController {
     private $model;
     private $view;
+ 
 
     public function __construct(){
         $this->model = new CarreraModel();
         $this->view = new CarreraView();
+       
     }   
 
     public function showHome(){
@@ -53,10 +55,19 @@ class CarreraController {
        }
            //   BORRAR Carrera
      Public function borrarCarreras($id){
-        $this->model->borrarCarrera($id);
-        $this->view->showTablaLocationCarrera();
-       }
-
+         //function de check
+         $seguridad= $this->model->buscarIdCarreraEnTablaMateria($id);
+        //  var_dump($seguridad);
+        //  if($seguridad==false){
+             $this->model->borrarCarrera($id);
+             $this->view->showTablaLocationCarrera();
+    //      }else{
+    //         $this->view->renderSeguridad($seguridad);
+    //        }
+     
+    //       $this->view->showTablaLocationCarrera();
+    //    }
+    }
          //EDITAR Carrera
      public function modificarCarrera($id_carrera){
    // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);

@@ -55,6 +55,13 @@ class CarreraView {
         $this->smarty->display("templates/editarborrarcarrera.tpl");
     }
 
+    // public function renderSeguridad($seguridad){
+       
+    //     $this->smarty->assign('seguridad', $seguridad);
+     
+    // }
+    
+
 //   ----------------------------location----------------------------------------      
     public function showHomeLocation(){
         header("Location: ".BASE_URL."home");

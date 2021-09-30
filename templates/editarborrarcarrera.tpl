@@ -1,4 +1,4 @@
-  {include file="templates/header.tpl"}             
+{include file='templates/header.tpl'}             
                            <h1> EDITAR Y BORRAR CARRERA</h1>
 <table style= 'border-collapse:collapse'>
    <thead>
@@ -24,7 +24,7 @@
             <td style='border: 3px solid #73568C'><input type="text" name="nombre" value="{$item->nombre}"></td>
             <td style='border: 3px solid #73568C'><input type="number" name="duracion" value="{$item->duracion}"></td>
           
-            <td style='border: 3px solid #73568C'><a class="btn btn-primary" href="borrarcarrera/{$item->id_carrera}">borrar</a></td>
+            <td style='border: 3px solid #73568C'><a class="btn btn-primary" id="borrar" href="borrarcarrera/{$item->id_carrera}">borrar</a></td>
             <td style='border: 3px solid #73568C'><button type="submit" class="btn btn-primary">editar</button></td>
         
     </form>
@@ -33,4 +33,9 @@
 
 </table>
 
+
+ {* <p>{if  $seguridad == true} {include file="seguridadborrar.tpl"}{/if} </p> *}
+
 {include file="templates/footer.tpl"}
+
+         

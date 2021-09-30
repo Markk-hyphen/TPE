@@ -53,11 +53,11 @@ class CarreraModel{
         $sentencia->execute(array($id_carrera));
         
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
- 
+
     }
     
     //   ------------------------------AGREGAR CARRERA Y MATERIAS----------------------------------------------
-  //insertar carrera
+   //insertar carrera
     function insertarCarrera($nombre,$duracion){
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
         $sentencia->execute(array($nombre,$duracion));
@@ -72,6 +72,13 @@ class CarreraModel{
         $sentencia->execute(array($nombre,$profesor,$id_carrera));
   
   //   ------------------------------EDITAR BORRAR CARRERA----------------------------------------------       
+}
+// buscarIdCarreraEnTablaMateria
+public function buscarIdCarreraEnTablaMateria($id_carrera){
+    $sentencia = $this->db->prepare( "SELECT id_carrera FROM `materia` WHERE id_carrera=?");
+    $sentencia->execute(array($id_carrera));
+    return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    
 }
 //BORRAR CARRERA
 public function borrarCarrera($id_carrera){

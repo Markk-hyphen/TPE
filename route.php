@@ -33,8 +33,8 @@ switch ($params[0]) {
         }
         break;
 
-            case 'filtrar':
-                $carreraController->filtrarMateria($_POST["input_buscador"]);
+    case 'filtrar':
+        $carreraController->filtrarMateria($_POST["input_buscador"]);
                 break;
 
     case 'detalle':
@@ -48,9 +48,9 @@ switch ($params[0]) {
             $carreraController->insertMateria();
             break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
- case 'tablacarrera':
+   case 'tablacarrera':
     $carreraController->tablaEditarBorrarCarrera();
-    break;
+       break;
     case 'borrarcarrera':
        $carreraController->borrarCarreras($params[1]);
        break;

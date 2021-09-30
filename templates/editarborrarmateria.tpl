@@ -1,4 +1,4 @@
-  {include file="templates/header.tpl"}             
+ {include file="templates/header.tpl"}             
                  <h1> EDITAR Y BOORRAR MATERIA</h1>
 <table style= 'border-collapse:collapse'>
    <thead>
@@ -36,4 +36,3 @@
 </table>
 
 {include file="templates/footer.tpl"}
-

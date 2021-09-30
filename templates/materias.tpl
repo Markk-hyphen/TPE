@@ -11,4 +11,4 @@
     </div>
 </div>
 
-{include file="templates/footer.tpl"}
+{include file="t

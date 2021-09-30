@@ -119,8 +119,10 @@ ALTER TABLE `materia`
 -- Constraints for table `materia`
 --
 ALTER TABLE `materia`
-  ADD CONSTRAINT `fk_carrera_materia` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`);
-COMMIT;
+  ADD CONSTRAINT `fk_carrera_materia` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`) ON DELETE CASCADE;
+
+-- //COMPORTAMIENTO CUANDO SE BORRE UN REGISTRO PADRE
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
