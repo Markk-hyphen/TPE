@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-29 22:10:54
+/* Smarty version 3.1.39, created on 2021-09-30 13:48:27
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\editarborrarmateria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6154c84e4c8a24_59159516',
+  'unifunc' => 'content_6155a40b3109e9_84673157',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e800b3b0924aba68b2cc9a5d0c27e35eec71b868' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\editarborrarmateria.tpl',
-      1 => 1632946251,
+      1 => 1633002492,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6154c84e4c8a24_59159516 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6155a40b3109e9_84673157 (Smarty_Internal_Template $_smarty_tpl) {
 ?>  <?php $_smarty_tpl->_subTemplateRender("file:templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>             
                  <h1> EDITAR Y BOORRAR MATERIA</h1>
@@ -59,7 +59,7 @@ $_smarty_tpl->tpl_vars['item']->do_else = false;
 "></td>
          <td style='border: 3px solid #73568C'><a class="btn btn-primary" href="borrarmateria/<?php echo $_smarty_tpl->tpl_vars['item']->value->id_materia;?>
 ">borrar</a></td>
-          <td style='border: 3px solid #73568C'><input type="submit" class="btn btn-primary">editar</td>
+          <td style='border: 3px solid #73568C'><button type="submit" class="btn btn-primary">editar</button></td>
         
      </form>
          </tr>

@@ -27,7 +27,7 @@
          <td style='border: 3px solid #73568C'><input type="text" name="profesor" value="{$item->profesor}"></td>
          <td style='border: 3px solid #73568C'><input type="number" name="id_carrera" value="{$item->id_carrera}"></td>
          <td style='border: 3px solid #73568C'><a class="btn btn-primary" href="borrarmateria/{$item->id_materia}">borrar</a></td>
-          <td style='border: 3px solid #73568C'><input type="submit" class="btn btn-primary">editar</td>
+          <td style='border: 3px solid #73568C'><button type="submit" class="btn btn-primary">editar</button></td>
         
      </form>
          </tr>

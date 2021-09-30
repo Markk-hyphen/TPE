@@ -10,12 +10,21 @@ class CarreraModel{
     public function __destruct(){
         $this->db = null;
     }
+ // -------------------------------------MOSTRAR TABLAS----------------------------------------
+    function getTablaCarreras(){
+        $sentencia = $this->db->prepare('SELECT * FROM carrera');
+        $sentencia->execute(array());
+        $tablaCarreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return  $tablaCarreras;
+    }  
+    //toda la tabla materias
     function getTablaMaterias(){
         $sentencia = $this->db->prepare('SELECT * FROM materia');
         $sentencia->execute(array());
         $tablaMaterias = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return  $tablaMaterias;
     }      
+    // -----------------------------------------------------------------------------
    //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
     function getCarrera(){
         $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
@@ -38,7 +47,7 @@ class CarreraModel{
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    // //arreglar desde controller
+    //filtro
     public function filtrarCarrera($id_carrera){  
         $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
         $sentencia->execute(array($id_carrera));
@@ -46,6 +55,8 @@ class CarreraModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
  
     }
+    
+    //   ------------------------------AGREGAR CARRERA Y MATERIAS----------------------------------------------
   //insertar carrera
     function insertarCarrera($nombre,$duracion){
         $sentencia =$this-> db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
@@ -60,8 +71,25 @@ class CarreraModel{
         $sentencia =$this-> db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
         $sentencia->execute(array($nombre,$profesor,$id_carrera));
   
-           
-    }
+  //   ------------------------------EDITAR BORRAR CARRERA----------------------------------------------       
+}
+//BORRAR CARRERA
+public function borrarCarrera($id_carrera){
+    $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
+    $sentencia->execute(array($id_carrera));
+
+    
+}
+ //EDITAR CARRERA
+public function editarCarrera($nombre,$duracion,$id_carrera){
+$sentencia =$this->db->prepare("UPDATE `carrera` SET `nombre`=?,`duracion`=?WHERE `id_carrera`=?");
+$sentencia->execute(array($nombre,$duracion,$id_carrera));
+
+}
+
+//   --------------------------------------------------------------------   
+//   ------------------------------EDITAR BORRAR MATERIAS----------------------------------------------       
+
         //BORRAR MATERIA
         public function borrarMateria($id_materia){
             $sentencia = $this->db->prepare( "DELETE FROM materia WHERE id_materia=?");
@@ -69,27 +97,13 @@ class CarreraModel{
        
             
         }
-    //    arreglar desde controller
+         //EDITAR MATERIA
     public function editarMateria($nombre,$profesor,$id_carrera,$id_materia){
         $sentencia =$this->db->prepare("UPDATE `materia` SET `nombre`=?,`profesor`=?,`id_carrera`=? WHERE `id_materia`=?");
-       
         $sentencia->execute(array($nombre,$profesor,$id_carrera,$id_materia));
-     
-        // function edit($nombre, $capacidad, $idEstadio){
-        //     $sentencia = $this->db->prepare( "UPDATE estadio SET nombre = ?, capacidad = ? where id_estadio=?");
-        //     $sentencia->execute(array($nombre, $capacidad, $idEstadio));
-        //   }
-           
+        
      }
-        //BORRAR CARRERA
-    // public function borrarCarrera($id_carrera){
-    //     $sentencia = $this->db->prepare( "DELETE FROM carrera WHERE id_carrera=?");
-    //     $sentencia->execute(array($id_carrera));
-    
-    //     header("Location: ".BASE_URL."borrarcarrera");   
-    // }
+ 
+    //   -------------------------------------------------------------------- 
 
-
-
-    
 }

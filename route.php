@@ -20,64 +20,60 @@ switch ($params[0]) {
         $carreraController->showHome(); 
         break;
         
-    // case 'carrera':{
-    //     if ( isset($params[3]) ){ 
-    //         $carreraController->filtrarMateria($params[3]);
-    //     }else {
-    //         if ( isset($params[1]) && isset($params[2]) ) {
-    //             $carreraController->filtrarCarrera($params[2], $params[1]);
-    //         }else {
-    //             $carreraController->showHome();
-    //          }
-    //      }
-    //     }
-    //     break;
+    case 'carrera':{
+        if ( isset($params[3]) ){ 
+            $carreraController->filtrarMateria($params[3]);
+        }else {
+            if ( isset($params[1]) && isset($params[2]) ) {
+                $carreraController->filtrarCarrera($params[2], $params[1]);
+            }else {
+                $carreraController->showHome();
+             }
+         }
+        }
+        break;
+
+            case 'filtrar':
+                $carreraController->filtrarMateria($_POST["input_buscador"]);
+                break;
 
     case 'detalle':
         $carreraController->filtrarMateria($params[3]);
         break;
-  
+//   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
       case 'agregarcarrera':
           $carreraController->insertCarrera();
             break;
        case 'agregarmateria':
             $carreraController->insertMateria();
             break;
+ //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
+ case 'tablacarrera':
+    $carreraController->tablaEditarBorrarCarrera();
+    break;
+    case 'borrarcarrera':
+       $carreraController->borrarCarreras($params[1]);
+       break;
+
+   case 'editarcarrera':
+       if(isset($params[1])) {
+           $carreraController->modificarCarrera($params[1]);
+       }
+       break;
+ //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
         case 'tabla':
          $carreraController->tablaEditarBorrar();
          break;
          case 'borrarmateria':
             $carreraController->borrarMaterias($params[1]);
             break;
-        //  if(isset($params[1]) && $params[1]=='borrarmateria'){
-        //     $carreraController->borrarMaterias($params[2]);
-        //  }
-        //  elseif(isset($params[1]) && $params[1]=='editarmateria'){
-        //     $carreraController->modificarMateria($params[2]);
-        //  }
-            // break;
+
         case 'editarmateria':
             if(isset($params[1])) {
                 $carreraController->modificarMateria($params[1]);
             }
-                break;
+            break;
         
-      
-
-    // case 'borrarcarrera':
-    //     $carreraController->borrarCarreras();
-    //     break;
-    //     case 'borrarmateria':
-    //         $carreraController->borrarMaterias();
-    //         break;
-    //         case 'editarmateria':
-    //             $carreraController->editarMateria();
-    //             break;
-
-            // case 'filtrar':
-            //     $carreraController->filtrarMateria($_POST["input_buscador"]);
-            //     break;
-
     default:
         $carreraController->showHome();
         break;

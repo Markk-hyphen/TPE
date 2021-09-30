@@ -27,8 +27,8 @@ class CarreraController {
         $materias = $this->model->filtrarCarrera($id_carrera);
         $this->view->renderCarrera($materias, $nombre_con_espacios);
     }
- //FORMULARIO------------------------------------------------------------------
-
+ //----------------------------FORMULARIO---------------------------------------
+//   ------------------------------AGREGAR -CARRERA -MATERIA------------------------------------------------
         //  INSERTAR CARRERA
         public function insertCarrera(){
           $this->view->renderFormAgregarCarrera();
@@ -44,6 +44,29 @@ class CarreraController {
             $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
             $this->view->showAgregarMateriaLocation();
     }
+        //   ------------------------------EDITAR BORRAR CARRERAS----------------------------------------------
+       //mostrar tabla Carrera:
+       Public function tablaEditarBorrarCarrera(){
+        $tablasCarrera=$this->model->getTablaCarreras();  
+        $this->view->RendertablaCarrera($tablasCarrera);
+     
+       }
+           //   BORRAR Carrera
+     Public function borrarCarreras($id){
+        $this->model->borrarCarrera($id);
+        $this->view->showTablaLocationCarrera();
+       }
+
+         //EDITAR Carrera
+     public function modificarCarrera($id_carrera){
+   // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
+       $this->model->editarCarrera($_POST['nombre'], $_POST['duracion'],$id_carrera);
+       $this->view->showTablaLocationCarrera();
+
+}
+//   --------------------------------------------------------------
+
+    //   ------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
        //mostrar tabla materias:
          Public function tablaEditarBorrar(){
              $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
@@ -53,45 +76,18 @@ class CarreraController {
                 //   BORRAR MATERIA
           Public function borrarMaterias($id){
              $this->model->borrarMateria($id);
-             $this->view->showTablaLocation();
+             $this->view->showTablaLocationMateria();
             }
 
               //EDITAR MATERIAS
     public function modificarMateria($id_materia){
         // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
             $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
-            $this->view->showTablaLocation();
+            $this->view->showTablaLocationMateria();
     
     }
+//   --------------------------------------------------------------
 
-        //  BORRAR CARRERA
-        //  Public function borrarCarreras(){
-                        
-        //     $id_carrera_nombre=  $this->model->getCarrera();  //traigo el id y el nombr de la base de datos para el select
-        //     $this->view->renderFormCarrera($id_carrera_nombre);
-     
-        //     $this->model->borrarCarrera($_POST['id_carrera']);
-        //  }
-    //   BORRAR MATERIA
-        //   Public function borrarMaterias(){
-                        
-        //     $tablasMaterias =  $this->model->getMateria();  //traigo el id y el nombr de la base de datos para el select
-        //      $this->view->renderFormMateria( $tablasMaterias );
-             
-        //     $this->model->borrarMateria($_POST['id_materia']);
-        //     }
-    //         //EDITAR MATERIAS TABLA
-    //         Public function editarMateria(){
-             
-    //             $tablaMaterias= $this->model-> getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
-    //              $this->view->tablaMateria($tablaMaterias);
-              
-    //              $this->model-> editarMateria($_POST['$materia_id'],$_POST['$nombre'],$_POST['$profesor'],$_POST['$id_carrera']); 
-                 
+
                
-    //             }
-
- 
-
-
-  }
+                }

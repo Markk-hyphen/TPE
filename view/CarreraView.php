@@ -28,29 +28,38 @@ class CarreraView {
         $this->smarty->assign('materia', $materia);
         $this->smarty->display("templates/detalle.tpl");
     }
-
-    //FORMULARIO
+    //   --------------------------FORMULARIO---------------------------------------
+    //   -------------------VISTAS AGREGAR-----------------------------------
     //vista carrera
     public function renderFormAgregarCarrera(){
  
         $this->smarty->display("templates/ingresacarrera.tpl");
     }
-        
+    //vista materias
     public function renderFormAgregarMateria($carreras){
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display("templates/ingresamateria.tpl");
   
     }
+    
+ //   -----------------------------VISTA TABLAS MATERIA----------------------------------------
     public function rendertablaMateria($tablaMaterias){
         $this->smarty->assign('tablaMaterias', $tablaMaterias);
      
         $this->smarty->display("templates/editarborrarmateria.tpl");
     }
+     //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
+     public function rendertablaCarrera($tablaCarreras){
+        $this->smarty->assign('tablaCarreras', $tablaCarreras);
+     
+        $this->smarty->display("templates/editarborrarcarrera.tpl");
+    }
 
-        
+//   ----------------------------location----------------------------------------      
     public function showHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
+
     public function showAgregarCarreraLocation(){
 
         header("Location: ".BASE_URL."agregarcarrera");   
@@ -59,7 +68,12 @@ class CarreraView {
 
         header("Location: ".BASE_URL."agregarmateria");   
     }
-    public function showTablaLocation(){
+    //   ----------------------------location materia----------------------------------------    
+    public function showTablaLocationMateria(){
         header("Location: ".BASE_URL."tabla");
+    }
+    //   ----------------------------location carreras----------------------------------------    
+    public function showTablaLocationCarrera(){
+        header("Location: ".BASE_URL."tablacarrera");
     }
 }
