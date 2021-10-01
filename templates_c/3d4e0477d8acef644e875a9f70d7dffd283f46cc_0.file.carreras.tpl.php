@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-09-30 22:45:31
+/* Smarty version 3.1.39, created on 2021-10-01 01:12:26
   from 'C:\xampp\htdocs\TrabajoPracticoEspecial\templates\carreras.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_615621eb738da0_91367306',
+  'unifunc' => 'content_6156445ac494c9_91710769',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3d4e0477d8acef644e875a9f70d7dffd283f46cc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TrabajoPracticoEspecial\\templates\\carreras.tpl',
-      1 => 1633034641,
+      1 => 1633043529,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_615621eb738da0_91367306 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6156445ac494c9_91710769 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 

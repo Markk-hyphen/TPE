@@ -18,10 +18,6 @@ class CarreraController {
          $this->view->showHome($carreras);
     }
 
-    public function filtrarMateria($id_materia){
-        $materia = $this->model->getMateriaPorId($id_materia);
-        $this->view->renderMateria($materia);
-    }
 
     public function filtrarCarrera($id_carrera, $nombre_carrera){
 
@@ -38,19 +34,12 @@ class CarreraController {
           $this->view->showAgregarCarreraLocation();
        
                }
-          //INSERTAR MATERIA
-        public function insertMateria(){
-            
-            $id_carrera_nombre=$this->model->getCarrera(); //le paso el nombre y el id para el select
-            $this->view->renderFormAgregarMateria($id_carrera_nombre); //se lo mando a la vista
-            $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
-            $this->view->showAgregarMateriaLocation();
-    }
+
         //   ------------------------------EDITAR BORRAR CARRERAS----------------------------------------------
        //mostrar tabla Carrera:
        Public function tablaEditarBorrarCarrera(){
         $tablasCarrera=$this->model->getTablaCarreras();  
-        $this->view->RendertablaCarrera($tablasCarrera);
+        $this->view->RenderTablaCarrera($tablasCarrera);
      
        }
            //   BORRAR Carrera
@@ -58,46 +47,26 @@ class CarreraController {
          //function de check
          $seguridad= $this->model->buscarIdCarreraEnTablaMateria($id);
         //  var_dump($seguridad);
-        //  if($seguridad==false){
+         if($seguridad==false){
              $this->model->borrarCarrera($id);
-             $this->view->showTablaLocationCarrera();
-    //      }else{
-    //         $this->view->renderSeguridad($seguridad);
-    //        }
+         
+         }else{   //PREGUNTAR POR QUE  
+            $this->view->avisoSeguridadBorrarMaterias("La carrera que ha seleccionado tiene asociada materias, esta seguro que quiere borrar?, ");
+           }
      
-    //       $this->view->showTablaLocationCarrera();
-    //    }
-    }
-         //EDITAR Carrera
+          $this->view->showTablaLocationCarrera();
+       }
+    
+                    // //   --------------------------------------------------------------
+
+//   ---------------------------//EDITAR Carrera--------------------------
      public function modificarCarrera($id_carrera){
    // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
        $this->model->editarCarrera($_POST['nombre'], $_POST['duracion'],$id_carrera);
        $this->view->showTablaLocationCarrera();
 
 }
-//   --------------------------------------------------------------
 
-    //   ------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
-       //mostrar tabla materias:
-         Public function tablaEditarBorrar(){
-             $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
-             $this->view->RendertablaMateria($tablasMaterias);
-          
-            }
-                //   BORRAR MATERIA
-          Public function borrarMaterias($id){
-             $this->model->borrarMateria($id);
-             $this->view->showTablaLocationMateria();
-            }
-
-              //EDITAR MATERIAS
-    public function modificarMateria($id_materia){
-        // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
-            $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
-            $this->view->showTablaLocationMateria();
-    
-    }
-//   --------------------------------------------------------------
 
 
                

@@ -1,6 +1,6 @@
 <?php
 require_once "controller/CarreraController.php";
-
+require_once "controller/MateriaController.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -12,8 +12,9 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-$carreraController = new CarreraController();
 
+$carreraController = new CarreraController();
+$materiaController = new MateriaController();
 
 switch ($params[0]) {
     case 'home': 
@@ -22,7 +23,7 @@ switch ($params[0]) {
         
     case 'carrera':{
         if ( isset($params[3]) ){ 
-            $carreraController->filtrarMateria($params[3]);
+            $materiaController->filtrarMateria($params[3]);
         }else {
             if ( isset($params[1]) && isset($params[2]) ) {
                 $carreraController->filtrarCarrera($params[2], $params[1]);
@@ -34,18 +35,18 @@ switch ($params[0]) {
         break;
 
     case 'filtrar':
-        $carreraController->filtrarMateria($_POST["input_buscador"]);
+        $materiaController->filtrarMateria($_POST["input_buscador"]);
                 break;
 
     case 'detalle':
-        $carreraController->filtrarMateria($params[3]);
+        $materiaController->filtrarMateria($params[3]);
         break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
       case 'agregarcarrera':
           $carreraController->insertCarrera();
             break;
        case 'agregarmateria':
-            $carreraController->insertMateria();
+            $materiaController->insertMateria();
             break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
    case 'tablacarrera':
@@ -62,15 +63,15 @@ switch ($params[0]) {
        break;
  //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
         case 'tabla':
-         $carreraController->tablaEditarBorrar();
+         $materiaController->tablaEditarBorrar();
          break;
          case 'borrarmateria':
-            $carreraController->borrarMaterias($params[1]);
+            $materiaController->borrarMaterias($params[1]);
             break;
 
         case 'editarmateria':
             if(isset($params[1])) {
-                $carreraController->modificarMateria($params[1]);
+                $materiaController->modificarMateria($params[1]);
             }
             break;
         

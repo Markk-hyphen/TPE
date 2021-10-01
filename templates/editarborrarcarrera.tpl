@@ -32,9 +32,8 @@
  {/foreach}
 
 </table>
+      <h4>{$aviso}</h4>
 
-
- {* <p>{if  $seguridad == true} {include file="seguridadborrar.tpl"}{/if} </p> *}
 
 {include file="templates/footer.tpl"}
 
