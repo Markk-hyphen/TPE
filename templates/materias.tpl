@@ -9,7 +9,7 @@
 {/if}    
     <ul class="list-group">
         {foreach from=$materias item=$materia}
-            <li class="list-group-item"><a class="mb-4" href="detalle/{$materia->id_materia}/{str_replace(' ', '-', $materia->nombre)|lower}">{$materia->nombre}</a></li><a class="mb-4" href="detalle/{$materia->id_materia}"></a>
+            <li class="list-group-item mb-4"><a href="detalle/{str_replace(' ', '-', $materia->nombre)|lower}/{$materia->id_materia}">{$materia->nombre}</a></li>
         {/foreach}
     </ul>
     </div>

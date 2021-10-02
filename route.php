@@ -21,22 +21,18 @@ switch ($params[0]) {
         break;
         
     case 'carrera':{
-        if ( isset($params[3]) ){ 
-            $carreraController->filtrarMateria($params[3]);
+        
+        if ( isset($params[1]) && isset($params[2]) ) {
+            $carreraController->filtrarCarrera($params[1], $params[2]);
         }else {
-            if ( isset($params[1]) && isset($params[2]) ) {
-                $carreraController->filtrarCarrera($params[2], $params[1]);
-            }else {
-                $carreraController->showHome();
-            }
+            $carreraController->showHome();
         }
-        }
-        break;
-
-    case 'detalle':
-        if ( isset($params[3]) ){
-            $carreraController->filtrarMateria($params[3]);
-        }else { $carreraController->filtrarMateria($params[1]); }
+    }
+    
+    break;
+    
+    case 'detalle': 
+       $carreraController->filtrarMateria($params[2]);
         break;
 
     case 'materias';

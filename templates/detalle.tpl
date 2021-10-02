@@ -1,7 +1,5 @@
 {include file="templates/header.tpl"}
 
-
-
 <div class="container mt-2">
 
     <ul class="list-group">
@@ -9,6 +7,5 @@
         <li class="list-group-item">Profesor | {$materia->profesor}</li>
     </ul>
 </div>
-<a href="../{$materia->id_carrera}">Volver</a>
 
 {include file="templates/footer.tpl"}

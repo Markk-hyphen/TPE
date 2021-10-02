@@ -21,7 +21,7 @@ class CarreraController {
         $this->view->renderMateria($materia);
     }
 
-    public function filtrarCarrera($id_carrera, $nombre_carrera){
+    public function filtrarCarrera($nombre_carrera, $id_carrera){
 
         $nombre_con_espacios = str_replace('-', ' ', $nombre_carrera);
         $materias = $this->model->filtrarCarrera($id_carrera);
