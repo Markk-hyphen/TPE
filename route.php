@@ -12,9 +12,7 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-
-$carreraController= new CarreraController();
-
+$carreraController = new CarreraController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
@@ -22,28 +20,41 @@ switch ($params[0]) {
         $carreraController->showHome(); 
         break;
         
-    case 'filtrar':
-        $carreraController->filtrarMateria($_POST["input_buscador"]);
-        break;
-//SEGUI FILTRO DE MATERIAS X CATEGORIA
-    case 'carrera':
-        $carreraController->filtroCarrera($_POST["input_buscador_materias"]);
-        break;
-
-    case 'insert':
-        $carreraController->insertarMateria($_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
-        break;
+    case 'carrera':{
+        
+        if ( isset($params[1]) && isset($params[2]) ) {
+            $carreraController->filtrarCarrera($params[1], $params[2]);
+        }else {
+            $carreraController->showHome();
+        }
+    }
     
-    case 'delete':
-        $carreraController->borrarMateria($partesURL[1]);
+    break;
+    
+    case 'detalle': 
+       $carreraController->filtrarMateria($params[2]);
         break;
 
-    case 'modificar':
-        $carreraController->modificarMateria($partesURL[1], $_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
-        break;
+    case 'materias';
+        $carreraController->showMaterias();
+            // case 'filtrar':
+            //     $carreraController->filtrarMateria($_POST["input_buscador"]);
+            //     break;
+
+    // case 'insert':
+    //     $carreraController->insertarMateria($_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
+    //     break;
+    
+    // case 'delete':
+    //     $carreraController->borrarMateria($partesURL[1]);
+    //     break;
+
+    // case 'modificar':
+    //     $carreraController->modificarMateria($partesURL[1], $_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
+    //     break;
     
     default:
-        echo "404 page not found";
+        $carreraController->showHome();
         break;
    
 }
