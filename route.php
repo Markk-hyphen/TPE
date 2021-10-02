@@ -1,6 +1,6 @@
 <?php
 require_once "controller/CarreraController.php";
-
+require_once "controller/MateriaController.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -12,20 +12,22 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-$carreraController = new CarreraController();
 
-// determina que camino seguir según la acción
+$carreraController = new CarreraController();
+$materiaController = new MateriaController();
+
 switch ($params[0]) {
     case 'home': 
         $carreraController->showHome(); 
         break;
         
     case 'carrera':{
-        
-        if ( isset($params[1]) && isset($params[2]) ) {
-            $carreraController->filtrarCarrera($params[1], $params[2]);
-        }else {
-            $carreraController->showHome();
+            if ( isset($params[1]) && isset($params[2]) ) {
+                $carreraController->filtrarCarrera($params[2], $params[1]);
+            }else {
+                $carreraController->showHome();
+             }
+         }
         }
     }
     
@@ -40,19 +42,47 @@ switch ($params[0]) {
             // case 'filtrar':
             //     $carreraController->filtrarMateria($_POST["input_buscador"]);
             //     break;
+    case 'filtrar':
+        $materiaController->filtrarMateria($_POST["input_buscador"]);
+                break;
 
-    // case 'insert':
-    //     $carreraController->insertarMateria($_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
-    //     break;
-    
-    // case 'delete':
-    //     $carreraController->borrarMateria($partesURL[1]);
-    //     break;
+    case 'detalle':
+        $materiaController->filtrarMateria($params[3]);
+        break;
+//   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
+      case 'agregarcarrera':
+          $carreraController->insertCarrera();
+            break;
+       case 'agregarmateria':
+            $materiaController->insertMateria();
+            break;
+ //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
+   case 'tablacarrera':
+    $carreraController->tablaEditarBorrarCarrera();
+       break;
+    case 'borrarcarrera':
+       $carreraController->borrarCarreras($params[1]);
+       break;
 
-    // case 'modificar':
-    //     $carreraController->modificarMateria($partesURL[1], $_POST['input_nombre'], $_POST['input_profesor'], $_POST['input_carrera']);
-    //     break;
-    
+   case 'editarcarrera':
+       if(isset($params[1])) {
+           $carreraController->modificarCarrera($params[1]);
+       }
+       break;
+ //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
+        case 'tabla':
+         $materiaController->tablaEditarBorrar();
+         break;
+         case 'borrarmateria':
+            $materiaController->borrarMaterias($params[1]);
+            break;
+
+        case 'editarmateria':
+            if(isset($params[1])) {
+                $materiaController->modificarMateria($params[1]);
+            }
+            break;
+        
     default:
         $carreraController->showHome();
         break;

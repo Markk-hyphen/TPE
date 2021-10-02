@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carrera` (
   `id_carrera` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
   `duracion` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,7 +52,7 @@ INSERT INTO `carrera` (`id_carrera`, `nombre`, `duracion`) VALUES
 
 CREATE TABLE `materia` (
   `id_materia` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
   `profesor` varchar(45) NOT NULL,
   `id_carrera` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -119,8 +119,10 @@ ALTER TABLE `materia`
 -- Constraints for table `materia`
 --
 ALTER TABLE `materia`
-  ADD CONSTRAINT `fk_carrera_materia` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`);
-COMMIT;
+  ADD CONSTRAINT `fk_carrera_materia` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`) ON DELETE CASCADE;
+
+-- //COMPORTAMIENTO CUANDO SE BORRE UN REGISTRO PADRE
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

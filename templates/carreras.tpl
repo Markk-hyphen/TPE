@@ -1,9 +1,6 @@
 {include file='templates/header.tpl'}
 
-    <header>
-                <h1>CARRERAS</h1>
-                <h2>INFORMATICA</h2>
-    </header>
+
 
 <a href="materias" class="m-3"><button type="button" class="btn btn-info">Ver materias</button></a>
 <div class="container w-75 d-flex flex-wrap my-2 mb-3">
