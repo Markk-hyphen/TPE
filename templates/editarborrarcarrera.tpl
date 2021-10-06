@@ -32,7 +32,7 @@
  {/foreach}
 
 </table>
-      <h4>{$aviso}</h4>
+      <!-- Nunca fue definido: <h4>{$aviso}</h4>-->
 
 
 {include file="templates/footer.tpl"}

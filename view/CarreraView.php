@@ -39,7 +39,7 @@ class CarreraView {
      //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
      public function renderTablaCarrera($tablaCarreras){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
-     
+        
         $this->smarty->display("templates/editarborrarcarrera.tpl");
     }
 

@@ -3,7 +3,7 @@
 class CarreraModel
 {
     private $db;
-
+    
     function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_carreras;charset=utf8', 'root', '');
@@ -79,11 +79,6 @@ class CarreraModel
     // }
 
     //filtro
-    public function filtrarCarrera($id_carrera)
-    {
-        $sentencia = $this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");
-        $sentencia->execute(array($id_carrera));
-
     // //arreglar desde controller
     public function filtrarCarrera($id_carrera){  
         $sentencia =$this->db->prepare("SELECT materia.nombre, carrera.id_carrera, materia.id_materia FROM carrera INNER JOIN materia ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ?");

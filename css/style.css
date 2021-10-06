@@ -25,17 +25,9 @@ header {
 select{
     text-align: center;
 }
+    
 
-footer{
-  margin:0;
-    height: 400px;
-    background-color: rgb(55, 51, 52);
-}
 
-.logoexactas{
-    width:80%;
-    margin: 40px;
-}
 
 @media (min-width: 750px){
     .carrera {

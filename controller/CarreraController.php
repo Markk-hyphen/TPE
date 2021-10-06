@@ -24,14 +24,11 @@ class CarreraController {
         $nombre_con_espacios = str_replace('-', ' ', $nombre_carrera);
         $materias = $this->model->filtrarCarrera($id_carrera);
         $this->view->renderCarrera($materias, $nombre_con_espacios);
-<<<<<<< HEAD
     }
 
     public function showMaterias(){
         $materias = $this->model->getMaterias();
         $this->view->renderMaterias($materias, false);
-=======
->>>>>>> 34c40098bbdc7e5dff5e090852b5dfc3c7f7a35d
     }
  //----------------------------FORMULARIO---------------------------------------
 //   ------------------------------AGREGAR -CARRERA -MATERIA------------------------------------------------
@@ -40,7 +37,6 @@ class CarreraController {
           $this->view->renderFormAgregarCarrera();
           $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
           $this->view->showAgregarCarreraLocation();
-       
                }
 
         //   ------------------------------EDITAR BORRAR CARRERAS----------------------------------------------
