@@ -31,22 +31,18 @@ class UserController {
             $hashedPasswd = password_hash($passwd, PASSWORD_BCRYPT);
 
         //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
-            $this->verificar_la_existencia_del_usuario_para_insertarlo_en_la_DB_sin_errores_del_compilador_sql($email, $hashedPasswd, $nombre);
-
-            if ($registered)
-                $this->redirectHome();
-
-        }else
-            $this->view->renderUserForm("registrar", "No puedes registrar usuarios o mails vacios.");
-    }
-
-    private function verificar_la_existencia_del_usuario_para_insertarlo_en_la_DB_sin_errores_del_compilador_sql($email, $hashedPasswd, $nombre){
         try {
             $this->model->insertUser($email, $hashedPasswd, $nombre);
         } catch (Throwable $th) {
             $this->view->renderUserForm("registrar", "El email ya esta registrado");
             $registered = false;
         }
+
+        if ($registered)
+            $this->view->renderUserForm('verify', 'Ingresate para terminar el registro');
+
+        }else
+            $this->view->renderUserForm("registrar", "No puedes registrar usuarios o mails vacios.");
     }
 
     public function verifyLogin($email, $password){
