@@ -20,6 +20,7 @@ $materiaController = new MateriaController();
 $userController = new UserController();
 
 switch ($params[0]) { 
+    //No tiene utilidad
     /*case 'home': 
         $carreraController->showHome(); 
         break;*/
@@ -29,7 +30,6 @@ switch ($params[0]) {
            $carreraController->filtrarCarrera($params[1], $params[2]);
        }else
            $carreraController->showHome();
-
     break; 
     
     case 'materias':
