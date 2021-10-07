@@ -41,4 +41,8 @@ class MateriaView {
     public function showTablaLocationMateria(){
         header("Location: ".BASE_URL."tabla");
     }
+
+    public function showHome(){
+        header("Location: ".BASE_URL."carreras");
+    }
 }

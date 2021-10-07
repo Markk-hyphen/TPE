@@ -1,6 +1,8 @@
 <?php
 require_once "controller/CarreraController.php";
 require_once "controller/MateriaController.php";
+require_once "controller/UserController.php";
+
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -15,45 +17,74 @@ $params = explode('/', $action);
 
 $carreraController = new CarreraController();
 $materiaController = new MateriaController();
+$userController = new UserController();
 
 switch ($params[0]) { 
-    case 'home': 
+    /*case 'home': 
         $carreraController->showHome(); 
-        break;
-        
-    case 'carrera':{
-
-        if ( isset($params[1]) && isset($params[2]) ){
-            $carreraController->filtrarCarrera($params[1], $params[2]);
-        }else {
-            $carreraController->showHome();
-         }
-    }
-    break;
+        break;*/
     
-    case 'detalle': 
-       $materiaController->filtrarMateria($params[2]);
+    case 'carreras':
+       if ( isset($params[1]) && isset($params[2]) ){
+           $carreraController->filtrarCarrera($params[1], $params[2]);
+       }else
+           $carreraController->showHome();
+
+    break; 
+    
+    case 'materias':
+        $carreraController->showMaterias();
         break;
 
-    case 'materias';
-        $carreraController->showMaterias();
-            // case 'filtrar':
-            //     $carreraController->filtrarMateria($_POST["input_buscador"]);
-            //     break;
     case 'filtrar':
-        $materiaController->filtrarMateria($_POST["input_buscador"]);
+        if (isset($_POST['input_buscador']))
+            $materiaController->filtrarMateria($_POST["h"]);
+        else
+            $materiaController->redirectHome();
         break;
 
     case 'detalle':
-        $materiaController->filtrarMateria($params[2]);
+        if (isset($params[2]))
+            $materiaController->filtrarMateria($params[2]);
+        else
+            $materiaController->redirectHome();
+        break;
+
+    case 'login':
+        $userController->showLogin("verify");
+        break;
+
+    case 'logout':
+        $userController->logOut();
+        break;
+
+    case 'verify':
+        if (isset($_POST['email'], $_POST['password']))
+            $userController->verifyLogin($_POST['email'], $_POST['password']);
+        else
+            $userController->redirectHome();
+        break;    
+
+    case 'registro':
+        $userController->showRegistro("registrar");
+        break;
+    
+    case 'registrar':
+        $userController->registrarUsuario($_POST['email'], $_POST['password'], $_POST['nombre']);
         break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
     case 'agregarcarrera':
-        $carreraController->insertCarrera();
+        if (isset($_POST['nombre'],$_POST['duracion']))
+            $carreraController->insertCarrera($_POST['nombre'],$_POST['duracion']);
+        else
+            $carreraController->redirectHome();
         break;
 
     case 'agregarmateria':
-         $materiaController->insertMateria();
+        if (isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera'])){
+            $materiaController->insertMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
+        }else $materiaController->redirectHome();
+        
          break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
     case 'tablacarrera':
@@ -67,7 +98,8 @@ switch ($params[0]) {
     case 'editarcarrera':
        if(isset($params[1])) {
            $carreraController->modificarCarrera($params[1]);
-       }
+       }else
+            $carreraController->redirectHome();
        break;
  //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
     case 'tabla':
@@ -75,7 +107,10 @@ switch ($params[0]) {
         break;
 
     case 'borrarmateria':
-        $materiaController->borrarMaterias($params[1]);
+        if (isset($params[1]))
+            $materiaController->borrarMaterias($params[1]);
+        else
+            $materiaController->redirectHome();
         break;
 
     case 'editarmateria':
@@ -85,7 +120,7 @@ switch ($params[0]) {
         break;
         
     default:
-        $carreraController->showHome();
+        echo "404 NOT FOUND";
         break;
    
 }

@@ -5,12 +5,10 @@ require_once "view\CarreraView.php";
 class CarreraController {
     private $model;
     private $view;
- 
 
     public function __construct(){
         $this->model = new CarreraModel();
         $this->view = new CarreraView();
-       
     }   
 
     public function showHome(){
@@ -33,9 +31,9 @@ class CarreraController {
  //----------------------------FORMULARIO---------------------------------------
 //   ------------------------------AGREGAR -CARRERA -MATERIA------------------------------------------------
         //  INSERTAR CARRERA
-        public function insertCarrera(){
+        public function insertCarrera($nombre, $duracion){
           $this->view->renderFormAgregarCarrera();
-          $this->model->insertarCarrera($_POST['nombre'],$_POST['duracion']);
+          $this->model->insertarCarrera($nombre, $duracion);
           $this->view->showAgregarCarreraLocation();
                }
 
@@ -54,10 +52,10 @@ class CarreraController {
          if($seguridad==false){
              $this->model->borrarCarrera($id);
          
-         }else{   //PREGUNTAR POR QUE  
+         }/*else{   Esto esta mal
             $this->view->avisoSeguridadBorrarMaterias("La carrera que ha seleccionado tiene asociada materias, esta seguro que quiere borrar?, ");
            }
-     
+     */ 
           $this->view->showTablaLocationCarrera();
        }
     
@@ -71,7 +69,11 @@ class CarreraController {
 
 }
 
+    public function redirectHome(){
+        $this->view->showHomeLocation();
+    }
+
 
 
                
-                }
+}

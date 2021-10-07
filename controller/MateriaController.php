@@ -22,11 +22,11 @@ class MateriaController {
 
     // -------------------------------------------
               //INSERTAR MATERIA
-    public function insertMateria(){
+    public function insertMateria($nombre, $profesor, $id_carrera){
         
         $id_carrera_nombre=$this->model->getCarrera(); //le paso el nombre y el id para el select
         $this->view->renderFormAgregarMateria($id_carrera_nombre); //se lo mando a la vista
-        $this->model->insertarMateria($_POST['nombre'],$_POST['profesor'],$_POST['id_carrera']);
+        $this->model->insertarMateria($nombre, $profesor, $id_carrera);
         $this->view->showAgregarMateriaLocation();
     }
 
@@ -50,6 +50,10 @@ class MateriaController {
             $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
             $this->view->showTablaLocationMateria();
     
+    }
+
+    public function redirectHome(){
+        $this->view->showHome();
     }
 //   --------------------------------------------------------------
     }
