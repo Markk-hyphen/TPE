@@ -40,23 +40,24 @@ class CarreraController {
         //   ------------------------------EDITAR BORRAR CARRERAS----------------------------------------------
        //mostrar tabla Carrera:
        Public function tablaEditarBorrarCarrera(){
-        $tablasCarrera=$this->model->getTablaCarreras();  
-        $this->view->RenderTablaCarrera($tablasCarrera);
+        $tablasCarrera=$this->model->getTablaCarreras();
+          
+        $this->view->renderTablaCarrera($tablasCarrera);
      
        }
            //   BORRAR Carrera
-     Public function borrarCarreras($id){
+     Public function borrarCarrera($id){
+        $this->model->borrarCarrera($id);
          //function de check
-         $seguridad= $this->model->buscarIdCarreraEnTablaMateria($id);
+         //$seguridad= $this->model->buscarIdCarreraEnTablaMateria($id);
         //  var_dump($seguridad);
-         if($seguridad==false){
-             $this->model->borrarCarrera($id);
+        //Con este if nunca va a borrar una carrera, no existen carreras sin materias if($seguridad==false)
          
-         }/*else{   Esto esta mal
+         /*else{   Esto esta mal
             $this->view->avisoSeguridadBorrarMaterias("La carrera que ha seleccionado tiene asociada materias, esta seguro que quiere borrar?, ");
            }
      */ 
-          $this->view->showTablaLocationCarrera();
+        $this->view->showTablaLocationCarrera();
        }
     
                     // //   --------------------------------------------------------------

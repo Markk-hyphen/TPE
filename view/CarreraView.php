@@ -47,15 +47,15 @@ class CarreraView {
      //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
      public function renderTablaCarrera($tablaCarreras){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
-        
+        $this->assignSessionValues();
         $this->smarty->display("templates/editarborrarcarrera.tpl");
     }
 
+    /*
+       A borrar
     public function avisoSeguridadBorrarMaterias($aviso=null){
-       
         $this->smarty->assign('aviso', $aviso);
-      
-    }
+    }*/
     
 
 //   ----------------------------location----------------------------------------      

@@ -3,6 +3,7 @@
 
 
 <a href="materias" class="m-3"><button type="button" class="btn btn-info">Ver materias</button></a>
+<a href="tabla-carreras" class="m-3"><button type="button" class="btn btn-info">Editar carreras</button></a>
 {if !$logged} 
 <a href="registro" class="m-3"><button type="button" class="btn btn-success">Registrarse</button></a> 
 <a href="login" class="m-3"><button type="button" class="btn btn-warning">Iniciar sesion</button></a>
