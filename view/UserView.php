@@ -8,16 +8,21 @@ class UserView{
         $this->smarty = new Smarty();
     }
 
-    public function renderUserForm($action, $error = null, $errores_segun_campo = null){
-        $this->smarty->assign("action", $action);
+    public function renderLogin($error = null, $errores_segun_campo = null){
         $this->smarty->assign("errorXcampo", $errores_segun_campo);
         $this->smarty->assign("error", $error);
-        $this->smarty->display("templates/userForm.tpl");
-    }
+        $this->smarty->display("templates/login.tpl");
+    } 
+
+    public function renderRegistro($error = null, $errores_segun_campo = null){
+        $this->smarty->assign("errorXcampo", $errores_segun_campo);
+        $this->smarty->assign("error", $error);
+        $this->smarty->display("templates/registro.tpl");
+    }  
 
     public function showHome(){
         header("Location: ".BASE_URL."carreras");
-    }
+    }  
 
     public function renderPanel($users){
         $this->smarty->assign('users', $users);

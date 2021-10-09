@@ -54,7 +54,7 @@ switch ($params[0]) {
         break;
 
     case 'login':
-        $userController->showLogin("verify");
+        $userController->showLogin();
         break;
 
     case 'logout':
@@ -66,7 +66,7 @@ switch ($params[0]) {
         break;    
 
     case 'registro':
-        $userController->showRegistro("registrar");
+        $userController->showRegistro();
         break;
     
     case 'registrar':
