@@ -1,19 +1,23 @@
 <?php
+require_once "helpers/AuthHelper.php";
 require_once "model\CarreraModel.php";
 require_once "view\CarreraView.php";
 
 class CarreraController {
     private $model;
     private $view;
+    private $helper;
 
     public function __construct(){
         $this->model = new CarreraModel();
         $this->view = new CarreraView();
+        $this->helper = new AuthHelper();
     }   
 
     public function showHome(){
-         $carreras = $this->model->getCarrera();
-         $this->view->showHome($carreras);
+        $carreras = $this->model->getCarrera();
+        $logged = $this->helper->checkLoggedIn();
+        $this->view->showHome($carreras, $logged);   
     }
 
 
@@ -41,9 +45,7 @@ class CarreraController {
        //mostrar tabla Carrera:
        Public function tablaEditarBorrarCarrera(){
         $tablasCarrera=$this->model->getTablaCarreras();
-          
-        $this->view->renderTablaCarrera($tablasCarrera);
-     
+        $this->view->renderTablaCarrera($tablasCarrera, $this->helper->checkLoggedIn());
        }
            //   BORRAR Carrera
      Public function borrarCarrera($id){

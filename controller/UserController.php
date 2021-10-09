@@ -25,14 +25,16 @@ class UserController {
         $this->view->showHome();
     }
 
-    public function registrarUsuario($email, $passwd, $nombre){
+    public function registrarUsuario(){
+
         $registered = true;
-        if (!empty($email) && !empty($nombre)){
-            $hashedPasswd = password_hash($passwd, PASSWORD_BCRYPT);
+        $errores_segun_campo = $this->errores_segun_campo($_POST['email'], $_POST['password'], $_POST['nombre']);
+        if (!empty($_POST['email']) && !empty($_POST['nombre']) && !empty($_POST['password'])){
+            $hashedPasswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
         //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
         try {
-            $this->model->insertUser($email, $hashedPasswd, $nombre);
+            $this->model->insertUser($_POST['email'], $hashedPasswd, $_POST['nombre']);
         } catch (Throwable $th) {
             $this->view->renderUserForm("registrar", "El email ya esta registrado");
             $registered = false;
@@ -42,7 +44,27 @@ class UserController {
             $this->view->renderUserForm('verify', 'Ingresate para terminar el registro');
 
         }else
-            $this->view->renderUserForm("registrar", "No puedes registrar usuarios o mails vacios.");
+            $this->view->renderUserForm("registrar", "No puedes registrar campos vacios.", $errores_segun_campo);
+    }
+
+    private function errores_segun_campo($email, $passwd, $nombre){
+        $errores = [];
+        if (empty($email))
+            $errores = array_merge($errores, array("emailError" => "Mail invalido."));
+        else
+            $errores = array_merge($errores, array("email" => $email));
+
+        if (empty($passwd))
+            $errores = array_merge($errores, array("passwordError" => "Password invalida."));
+        else
+            $errores = array_merge($errores, array("password" => $passwd));
+
+        if (empty($nombre))
+            $errores = array_merge($errores, array("nombreError" => "Nombre invalido."));
+        else
+            $errores = array_merge($errores, array("nombre" => $nombre));
+
+        return $errores;
     }
 
     public function verifyLogin($email, $password){
@@ -59,7 +81,8 @@ class UserController {
             } else {
                 $this->view->renderUserForm("verify", "Datos incorrectos");
             }
-        }
+        }else
+            $this->view->renderUserForm("verify", "Datos incorrectos");
     }
 
     public function logOut(){

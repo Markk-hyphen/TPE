@@ -8,9 +8,9 @@ class UserModel{
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_carreras;charset=utf8', 'root', '');
     }
 
-    public function insertUser($email, $passwd, $nombre){
-        $template = $this->db->prepare("INSERT INTO usuario(email, passwd, nombre) VALUES(?, ?, ?)");
-        $template->execute(array($email, $passwd, $nombre));
+    public function insertUser($email, $passwd, $nombre, $rol = 'usuario'){
+        $template = $this->db->prepare("INSERT INTO usuario(email, passwd, nombre, rol) VALUES(?, ?, ?, ?)");
+        $template->execute(array($email, $passwd, $nombre, $rol));
     }
 
     public function getUser($email){

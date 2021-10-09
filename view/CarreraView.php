@@ -1,6 +1,5 @@
 <?php
 
-require_once "helpers/AuthHelper.php";
 require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
 
 class CarreraView {
@@ -10,21 +9,14 @@ class CarreraView {
 
     public function __construct() {
         $this->smarty = new Smarty();
-        $this->helper = new AuthHelper();
         $this->smarty->assign('mostrarTodo', true);
         $this->smarty->assign('nombre_carrera', "");
     }
 
-    public function showHome($carreras){
+    public function showHome($carreras, $logged){
         $this->smarty->assign('carreras', $carreras);
-        $this->assignSessionValues();
+        $this->smarty->assign('logged', $logged);
         $this->smarty->display('templates/carreras.tpl');
-    }
-
-    private function assignSessionValues(){
-        $this->smarty->assign('logged', $this->helper->checkLoggedIn());
-        session_abort();
-        $this->smarty->assign('rol', $this->helper->getRol());
     }
 
     public function renderCarrera($materias, $nombre){
@@ -45,9 +37,9 @@ class CarreraView {
     
 
      //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
-     public function renderTablaCarrera($tablaCarreras){
+     public function renderTablaCarrera($tablaCarreras, $logged){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
-        $this->assignSessionValues();
+        $this->smarty->assign('logged', $logged);
         $this->smarty->display("templates/editarborrarcarrera.tpl");
     }
 

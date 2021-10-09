@@ -4,11 +4,15 @@
 
 <a href="materias" class="m-3"><button type="button" class="btn btn-info">Ver materias</button></a>
 <a href="tabla-carreras" class="m-3"><button type="button" class="btn btn-info">Editar carreras</button></a>
-{if !$logged} 
-<a href="registro" class="m-3"><button type="button" class="btn btn-success">Registrarse</button></a> 
-<a href="login" class="m-3"><button type="button" class="btn btn-warning">Iniciar sesion</button></a>
+<a href="tabla-materias" class="m-3"><button type="button" class="btn btn-info">Editar materias</button></a>
+{if $logged}
+    {if $rol == "admin"}
+    <a href="panel" class="m-3"><button type="button" class="btn btn-danger">Panel Admin</button></a>
+    {/if}
+    <a href="logout" class="m-3"><button type="button" class="btn btn-danger">Log Out</button></a>
 {else}
-<a href="logout" class="m-3"><button type="button" class="btn btn-danger">Log Out</button></a>
+    <a href="registro" class="m-3"><button type="button" class="btn btn-success">Registrarse</button></a> 
+    <a href="login" class="m-3"><button type="button" class="btn btn-warning">Iniciar sesion</button></a>
 {/if}
 
 

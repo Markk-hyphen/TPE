@@ -23,15 +23,12 @@
                 <form class="form-alta" action="editarcarrera/{$item->id_carrera}" method="POST"> 
 
                       <tr>
-
-
-                        <td ><input class="form-control" type="text" name="nombre" value="{$item->nombre}"></td>
-                        <td ><input class="form-control" type="number" name="duracion" value="{$item->duracion}"></td>
+                        <td><input class="form-control" type="text" name="nombre" value="{$item->nombre}"></td>
+                        <td><input class="form-control" type="number" name="duracion" value="{$item->duracion}"></td>
                         {if $logged}
-                              <td ><a class="btn btn-primary" id="borrar" href="borrarcarrera/{$item->id_carrera}">borrar</a></td>
-                              <td ><button type="submit" class="btn btn-primary">editar</button></td>
+                              <td><a class="btn btn-primary" id="borrar" href="borrarcarrera/{$item->id_carrera}">borrar</a></td>
+                              <td><button type="submit" class="btn btn-primary">editar</button></td>
                         {/if}
-
                 </form>
                      </tr>
              {/foreach}

@@ -31,15 +31,15 @@ class MateriaView {
     }
 
      //   -----------------------------VISTA TABLAS MATERIA----------------------------------------
-    public function rendertablaMateria($tablaMaterias){
+    public function rendertablaMateria($tablaMaterias, $logged){
         $this->smarty->assign('tablaMaterias', $tablaMaterias);
-     
+        $this->smarty->assign('logged', $logged);
         $this->smarty->display("templates/editarborrarmateria.tpl");
     }
 
         //   ----------------------------location materia----------------------------------------    
     public function showTablaLocationMateria(){
-        header("Location: ".BASE_URL."tabla");
+        header("Location: ".BASE_URL."tabla-materias");
     }
 
     public function showHome(){

@@ -21,11 +21,8 @@ $carreraController = new CarreraController();
 $materiaController = new MateriaController();
 $userController = new UserController();
 
-switch ($params[0]) { 
+switch ($params[0]) {
     case 'carreras':
-       if ( isset($params[1]) && isset($params[2]) )
-           $carreraController->filtrarCarrera($params[1], $params[2]);
-       else
            $carreraController->showHome();
     break; 
     
@@ -73,7 +70,7 @@ switch ($params[0]) {
         break;
     
     case 'registrar':
-        $userController->registrarUsuario($_POST['email'], $_POST['password'], $_POST['nombre']);
+        $userController->registrarUsuario();
         break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
     case 'agregarcarrera':
@@ -107,7 +104,7 @@ switch ($params[0]) {
              $carreraController->redirectHome();
         break;
  //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
-    case 'tabla':
+    case 'tabla-materias':
         $materiaController->tablaEditarBorrar();
         break;
 

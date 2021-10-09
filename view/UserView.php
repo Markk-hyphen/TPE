@@ -8,8 +8,9 @@ class UserView{
         $this->smarty = new Smarty();
     }
 
-    public function renderUserForm($action, $error = null){
+    public function renderUserForm($action, $error = null, $errores_segun_campo = null){
         $this->smarty->assign("action", $action);
+        $this->smarty->assign("errorXcampo", $errores_segun_campo);
         $this->smarty->assign("error", $error);
         $this->smarty->display("templates/userForm.tpl");
     }
