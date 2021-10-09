@@ -23,7 +23,10 @@ $userController = new UserController();
 
 switch ($params[0]) {
     case 'carreras':
-           $carreraController->showHome();
+        if ( isset($params[1]) && isset($params[2]) ){
+            $carreraController->filtrarCarrera($params[1], $params[2]);
+        }else
+            $carreraController->showHome();
     break; 
     
     case 'materias':
@@ -59,10 +62,7 @@ switch ($params[0]) {
         break;
 
     case 'verify':
-        if (isset($_POST['email'], $_POST['password']))
-            $userController->verifyLogin($_POST['email'], $_POST['password']);
-        else
-            $userController->redirectHome();
+            $userController->verifyLogin();
         break;    
 
     case 'registro':

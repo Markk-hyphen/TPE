@@ -58,7 +58,7 @@ class UserController {
             $this->view->renderUserForm("registrar", "No puedes registrar campos vacios.", $errores_segun_campo);
     }
 
-    private function errores_segun_campo($email, $passwd, $nombre){
+    private function errores_segun_campo($email, $passwd, $nombre = null){
         $errores = [];
         if (empty($email))
             $errores = array_merge($errores, array("emailError" => "Mail invalido."));
@@ -78,22 +78,21 @@ class UserController {
         return $errores;
     }
 
-    public function verifyLogin($email, $password){
-        if (!empty($email) && !empty($password)) {
-            $user = $this->model->getUser($email);
+    public function verifyLogin(){
+        $errores_segun_campo = $this->errores_segun_campo($_POST['email'], $_POST['password']);
+        if (!empty($_POST['email']) && !empty($_POST['password'])) {
+            $user = $this->model->getUser($_POST['email']);
 
-            if ($user && password_verify($password, $user->passwd)) {
-
+            if ($user && password_verify($_POST['password'], $user->passwd)) {
                 session_start();
-                $_SESSION["email"] = $email;
+                $_SESSION["email"] = $_POST['email'];
                 $_SESSION['nombre'] = $user->nombre;
                 $_SESSION['rol'] = $user->rol;
                 $this->view->showHome();
-            } else {
+            } else
                 $this->view->renderUserForm("verify", "Datos incorrectos");
-            }
         }else
-            $this->view->renderUserForm("verify", "Datos incorrectos");
+            $this->view->renderUserForm("verify", "Datos incorrectos", $errores_segun_campo);
     }
 
     public function logOut(){
