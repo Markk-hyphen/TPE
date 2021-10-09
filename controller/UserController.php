@@ -25,6 +25,17 @@ class UserController {
         $this->view->showHome();
     }
 
+    public function modifyRol($clave, $nuevoRol){
+        $this->model->updateRol($clave, $nuevoRol);
+        $users = $this->model->getUsers();
+        $this->view->renderPanel($users);
+    }
+
+    public function showPanel(){
+        $users = $this->model->getUsers();
+        $this->view->renderPanel($users);
+    }
+
     public function registrarUsuario(){
 
         $registered = true;

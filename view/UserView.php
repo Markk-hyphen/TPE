@@ -19,4 +19,9 @@ class UserView{
         header("Location: ".BASE_URL."carreras");
     }
 
+    public function renderPanel($users){
+        $this->smarty->assign('users', $users);
+        $this->smarty->display("templates/panel.tpl");
+    }
+
 }

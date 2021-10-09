@@ -13,9 +13,10 @@ class CarreraView {
         $this->smarty->assign('nombre_carrera', "");
     }
 
-    public function showHome($carreras, $logged){
+    public function showHome($carreras, $logged, $rol = null){
         $this->smarty->assign('carreras', $carreras);
         $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('rol', $rol);
         $this->smarty->display('templates/carreras.tpl');
     }
 

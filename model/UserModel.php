@@ -18,4 +18,15 @@ class UserModel{
         $template->execute(array($email));
         return $template->fetch(PDO::FETCH_OBJ);
     }
+
+    public function getUsers(){
+        $template = $this->db->prepare("SELECT nombre, rol, email FROM usuario");
+        $template->execute();
+        return $template->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function updateRol($email, $nuevoRol){
+        $template = $this->db->prepare("UPDATE usuario SET rol= ? WHERE email = ?");
+        $template->execute(array($nuevoRol, $email));
+    }
 }

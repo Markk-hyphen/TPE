@@ -72,6 +72,14 @@ switch ($params[0]) {
     case 'registrar':
         $userController->registrarUsuario();
         break;
+
+    case 'cambiar-rol':
+        $userController->modifyRol($params[1], $_POST['nuevoRol']);
+        break;
+
+    case 'panel':
+        $userController->showPanel();
+        break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
     case 'agregarcarrera':
         if (isset($_POST['nombre'],$_POST['duracion']))

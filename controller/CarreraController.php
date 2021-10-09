@@ -17,7 +17,8 @@ class CarreraController {
     public function showHome(){
         $carreras = $this->model->getCarrera();
         $logged = $this->helper->checkLoggedIn();
-        $this->view->showHome($carreras, $logged);   
+        $rol = $this->helper->getRol();
+        $this->view->showHome($carreras, $logged, $rol);   
     }
 
 
