@@ -2,18 +2,15 @@
 require_once "controller/CarreraController.php";
 require_once "controller/MateriaController.php";
 require_once "controller/UserController.php";
-
-
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
 
 // lee la acción
-if (!empty($_GET['action'])) {
+if (!empty($_GET['action']))
     $action = $_GET['action'];
-} else {
-    $action = 'home'; // acción por defecto si no envían
-}
+else
+    $action = 'home';     // acción por defecto si no envían
 
 $params = explode('/', $action);
 
@@ -37,20 +34,15 @@ switch ($params[0]) {
         $carreraController->showHome();
         break;
 
-// esto deberias chusmear me parece que el post no va por ahi , lo atajas directo en el controller.
     case 'filtrar':
-        if (isset($_POST['input_buscador']))
-            $materiaController->filtrarMateria($_POST["input_buscador"]);
+             $materiaController->filtrarMateria($_POST["input_buscador"]);
         else
             $materiaController->redirectHome();
         // $materiaController->filtrarMateria($_POST["h"]);
         break;
 
     case 'detalle':
-        if (isset($params[2]))
-            $materiaController->filtrarMateria($params[2]);
-        else
-            $materiaController->redirectHome();
+        $materiaController->filtrarMateria($params[2]);
         break;
 
     case 'login':
@@ -58,7 +50,7 @@ switch ($params[0]) {
         break;
 
     case 'logout':
-        $userController->logOut();
+        $userController->logOut();  
         break;
 
     case 'verify':
@@ -147,9 +139,8 @@ switch ($params[0]) {
         break;
 
     case 'editarcarrera':
-        if (isset($params[1])) {
+        if (isset($params[1])) 
             $carreraController->modificarCarrera($params[1]);
-        }
         break;
         
         //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
@@ -159,9 +150,8 @@ switch ($params[0]) {
         break;
 
     case 'editarmateria':
-        if (isset($params[1])) {
+        if (isset($params[1]))
             $materiaController->modificarMateria($params[1]);
-        }
         break;
 
     default:

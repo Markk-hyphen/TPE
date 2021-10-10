@@ -1,7 +1,5 @@
 {include file='templates/header.tpl'}
-
                                {* AGREGAR CARRERA *}
-
 <div class="container">
    <div class="row mt-4">
         <div class="col-md-4">
@@ -18,6 +16,5 @@
             </form>
         </div>
     </div>
-
 
 {include file='templates/footer.tpl'}
