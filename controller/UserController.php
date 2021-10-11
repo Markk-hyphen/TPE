@@ -1,15 +1,18 @@
 <?php
 require_once "./model/UserModel.php";
 require_once "./view/UserView.php";
+require_once "helpers/AuthHelper.php";
 
 class UserController {
 
     private $model;
     private $view;
+    private $helper;
 
     function __construct(){
         $this->model = new UserModel();
         $this->view = new UserView();
+        $this->helper = new AuthHelper();
     }
 
 
@@ -40,7 +43,10 @@ class UserController {
 
     public function showPanel(){
         $users = $this->model->getUsers();
-        $this->view->renderPanel($users);
+        if ($this->helper->checkIsAdmin())
+            $this->view->renderPanel($users);
+        else
+            $this->redirectHome();
     }
 
     public function registrarUsuario(){
