@@ -20,14 +20,12 @@ class MateriaView {
     //   -------------------VISTAS AGREGAR-----------------------------------
 
         //vista materias
-    public function renderFormAgregarMateria($carreras){
+    public function renderFormMateria($carreras){
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display("templates/ingresamateria.tpl");
-  
     }
        public function showAgregarMateriaLocation(){
-
-        header("Location: ".BASE_URL."agregarmateria");   
+        header("Location: ".BASE_URL."agregar-materia");   
     }
 
      //   -----------------------------VISTA TABLAS MATERIA----------------------------------------
@@ -44,5 +42,11 @@ class MateriaView {
 
     public function showHome(){
         header("Location: ".BASE_URL."carreras");
+    }
+    
+    public function renderMaterias($materias, $mostrarTodo = true){
+        $this->smarty->assign('materias', $materias);
+        $this->smarty->assign('mostrarTodo', $mostrarTodo);
+        $this->smarty->display("templates/materias.tpl");
     }
 }

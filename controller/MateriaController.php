@@ -2,6 +2,7 @@
 require_once "model\MateriaModel.php";
 require_once "view\MateriaView.php";
 require_once "helpers/AuthHelper.php";
+require_once "model/CarreraModel.php";
 // require_once "model\CarreraModel.php";
 // require_once "view\CarreraView.php";
 
@@ -9,31 +10,48 @@ class MateriaController {
     private $model;
     private $view;
     private $helper;
+    private $carrera_model;
 
     public function __construct(){
         $this->model = new MateriaModel();
+        $this->carrera_model = new CarreraModel();
         $this->view = new MateriaView();
         $this->helper = new AuthHelper();
     }   
 
-    public function filtrarMateria(){
-        if (isset($_POST["input_buscador"])){ 
-            $materia = $this->model->getMateriaPorId($_POST["input_buscador"]);
-            $this->view->renderMateria($_POST["input_buscador"]);
-        }
+    public function filtrarMateria($id_materia, $nombre){
+        if (isset($id_materia, $nombre)) 
+            if ($this->model->getMateriaPorId($id_materia)){
+                $materia = $this->model->getMateriaPorId($id_materia);
+                $this->view->renderMateria($materia);
+            }else
+                $this->redirectHome();   
         else
-            redirectHome();
+            $this->redirectHome();
     }
 
-    // -------------------------------------------
-              //INSERTAR MATERIA
-    public function insertMateria($nombre, $profesor, $id_carrera){
-        if ($this->helper->checkLoggedIn()){
-            $id_carrera_nombre=$this->model->getCarrera(); //le paso el nombre y el id para el select
-            $this->view->renderFormAgregarMateria($id_carrera_nombre); //se lo mando a la vista
-            $this->model->insertarMateria($nombre, $profesor, $id_carrera);    
-        }
-        $this->view->showAgregarMateriaLocation();
+    public function formMateria(){
+        $carreras = $this->carrera_model->getCarreras();
+        $this->view->renderFormMateria($carreras);
+    }
+    
+    public function insertMateria(){
+        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) ) {
+            if ( !$this->materiaHasCareer() )
+                $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
+            }
+        $this->redirectHome();
+    }
+
+    private function materiaHasCareer(){
+        $carreras=$this->model->getCarreraXnombre($_POST['id_carrera'], $_POST['nombre']);
+        return count($carreras);
+
+    }
+
+    public function showMaterias(){
+        $materias = $this->model->getMaterias();
+        $this->view->renderMaterias($materias, false);
     }
 
     //   --------------------------------------------------------------

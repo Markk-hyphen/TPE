@@ -22,10 +22,10 @@ class MateriaModel
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    function getCarrera()
+    function getCarreraXnombre($id, $nombre)
     {
-        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
-        $sentencia->execute(array());
+        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera WHERE id_carrera= ? AND nombre = ? ');
+        $sentencia->execute(array($id, $nombre));
         $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return  $carreras;
     }
@@ -59,4 +59,10 @@ class MateriaModel
         $sentencia = $this->db->prepare("UPDATE `materia` SET `nombre`=?,`profesor`=?,`id_carrera`=? WHERE `id_materia`=?");
         $sentencia->execute(array($nombre, $profesor, $id_carrera, $id_materia));
     }
+
+    function getMaterias(){
+        $sentencia = $this->db->prepare('SELECT * FROM materia');
+        $sentencia->execute(array());
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+     }
 }

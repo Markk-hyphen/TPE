@@ -20,7 +20,7 @@ class CarreraView {
         $this->smarty->display('templates/carreras.tpl');
     }
 
-    public function renderCarrera($materias, $nombre){
+    public function renderCarrera($materias, $nombre = ""){
         $this->smarty->assign('materias', $materias);
         $this->smarty->assign('nombre_carrera', $nombre);
         $this->smarty->display('templates/materias.tpl');
@@ -31,7 +31,6 @@ class CarreraView {
     //   -------------------VISTAS AGREGAR-----------------------------------
     //vista carrera
     public function renderFormAgregarCarrera(){
- 
         $this->smarty->display("templates/ingresacarrera.tpl");
     }
 
@@ -63,12 +62,7 @@ class CarreraView {
 
     //   ----------------------------location carreras----------------------------------------    
     public function showTablaLocationCarrera(){
-        header("Location: ".BASE_URL."tablacarrera");
+        header("Location: ".BASE_URL."tabla-carreras");
     }
 
-    public function renderMaterias($materias, $mostrarTodo = false){
-        $this->smarty->assign('materias', $materias);
-        $this->smarty->assign('mostrarTodo', $mostrarTodo);
-        $this->smarty->display("templates/materias.tpl");
-    }
 }

@@ -25,13 +25,15 @@ class CarreraModel
 
     // -----------------------------DEJARLA------------------------------------------------
     //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
-    function getCarrera()
+    function getCarreras()
     {
         $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
         $sentencia->execute(array());
         $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return  $carreras;
     }
+
+
     //OBTENER LAS MATERIAS PARA EL SELECT
     public function getMateria()
     {
@@ -89,6 +91,7 @@ class CarreraModel
 
     //   ------------------------------AGREGAR CARRERA Y MATERIAS----------------------------------------------
     //insertar carrera
+
     function insertarCarrera($nombre, $duracion)
     {
         $sentencia = $this->db->prepare("INSERT INTO carrera(nombre,duracion) VALUES(?,?)");
