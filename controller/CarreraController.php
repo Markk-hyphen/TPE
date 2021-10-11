@@ -22,7 +22,7 @@ class CarreraController {
     }
 
 
-    public function filtrarCarrera($nombre_carrera,$id_carrera){
+    public function filtrarCarrera($nombre_carrera, $id_carrera){
         $nombre_con_espacios = str_replace('-', ' ', $nombre_carrera);
         $materias = $this->model->filtrarCarrera($id_carrera);
         $this->view->renderCarrera($materias, $nombre_con_espacios);
@@ -31,7 +31,8 @@ class CarreraController {
     public function formCarrera() {
         if ($this->helper->checkLoggedIn())
             $this->view->renderFormAgregarCarrera();
-        else $this->showHome();
+        else 
+            $this->showHome();
     }
 
     public function insertCarrera(){
