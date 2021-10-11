@@ -66,7 +66,7 @@ class UserController {
          }
 
          if ($registered)
-             $this->view->renderLogin('Ingresate para terminar el registro', $errores_segun_campo);
+             $this->view->renderLogin('Ingresate para terminar el registro');
 
          }else
              $this->view->renderRegistro("No puedes registrar campos vacios.", $errores_segun_campo);
@@ -96,7 +96,6 @@ class UserController {
         $errores_segun_campo = $this->errores_segun_campo();
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $user = $this->model->getUser($_POST['email']);
-
             $campos_validos = $this->login_check($user, $_POST['password'], $_POST['email'], $errores_segun_campo);
             if ($campos_validos) {
                 session_start();
