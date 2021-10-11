@@ -14,8 +14,7 @@ class UserController {
         $this->view = new UserView();
         $this->helper = new AuthHelper();
     }
-
-
+ 
     function showLogin(){
         $this->view->renderLogin();
     }

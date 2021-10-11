@@ -3,8 +3,6 @@ require_once "model\MateriaModel.php";
 require_once "view\MateriaView.php";
 require_once "helpers/AuthHelper.php";
 require_once "model/CarreraModel.php";
-// require_once "model\CarreraModel.php";
-// require_once "view\CarreraView.php";
 
 class MateriaController {
     private $model;
