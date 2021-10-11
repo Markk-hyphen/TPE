@@ -10,6 +10,8 @@
     <a href="panel" class="m-3"><button type="button" class="btn btn-danger">Panel Admin</button></a>
     {/if}
     <a href="logout" class="m-3"><button type="button" class="btn btn-danger">Log Out</button></a>
+    <a href="agregar-carrera" class="m-3"><button type="button" class="btn btn-info">Agregar carrera</button></a>
+    <a href="agregar-materia" class="m-3"><button type="button" class="btn btn-info">Agregar materia</button></a>
 {else}
     <a href="registro" class="m-3"><button type="button" class="btn btn-success">Registrarse</button></a> 
     <a href="login" class="m-3"><button type="button" class="btn btn-warning">Iniciar sesion</button></a>

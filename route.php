@@ -35,14 +35,14 @@ switch ($params[0]) {
         break;
 
     case 'filtrar':
-             $materiaController->filtrarMateria($_POST["input_buscador"]);
-        else
-            $materiaController->redirectHome();
+             $materiaController->filtrarMateria();
+             break;
         // $materiaController->filtrarMateria($_POST["h"]);
         break;
 
     case 'detalle':
-        $materiaController->filtrarMateria($params[2]);
+        if (isset($params[2]))
+            $materiaController->filtrarMateria($params[2]);
         break;
 
     case 'login':
@@ -66,7 +66,7 @@ switch ($params[0]) {
         break;
 
     case 'cambiar-rol':
-        $userController->modifyRol($params[1], $_POST['nuevoRol']);
+        $userController->modifyRol($params[1]);
         break;
 
     case 'panel':

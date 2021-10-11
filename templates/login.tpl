@@ -2,7 +2,7 @@
 
 <div class = "container w-75 d-flex justify-content-center">
     <div class="m-3 w-25">
-        <form action="verify" class="my-2" method="POST">
+        <form action="verify form-group" class="my-2" method="POST">
             <div class="col-auto mb-2">
                 {if !isset($errorXcampo["emailError"]) }
                   <input type="text" class="form-control" name="email" {if isset($errorXcampo['email'])} value="{$errorXcampo['email']}" {else} placeholder="email@example.com"{/if}>

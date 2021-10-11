@@ -16,10 +16,10 @@ class MateriaController {
         $this->helper = new AuthHelper();
     }   
 
-    public function filtrarMateria($id_materia){
-        if (isset($id_materia)){ 
-            $materia = $this->model->getMateriaPorId($id_materia);
-            $this->view->renderMateria($materia);
+    public function filtrarMateria(){
+        if (isset($_POST["input_buscador"])){ 
+            $materia = $this->model->getMateriaPorId($_POST["input_buscador"]);
+            $this->view->renderMateria($_POST["input_buscador"]);
         }
         else
             redirectHome();
