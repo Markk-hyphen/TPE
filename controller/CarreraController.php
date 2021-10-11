@@ -24,8 +24,11 @@ class CarreraController {
 
     public function filtrarCarrera($nombre_carrera, $id_carrera){
         $nombre_con_espacios = str_replace('-', ' ', $nombre_carrera);
-        $materias = $this->model->filtrarCarrera($id_carrera);
-        $this->view->renderCarrera($materias, $nombre_con_espacios);
+        $materias = $this->model->filtrarCarrera($id_carrera, $nombre_con_espacios);
+        if (!empty($materias))
+            $this->view->renderCarrera($materias, $nombre_con_espacios);
+        else
+            $this->redirectHome();
     }
 
     public function formCarrera() {

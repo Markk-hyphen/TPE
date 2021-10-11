@@ -28,7 +28,7 @@ class UserController {
     }
 
     public function modifyRol($clave){
-        if($this->check_rol($_POST['nuevoRol'])){
+        if($this->check_rol($_POST['nuevoRol']) && $this->helper->checkIsAdmin()){
             $this->model->updateRol($clave, $_POST['nuevoRol']);
             $users = $this->model->getUsers();
             $this->view->renderPanel($users);

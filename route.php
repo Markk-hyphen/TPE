@@ -20,20 +20,27 @@ $userController = new UserController();
 
 switch ($params[0]) {
     case 'carreras':
+        //Verificacion para que no pasen parametros extra por la url
+        if ( !isset($params[1]) )
+            $carreraController->showHome($params);
+        else
+            $carreraController->showHome();
+        break;
+    
+    case 'carrera':
         if ( isset($params[1]) && isset($params[2]) )
             $carreraController->filtrarCarrera($params[1], $params[2]);
         else
-            $carreraController->showHome();
-        break; 
+            $carreraController->redirectHome();
+        break;
     
     case 'materias':
-        $materiaController->showMaterias();
+        if (!isset($params[1]))
+            $materiaController->showMaterias();
+        else
+            $materiaController->redirectHome();
         break;
     
-    case 'home':
-        $carreraController->showHome();
-        break;
-
     case 'detalle':
         if (isset($params[2], $params[1]))
             $materiaController->filtrarMateria($params[2], $params[1]);
@@ -50,15 +57,15 @@ switch ($params[0]) {
         break;
 
     case 'verify':
-            $userController->verifyLogin();
+        $userController->verifyLogin();
         break;    
 
     case 'registro':
-            $userController->showRegistro();
+        $userController->showRegistro();
         break;
     
     case 'signup':
-            $userController->registrarUsuario();
+        $userController->registrarUsuario();
         break;
 
     case 'cambiar-rol':
@@ -73,11 +80,11 @@ switch ($params[0]) {
         break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
     case 'agregar-c':
-            $carreraController->insertCarrera();
+        $carreraController->insertCarrera();
         break;
 
     case 'agregar-m':
-            $materiaController->insertMateria();
+        $materiaController->insertMateria();
         break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
     case 'tabla-carreras':
@@ -118,22 +125,22 @@ switch ($params[0]) {
         //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
 
     case 'agregar-carrera':
-            $carreraController->formCarrera();
+        $carreraController->formCarrera();
         break;
     case 'agregar-materia':
-            $materiaController->formMateria();
+        $materiaController->formMateria();
         break;
     case 'agregarcarrera':
-            $carreraController->insertCarrera();
+        $carreraController->insertCarrera();
         break;
     case 'agregar-m':
-            $materiaController->insertMateria();
+        $materiaController->insertMateria();
         break;    
         //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
     case 'tabla':
         $carreraController->tablaEditarBorrar();
-
         break;
+
     case 'borrarcarrera':
         if (isset($params[1]))
             $carreraController->borrarCarreras($params[1]);
