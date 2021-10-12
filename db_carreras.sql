@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2021 at 08:09 AM
+-- Generation Time: Oct 12, 2021 at 02:06 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -69,7 +69,7 @@ INSERT INTO `materia` (`id_materia`, `nombre`, `profesor`, `id_carrera`) VALUES
 (1, 'Algebra Lineal', 'Karina Paz', 1),
 (2, 'POO', 'Luis Berdun', 1),
 (6, 'Web2', 'Javier Romero', 2),
-(7, 'Deep learning', 'Jose Paz', 5),
+(7, 'Deep learning', 'Giru', 5),
 (8, 'Integracion continua', 'Roco el Barbaro', 3),
 (9, 'Procesamiento del lenguaje natural', 'Andres Dias Pace', 5),
 (10, 'Tecnologias Web', 'Pollo Lopez', 4),
@@ -83,7 +83,13 @@ INSERT INTO `materia` (`id_materia`, `nombre`, `profesor`, `id_carrera`) VALUES
 (28, 'Pickoff', 'Necro phos', 7),
 (29, 'Maps awareness', 'BSJ', 7),
 (30, 'Itemization', 'D bowie', 7),
-(31, 'Ingenieria de Software', 'Quirque', 1);
+(31, 'Ingenieria de Software', 'Quirque', 1),
+(44, 'Redes hogareñas', 'Rolo Carretto', 11),
+(45, 'Soporte previsorio', 'Epicuro Gomez', 11),
+(46, 'Ergonomia', 'Ricardo Schelotto', 12),
+(47, 'Accesibilidad WEB', 'Anastasio Iñaki', 12),
+(48, 'Tecnologia educativa', 'Guillermo Conti', 6),
+(50, 'Matematica discreta', 'Emilio Alfaro', 6);
 
 -- --------------------------------------------------------
 
@@ -144,13 +150,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `carrera`
 --
 ALTER TABLE `carrera`
-  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Constraints for dumped tables
