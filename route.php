@@ -8,7 +8,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 if (!empty($_GET['action']))
     $action = $_GET['action'];
 else
-    $action = 'home';     // acción por defecto si no envían
+    $action = 'carreras';     // acción por defecto si no envían
 
 $params = explode('/', $action);
 
