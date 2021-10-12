@@ -29,7 +29,8 @@ switch ($params[0]) {
     
     case 'home':
         $carreraController->showHome();
-    
+        break;
+        
     case 'carrera':
         if ( isset($params[1]) && isset($params[2]) )
             $carreraController->filtrarCarrera($params[1], $params[2]);
