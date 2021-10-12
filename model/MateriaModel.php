@@ -22,11 +22,12 @@ class MateriaModel
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    function getCarreraXnombre($id, $nombre)
+    function getCarreraXnombre($id_carrera, $nombre)
     {
-        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera WHERE id_carrera= ? AND nombre = ? ');
-        $sentencia->execute(array($id, $nombre));
-        $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $sentencia = $this->db->prepare('SELECT materia.nombre, carrera.id_carrera FROM carrera INNER JOIN materia
+                    ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ? AND materia.nombre = ?');
+        $sentencia->execute(array($id_carrera, $nombre));
+        $carreras = $sentencia->fetch(PDO::FETCH_OBJ);
         return  $carreras;
     }
         //-----------------------INSERTAR materia ------------------------------------------------     
@@ -34,6 +35,7 @@ class MateriaModel
     function insertarMateria($nombre, $profesor, $id_carrera)
     {
         $sentencia = $this->db->prepare("INSERT INTO materia(nombre,profesor,id_carrera) VALUES(?,?,?)");
+        
         $sentencia->execute(array($nombre, $profesor, $id_carrera));
 
     }

@@ -18,15 +18,14 @@ class MateriaController {
     }   
 
     public function filtrarMateria($id_materia, $nombre){
-        if (isset($id_materia, $nombre)) 
-            if ($this->model->getMateriaPorId($id_materia)){
-                $materia = $this->model->getMateriaPorId($id_materia);
-                $this->view->renderMateria($materia);
-            }else
-                $this->redirectHome();   
-        else
-            $this->redirectHome();
+        if ($this->model->getMateriaPorId($id_materia)){
+            $materia = $this->model->getMateriaPorId($id_materia);
+            $this->view->renderMateria($materia);
+        }else
+            $this->redirectHome();   
     }
+
+
 
     public function formMateria(){
         $carreras = $this->carrera_model->getCarreras();
@@ -34,7 +33,7 @@ class MateriaController {
     }
     
     public function insertMateria(){
-        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) ) {
+        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) ) { 
             if ( !$this->materiaHasCareer() )
                 $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
             }
@@ -43,7 +42,7 @@ class MateriaController {
 
     private function materiaHasCareer(){
         $carreras=$this->model->getCarreraXnombre($_POST['id_carrera'], $_POST['nombre']);
-        return count($carreras);
+        return !empty($carreras);
 
     }
 
