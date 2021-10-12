@@ -22,10 +22,13 @@ switch ($params[0]) {
     case 'carreras':
         //Verificacion para que no pasen parametros extra por la url
         if ( !isset($params[1]) )
-            $carreraController->showHome($params);
+            $carreraController->showHome();
         else
             $carreraController->showHome();
         break;
+    
+    case 'home':
+        $carreraController->showHome();
     
     case 'carrera':
         if ( isset($params[1]) && isset($params[2]) )
