@@ -4,8 +4,6 @@ require_once "controller/MateriaController.php";
 require_once "controller/UserController.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-
-
 // lee la acción
 if (!empty($_GET['action']))
     $action = $_GET['action'];
@@ -24,13 +22,13 @@ switch ($params[0]) {
         if ( !isset($params[1]) )
             $carreraController->showHome();
         else
-            $carreraController->showHome();
+            $carreraController->redirectHome();
         break;
     
     case 'home':
-        $carreraController->showHome();
+        $carreraController->redirectHome();
         break;
-        
+
     case 'carrera':
         if ( isset($params[1]) && isset($params[2]) )
             $carreraController->filtrarCarrera($params[1], $params[2]);
