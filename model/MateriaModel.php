@@ -24,8 +24,7 @@ class MateriaModel
 
     function getCarreraXnombre($id_carrera, $nombre)
     {
-        $sentencia = $this->db->prepare('SELECT materia.nombre, carrera.id_carrera FROM carrera INNER JOIN materia
-                    ON carrera.id_carrera = materia.id_carrera WHERE carrera.id_carrera = ? AND materia.nombre = ?');
+        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM materia WHERE id_carrera = ? AND nombre = ?');    
         $sentencia->execute(array($id_carrera, $nombre));
         $carreras = $sentencia->fetch(PDO::FETCH_OBJ);
         return  $carreras;

@@ -33,10 +33,10 @@ class MateriaController {
     }
     
     public function insertMateria(){
-        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) ) { 
+        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) )  
             if ( !$this->materiaHasCareer() )
                 $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
-            }
+    
         $this->redirectHome();
     }
 
