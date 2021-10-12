@@ -34,6 +34,7 @@ class MateriaController {
     
     public function insertMateria(){
         if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) )  
+        //Compruebo que la materia no tenga ya una carrera asociada
             if ( !$this->materiaHasCareer() )
                 $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
     

@@ -92,6 +92,7 @@ class UserController {
     }
 
     public function verifyLogin(){
+        //Atajo de forma personalizada que no se ingresen campos vacios
         $errores_segun_campo = $this->errores_segun_campo();
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $user = $this->model->getUser($_POST['email']);
