@@ -16,11 +16,17 @@ class UserController {
     }
  
     function showLogin(){
-        $this->view->renderLogin();
+        if ( !$this->helper->checkLoggedIn() )
+            $this->view->renderLogin();
+        else
+            $this->redirectHome();
     }
 
     function showRegistro(){
-        $this->view->renderRegistro();
+        if ( !$this->helper->checkLoggedIn() )
+            $this->view->renderRegistro();
+        else
+            $this->redirectHome(); 
     }
 
     public function redirectHome(){
@@ -49,26 +55,28 @@ class UserController {
     }
 
     public function registrarUsuario(){
-
-        $registered = true;
-        //Atajo de forma personalizada que no se ingresen campos vacios
-        $errores_segun_campo = $this->errores_segun_campo();
-         if (!empty($_POST['email']) && !empty($_POST['nombre']) && !empty($_POST['password'])){
-             $hashedPasswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-         //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
-         try {
-             $this->model->insertUser($_POST['email'], $hashedPasswd, $_POST['nombre']);
-         } catch (Throwable $th) {
-             $this->view->renderRegistro("El email ya esta registrado");
-             $registered = false;
-         }
-
-         if ($registered)
-             $this->view->renderLogin('Ingresate para terminar el registro');
-
-         }else
-             $this->view->renderRegistro("No puedes registrar campos vacios.", $errores_segun_campo);
+        if ( !$this->helper->checkLoggedIn() ){ 
+            $registered = true;
+            //Atajo de forma personalizada que no se ingresen campos vacios
+            $errores_segun_campo = $this->errores_segun_campo();
+             if (!empty($_POST['email']) && !empty($_POST['nombre']) && !empty($_POST['password'])){
+                 $hashedPasswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    
+             //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
+             try {
+                 $this->model->insertUser($_POST['email'], $hashedPasswd, $_POST['nombre']);
+             } catch (Throwable $th) {
+                 $this->view->renderRegistro("El email ya esta registrado");
+                 $registered = false;
+             }
+    
+             if ($registered)
+                 $this->view->renderLogin('Ingresate para terminar el registro');
+    
+             }else
+                 $this->view->renderRegistro("No puedes registrar campos vacios.", $errores_segun_campo);
+        }else
+            $this->redirectHome();
     }   
 
     private function errores_segun_campo(){
@@ -93,20 +101,23 @@ class UserController {
 
     public function verifyLogin(){
         //Atajo de forma personalizada que no se ingresen campos vacios
-        $errores_segun_campo = $this->errores_segun_campo();
-        if (!empty($_POST['email']) && !empty($_POST['password'])) {
-            $user = $this->model->getUser($_POST['email']);
-            $campos_validos = $this->login_check($user, $_POST['password'], $_POST['email'], $errores_segun_campo);
-            if ($campos_validos) {
-                session_start();
-                $_SESSION["email"] = $_POST['email'];
-                $_SESSION['nombre'] = $user->nombre;
-                $_SESSION['rol'] = $user->rol;
-                $this->view->showHome();
+        if ( !$this->helper->checkLoggedIn() ){
+            $errores_segun_campo = $this->errores_segun_campo();
+            if (!empty($_POST['email']) && !empty($_POST['password'])) {
+                $user = $this->model->getUser($_POST['email']);
+                $campos_validos = $this->login_check($user, $_POST['password'], $_POST['email'], $errores_segun_campo);
+                if ($campos_validos) {
+                    session_start();
+                    $_SESSION["email"] = $_POST['email'];
+                    $_SESSION['nombre'] = $user->nombre;
+                    $_SESSION['rol'] = $user->rol;
+                    $this->view->showHome();
+                }else
+                    $this->view->renderLogin("Datos incorrectos", $errores_segun_campo);
             }else
                 $this->view->renderLogin("Datos incorrectos", $errores_segun_campo);
         }else
-            $this->view->renderLogin("Datos incorrectos", $errores_segun_campo);
+            $this->redirectHome();
     }
 
     public function login_check($user, $password, $email, &$errores){
