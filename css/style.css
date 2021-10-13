@@ -12,30 +12,22 @@ header {
     background-color: rgb(127, 220, 220);
 }
 
-
 .carrera {
     margin-top: 40px;
     padding: 30px;
     width: 100%;
     border: 3px solid rgb(0,204,204);
-  
- 
 }
 
 select{
     text-align: center;
 }
     
-
-
-
 @media (min-width: 750px){
     .carrera {
         margin-top: 40px;
         padding: 10px;
         width: 30%;
         border: 3px solid rgb(0,204,204);
-      
-     
     }
 }
