@@ -46,7 +46,7 @@ class CarreraController {
             $this->showHome();
     }
 
-    Public function tablaEditarBorrarCarrera(){
+    Public function tablaCarreras(){
         $tablasCarrera=$this->model->getTablaCarreras();
         $this->view->renderTablaCarrera($tablasCarrera, $this->helper->checkLoggedIn());
     }
@@ -57,7 +57,7 @@ class CarreraController {
     }
     
      public function modificarCarrera($id_carrera){
-       $this->model->editarCarrera($_POST['nombre'], $_POST['duracion'],$id_carrera);
+       $this->model->editarCarrera($_POST['nombre'], $_POST['duracion'], $id_carrera);
        $this->view->showTablaLocationCarrera();
 
 }
@@ -65,8 +65,5 @@ class CarreraController {
     public function redirectHome(){
         $this->view->showHomeLocation();
     }
-
-
-
-               
+           
 }

@@ -38,7 +38,7 @@ switch ($params[0]) {
     
     case 'materias':
         if (!isset($params[1]))
-            $materiaController->showMaterias();
+            $materiaController->materias();
         else
             $materiaController->redirectHome();
         break;
@@ -51,7 +51,7 @@ switch ($params[0]) {
         break;
 
     case 'login':
-        $userController->showLogin();
+        $userController->login();
         break;
 
     case 'logout':
@@ -63,7 +63,7 @@ switch ($params[0]) {
         break;    
 
     case 'registro':
-        $userController->showRegistro();
+        $userController->registro();
         break;
     
     case 'signup':
@@ -78,7 +78,7 @@ switch ($params[0]) {
         break;
 
     case 'panel':
-        $userController->showPanel();
+        $userController->panel();
         break;
 //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
     case 'agregar-c':
@@ -90,7 +90,7 @@ switch ($params[0]) {
         break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
     case 'tabla-carreras':
-        $carreraController->tablaEditarBorrarCarrera();
+        $carreraController->tablaCarreras();
         break;
 
     case 'borrarcarrera':
@@ -108,12 +108,12 @@ switch ($params[0]) {
         break;
  //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
     case 'tabla-materias':
-        $materiaController->tablaEditarBorrar();
+        $materiaController->tablaMaterias();
         break;
 
     case 'borrarmateria':
         if (isset($params[1]))
-            $materiaController->borrarMaterias($params[1]);
+            $materiaController->borrarMateria($params[1]);
         else
             $materiaController->redirectHome();
         break;
@@ -139,9 +139,9 @@ switch ($params[0]) {
         $materiaController->insertMateria();
         break;    
         //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
-    case 'tabla':
+   /* case 'tabla':
         $carreraController->tablaEditarBorrar();
-        break;
+        break;*/
 
     case 'borrarcarrera':
         if (isset($params[1]))
@@ -158,13 +158,6 @@ switch ($params[0]) {
         break;
         
         //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
-
-    case 'borrarmateria':
-        if (isset($params[1]))
-            $materiaController->borrarMaterias($params[1]);
-        else
-            $materiaController->redirectHome();
-        break;
 
     case 'editarmateria':
         if (isset($params[1]))

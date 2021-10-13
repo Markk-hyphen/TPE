@@ -15,14 +15,14 @@ class UserController {
         $this->helper = new AuthHelper();
     }
  
-    function showLogin(){
+    function login(){
         if ( !$this->helper->checkLoggedIn() )
             $this->view->renderLogin();
         else
             $this->redirectHome();
     }
 
-    function showRegistro(){
+    function registro(){
         if ( !$this->helper->checkLoggedIn() )
             $this->view->renderRegistro();
         else
@@ -41,12 +41,14 @@ class UserController {
         }else
             $this->redirectHome();
     }
-
+    
+    //Como por ahora solo tengo dos roles lo dejo asi, en caso de tener que hacer un manejo de roles complejos voy a
+    //implementar una tabla de roles, relacionadola con una fk
     private function check_rol($rol){
         return ($rol && ($rol == 'admin' || $rol == 'usuario')) ? true : false;
     }
 
-    public function showPanel(){
+    public function panel(){
         $users = $this->model->getUsers();
         if ($this->helper->checkIsAdmin())
             $this->view->renderPanel($users);
@@ -59,22 +61,21 @@ class UserController {
             $registered = true;
             //Atajo de forma personalizada que no se ingresen campos vacios
             $errores_segun_campo = $this->errores_segun_campo();
-             if (!empty($_POST['email']) && !empty($_POST['nombre']) && !empty($_POST['password'])){
-                 $hashedPasswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            if (!empty($_POST['email']) && !empty($_POST['nombre']) && !empty($_POST['password'])){
+                $hashedPasswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
+            try {
+                $this->model->insertUser($_POST['email'], $hashedPasswd, $_POST['nombre']);
+            } catch (Throwable $th) {
+                $this->view->renderRegistro("El email ya esta registrado");
+                $registered = false;
+            }
     
-             //Hago un try-catch por si el email (primary key) ya existe, si existe displayeo error y si no redirige a home
-             try {
-                 $this->model->insertUser($_POST['email'], $hashedPasswd, $_POST['nombre']);
-             } catch (Throwable $th) {
-                 $this->view->renderRegistro("El email ya esta registrado");
-                 $registered = false;
-             }
+            if ($registered)
+                $this->view->renderLogin('Ingresate para terminar el registro');
     
-             if ($registered)
-                 $this->view->renderLogin('Ingresate para terminar el registro');
-    
-             }else
-                 $this->view->renderRegistro("No puedes registrar campos vacios.", $errores_segun_campo);
+            }else
+                $this->view->renderRegistro("No puedes registrar campos vacios.", $errores_segun_campo);
         }else
             $this->redirectHome();
     }   
@@ -100,8 +101,8 @@ class UserController {
     }
 
     public function verifyLogin(){
-        //Atajo de forma personalizada que no se ingresen campos vacios
         if ( !$this->helper->checkLoggedIn() ){
+            //Atajo de forma personalizada que no se ingresen campos vacios
             $errores_segun_campo = $this->errores_segun_campo();
             if (!empty($_POST['email']) && !empty($_POST['password'])) {
                 $user = $this->model->getUser($_POST['email']);

@@ -12,6 +12,7 @@ class MateriaController {
 
     public function __construct(){
         $this->model = new MateriaModel();
+        //Necesito datos de las carreras para una query, antes que repetir codigo preferi instanciar un objeto CarreraModel
         $this->carrera_model = new CarreraModel();
         $this->view = new MateriaView();
         $this->helper = new AuthHelper();
@@ -24,8 +25,6 @@ class MateriaController {
         }else
             $this->redirectHome();   
     }
-
-
 
     public function formMateria(){
         $carreras = $this->carrera_model->getCarreras();
@@ -44,40 +43,34 @@ class MateriaController {
     private function materiaHasCareer(){
         $carreras=$this->model->getCarreraXnombre($_POST['id_carrera'], $_POST['nombre']);
         return !empty($carreras);
-
     }
 
-    public function showMaterias(){
+    public function materias(){
         $materias = $this->model->getMaterias();
         $this->view->renderMaterias($materias, false);
     }
 
-    //   --------------------------------------------------------------
-
-    //   ------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
+    //------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
        //mostrar tabla materias:
-    Public function tablaEditarBorrar(){
-        $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombr de la base de datos para el select
+    public function tablaMaterias(){
+        $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombre de la base de datos para el select
         $this->view->rendertablaMateria($tablasMaterias, $this->helper->checkLoggedIn());
-       }
-           //   BORRAR MATERIA
-     Public function borrarMaterias($id){
-        if ($this->helper->checkLoggedIn())
-            $this->model->borrarMateria($id);
-        $this->view->showTablaLocationMateria();
-       }
+    }
 
-              //EDITAR MATERIAS
+    public function borrarMateria($id){
+       if ($this->helper->checkLoggedIn())
+           $this->model->borrarMateria($id);
+       $this->view->showTablaLocationMateria();
+    }
+
     public function modificarMateria($id_materia){
-        // var_dump($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
         if ($this->helper->checkLoggedIn())
             $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
         $this->view->showTablaLocationMateria();
-    
     }
 
     public function redirectHome(){
         $this->view->showHome();
     }
-//   --------------------------------------------------------------
-    }
+
+}

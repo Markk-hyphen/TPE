@@ -26,31 +26,19 @@ class CarreraView {
         $this->smarty->display('templates/materias.tpl');
     }
 
-
-    //   -------------------------------FORMULARIO---------------------------------------
     //   -------------------VISTAS AGREGAR-----------------------------------
     //vista carrera
     public function renderFormAgregarCarrera(){
         $this->smarty->display("templates/ingresacarrera.tpl");
     }
 
-    
-
-     //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
+    //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
      public function renderTablaCarrera($tablaCarreras, $logged){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
         $this->smarty->assign('logged', $logged);
         $this->smarty->display("templates/editarborrarcarrera.tpl");
     }
-
-    /*
-       A borrar
-    public function avisoSeguridadBorrarMaterias($aviso=null){
-        $this->smarty->assign('aviso', $aviso);
-    }*/
     
-
-//   ----------------------------location----------------------------------------      
     public function showHomeLocation(){
         header("Location: ".BASE_URL."carreras");
     }
@@ -59,8 +47,7 @@ class CarreraView {
 
         header("Location: ".BASE_URL."agregarcarrera");   
     }
-
-    //   ----------------------------location carreras----------------------------------------    
+  
     public function showTablaLocationCarrera(){
         header("Location: ".BASE_URL."tabla-carreras");
     }
