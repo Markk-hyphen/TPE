@@ -35,6 +35,7 @@
         {/foreach}
     </table>
   </div>
+<a href="carreras" class="m-3"><button type="button" class="btn btn-outline-info">HOME</button></a>
 </div>
 
 {include file='templates/footer.tpl'}
