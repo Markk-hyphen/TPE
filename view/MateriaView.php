@@ -22,15 +22,11 @@ class MateriaView {
         $this->smarty->display("templates/ingresamateria.tpl");
     }
 
-       public function showAgregarMateriaLocation(){
-        header("Location: ".BASE_URL."agregar-materia");   
-    }
-
     //-----------------------------VISTA TABLAS MATERIA----------------------------------------
     public function rendertablaMateria($tablaMaterias, $logged){
         $this->smarty->assign('tablaMaterias', $tablaMaterias);
         $this->smarty->assign('logged', $logged);
-        $this->smarty->display("templates/editarborrarmateria.tpl");
+        $this->smarty->display("templates/tablaMateria.tpl");
     }
   
     public function showTablaLocationMateria(){

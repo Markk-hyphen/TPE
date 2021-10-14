@@ -35,7 +35,7 @@ class CarreraController {
         if ($this->helper->checkLoggedIn())
             $this->view->renderFormAgregarCarrera();
         else 
-            $this->showHome();
+            $this->redirectHome();
     }
 
     public function insertCarrera(){
@@ -43,7 +43,7 @@ class CarreraController {
             $this->model->insertarCarrera($_POST['nombre'], $_POST['duracion']);
             $this->view->showAgregarCarreraLocation();
         }else
-            $this->showHome();
+            $this->redirectHome();
     }
 
     Public function tablaCarreras(){

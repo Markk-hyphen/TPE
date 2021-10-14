@@ -27,18 +27,24 @@ class MateriaController {
     }
 
     public function formMateria(){
-        $carreras = $this->carrera_model->getCarreras();
-        $this->view->renderFormMateria($carreras);
+        if ($this->helper->checkLoggedIn()) {
+            $carreras = $this->carrera_model->getCarreras();
+            $this->view->renderFormMateria($carreras);
+
+        }else
+            $this->redirectHome();
     }
     
     public function insertMateria(){
-        if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) )  
-        //Compruebo que la materia no tenga ya una carrera asociada
-            if ( !$this->materiaHasCareer() )
-                $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
-    
+        if ($this->helper->checkLoggedIn()) {
+            if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) )  
+            //Compruebo que la materia no tenga ya una carrera asociada
+                if ( !$this->materiaHasCareer() )
+                    $this->model->insertarMateria($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']);
+        }
         $this->redirectHome();
-    }
+
+        }
 
     private function materiaHasCareer(){
         $carreras=$this->model->getCarreraXnombre($_POST['id_carrera'], $_POST['nombre']);
