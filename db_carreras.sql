@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2021 at 02:06 AM
+-- Generation Time: Oct 14, 2021 at 04:09 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -46,7 +46,7 @@ INSERT INTO `carrera` (`id_carrera`, `nombre`, `duracion`) VALUES
 (6, 'Profesorado en Informatica', 4),
 (7, 'Dota2', 10),
 (11, 'DUGAR', 0.5),
-(12, 'Experiencias Digitales', 2);
+(21, 'Experiencias Digitales', 2);
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `materia` (
 --
 
 INSERT INTO `materia` (`id_materia`, `nombre`, `profesor`, `id_carrera`) VALUES
-(1, 'Algebra Lineal', 'Karina Paz', 1),
+(1, 'Algebra Lineal', 'Karina Paz', 2),
 (2, 'POO', 'Luis Berdun', 1),
 (6, 'Web2', 'Javier Romero', 2),
 (7, 'Deep learning', 'Giru', 5),
@@ -86,10 +86,12 @@ INSERT INTO `materia` (`id_materia`, `nombre`, `profesor`, `id_carrera`) VALUES
 (31, 'Ingenieria de Software', 'Quirque', 1),
 (44, 'Redes hogareñas', 'Rolo Carretto', 11),
 (45, 'Soporte previsorio', 'Epicuro Gomez', 11),
-(46, 'Ergonomia', 'Ricardo Schelotto', 12),
-(47, 'Accesibilidad WEB', 'Anastasio Iñaki', 12),
 (48, 'Tecnologia educativa', 'Guillermo Conti', 6),
-(50, 'Matematica discreta', 'Emilio Alfaro', 6);
+(50, 'Matematica discreta', 'Emilio Alfaro', 6),
+(64, 'Web1', 'Javier Dottori', 2),
+(65, 'Ergonomia', 'Aldo Rico', 21),
+(66, 'Accesibilidad WEB', 'Michael Jackson', 21),
+(71, 'BEST BAND', 'Queen', 2);
 
 -- --------------------------------------------------------
 
@@ -117,6 +119,10 @@ INSERT INTO `usuario` (`nombre`, `rol`, `passwd`, `email`) VALUES
 ('asdasd', 'usuario', '$2y$10$rsSC2WklwUvAMVQD8DFL9OoymK2vnN4dP9MZb92N3SVu9VbRCJ8.2', 'hybrid@hotmail.com'),
 ('pollos', 'usuario', '$2y$10$O0.7iUYkzGkx/SY2aKPyruAMvgBvXRjFYf31dmp/G4H6C6OlF0izK', 'paky.rdsaock_@hotmail.com'),
 ('prueba', 'usuario', '$2y$10$qyCGnyaZeQ2YLX2/joUta.eQ7CBR95QP/gGanU.AWiU6zYK2AS81O', 'prueba@gmail.com'),
+('q2', 'admin', '$2y$10$XcDkqVZfS9QLpSd5R70GyeSR.fr92fNEYHGorF0vjIBHVtRy2u6bG', 'q1'),
+('wqwqwwww', 'usuario', '$2y$10$y7Dym5Plve9GB0d2C7Gov.JWTnQkvYn24CoQ7.cbsP.HZY84u1mwW', 'qwqwq'),
+('richardo', 'usuario', '$2y$10$kgCo913Y5ab0bN0VTzX4SeRFuSwsnEzdmLzg.FoK.RQJXZXnx9/0m', 'richard@hotmail.com'),
+('hyper', 'usuario', '$2y$10$Pub4wJv0HP.mmKBIx75VQ.ZGnq31awUmNAsoZcMGpmO535HE5DeN2', 'rocko'),
 ('Remo', 'admin', '$2y$10$uALEzHn0srLpG7UEYkKuIenzRIe3DvZMLX2G8OULNk46moOJ71llq', 'romulo@gmail.com');
 
 --
@@ -150,13 +156,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `carrera`
 --
 ALTER TABLE `carrera`
-  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Constraints for dumped tables
