@@ -34,7 +34,6 @@
             </tr>
         {/foreach}
     </table>
-
   </div>
 </div>
 

@@ -49,7 +49,7 @@ class CarreraView {
     }
   
     public function showTablaLocationCarrera(){
-        header("Location: ".BASE_URL."tabla-carreras");
+        header("Location: ".BASE_URL."tablacarreras");
     }
 
 }

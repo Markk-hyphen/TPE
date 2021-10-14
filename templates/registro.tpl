@@ -1,9 +1,7 @@
-
 {include file='templates/header.tpl'}
 <div class = "container w-75 d-flex justify-content-center">
   <div class="m-3 w-25 container-registro">
     <h2>SIGN UP</h2>
-  
     <form method="POST"  action="signup">
         <div class="col-auto mb-2">
           <label for="email-registration" class="form-label">Email</label>
@@ -18,7 +16,7 @@
         <div class="col-auto mb-2">
           <label for="name-registration" class="form-label">Nombre</label>
           {if !isset($errorXcampo["nombreError"]) }
-          <input type="text" class="form-control" name="nombre" id="name-registration" {if isset($errorXcampo['nombre'])} value="{$errorXcampo['nombre']}" {else} placeholder="Nombre..."{/if}>
+            <input type="text" class="form-control" name="nombre" id="name-registration" {if isset($errorXcampo['nombre'])} value="{$errorXcampo['nombre']}" {else} placeholder="Nombre..."{/if}>
           {else}
             <input type="text" class="form-control is-invalid" name="nombre" id="name-registration"placeholder="nombre">
             <div class="invalid-feedback">{$errorXcampo['nombreError']}</div>

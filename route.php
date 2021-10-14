@@ -89,7 +89,7 @@ switch ($params[0]) {
         $materiaController->insertMateria();
         break;
  //   ------------------------------EDITAR BORRAR CARRERA------------------------------------------------
-    case 'tabla-carreras':
+    case 'tablacarreras':
         $carreraController->tablaCarreras();
         break;
 
@@ -107,7 +107,7 @@ switch ($params[0]) {
              $carreraController->redirectHome();
         break;
  //   ------------------------------EDITAR BORRAR MATERIA------------------------------------------------
-    case 'tabla-materias':
+    case 'tablamaterias':
         $materiaController->tablaMaterias();
         break;
 
