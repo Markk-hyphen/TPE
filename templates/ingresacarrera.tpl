@@ -3,7 +3,7 @@
 <div class="container d-flex justify-content-center">
     <div class="m-3 w-25">
         <h2>AGREGAR CARRERA</h2>
-        <form class="form-alta" action="agregarcarrera" method="post"> 
+        <form class="form-alta" action="agregar-carrera" method="post"> 
             <div class="col-auto mb-2">
                 <input class="form-control" placeholder="Nombre.." type="text" name="nombre" id="nombre" required>
             </div>

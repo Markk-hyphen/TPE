@@ -126,13 +126,13 @@ switch ($params[0]) {
         break;
         //   ------------------------------AGREGAR CARRERA MATERIA------------------------------------------------
 
-    case 'agregar-carrera':
+    case 'agregarcarrera':
         $carreraController->formCarrera();
         break;
-    case 'agregar-materia':
+    case 'agregarmateria':
         $materiaController->formMateria();
         break;
-    case 'agregarcarrera':
+    case 'agregar-carrera':
         $carreraController->insertCarrera();
         break;
     case 'agregar-m':
