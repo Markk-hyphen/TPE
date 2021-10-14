@@ -29,14 +29,14 @@ class CarreraView {
     //   -------------------VISTAS AGREGAR-----------------------------------
     //vista carrera
     public function renderFormAgregarCarrera(){
-        $this->smarty->display("templates/ingresacarrera.tpl");
+        $this->smarty->display("templates/ingresocarrera.tpl");
     }
 
     //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
      public function renderTablaCarrera($tablaCarreras, $logged){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
         $this->smarty->assign('logged', $logged);
-        $this->smarty->display("templates/editarborrarcarrera.tpl");
+        $this->smarty->display("templates/tablaCarrera.tpl");
     }
     
     public function showHomeLocation(){
