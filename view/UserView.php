@@ -29,4 +29,5 @@ class UserView{
         $this->smarty->display("templates/panel.tpl");
     }
 
+    
 }

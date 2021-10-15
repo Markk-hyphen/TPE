@@ -16,7 +16,7 @@ class MateriaView {
     }
     //-------------------VISTAS AGREGAR-----------------------------------
 
-    //vista materias
+
     public function renderFormMateria($carreras){
         $this->smarty->assign('carreras',$carreras);
         $this->smarty->display("templates/ingresomateria.tpl");

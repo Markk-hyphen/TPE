@@ -26,7 +26,6 @@ class CarreraView {
         $this->smarty->display('templates/materias.tpl');
     }
 
-    //   -------------------VISTAS AGREGAR-----------------------------------
     //vista carrera
     public function renderFormAgregarCarrera(){
         $this->smarty->display("templates/ingresocarrera.tpl");
