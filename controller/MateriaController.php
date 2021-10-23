@@ -19,8 +19,8 @@ class MateriaController {
     }   
 
     public function filtrarMateria($id_materia, $nombre){
-        if ($this->model->getMateriaPorId($id_materia)){
-            $materia = $this->model->getMateriaPorId($id_materia);
+        if ($this->model->getMateria($id_materia)){
+            $materia = $this->model->getMateria($id_materia);
             $this->view->renderMateria($materia);
         }else
             $this->redirectHome();   
