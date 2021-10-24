@@ -22,10 +22,10 @@ class MateriaController {
 
     public function filtrarMateria($id_materia, $nombre){
         if ($this->model->getMateria($id_materia)){
-            $logged = $this->helper->checkLoggedIn();
+            $loggedUser = $this->helper->loggedUser();
             $materia = $this->model->getMateria($id_materia);
             $comentarios = $this->comentario_model->comentariosXmateria($id_materia);
-            $this->view->renderMateria($materia, $comentarios, $logged);
+            $this->view->renderMateria($materia, $comentarios, $loggedUser);
         }else
             $this->redirectHome();   
     }

@@ -10,10 +10,10 @@ class MateriaView {
     }
 
     
-    public function renderMateria($materia, $comentarios = null, $logged){
+    public function renderMateria($materia, $comentarios = null, $user = null) {
         $this->smarty->assign('materia', $materia);
         $this->smarty->assign('comentarios', $comentarios);
-        $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('loggedUser', $user);
         $this->smarty->display("templates/detalle.tpl");
     }
     //-------------------VISTAS AGREGAR-----------------------------------
