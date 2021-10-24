@@ -145,7 +145,7 @@ switch ($params[0]) {
 
     case 'borrarcarrera':
         if (isset($params[1]))
-            $carreraController->borrarCarreras($params[1]);
+            $carreraController->borrarCarrera($params[1]);
         else
             $carreraController->redirectHome();
         break;

@@ -3,25 +3,29 @@ require_once "model\MateriaModel.php";
 require_once "view\MateriaView.php";
 require_once "helpers/AuthHelper.php";
 require_once "model/CarreraModel.php";
+require_once "model/ComentarioModel.php";
 
 class MateriaController {
     private $model;
     private $view;
     private $helper;
     private $carrera_model;
-
+    private $comentario_model;
     public function __construct(){
         $this->model = new MateriaModel();
         //Necesito datos de las carreras para una query, antes que repetir codigo preferi instanciar un objeto CarreraModel
         $this->carrera_model = new CarreraModel();
         $this->view = new MateriaView();
+        $this->comentario_model = new ComentarioModel();
         $this->helper = new AuthHelper();
     }   
 
     public function filtrarMateria($id_materia, $nombre){
         if ($this->model->getMateria($id_materia)){
+            $logged = $this->helper->checkLoggedIn();
             $materia = $this->model->getMateria($id_materia);
-            $this->view->renderMateria($materia);
+            $comentarios = $this->comentario_model->comentariosXmateria($id_materia);
+            $this->view->renderMateria($materia, $comentarios, $logged);
         }else
             $this->redirectHome();   
     }
