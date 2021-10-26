@@ -7,39 +7,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
         e.preventDefault();
         let comment_json = createJsonComment();
         insert_comment(comment_json);
-        load_comments();
     });
-    
+
+    //Agrego un evento a cada boton para eliminarlo
     let deleteBtns = document.querySelectorAll('.delete');
     add_delete_listener(deleteBtns);
 
-    async function load_comments() {
-        let comment_box = document.getElementById('comment-box');
-        try {
-            let prom = await fetch(url);
-        } catch (error) {
-            
-        }
-    }
-
-    async function insert_comment(json) {
-        try {
-            let prom = await fetch(url,
-             {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body : JSON.stringify(json)
-            });
-        } catch (error) {
-            console.log(error);
-        }
-
-        render_comment(json);
-        delete_element(document.getElementById('no-comments'));
-    }
     
     function delete_element(element) {
-        element.parentNode.removeChild(element);
+        if (element)
+            element.parentNode.removeChild(element);
     }
 
     function add_delete_listener(buttons){
@@ -50,18 +27,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         }))
     }
     
-    async function delete_comment(id) {
-        try {
-            let prom = await fetch(url + '/' + id,
-             {
-                method: 'DELETE',
-                headers: {'Content-Type': 'application/json'},
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     function render_comment(comment){
         //La unica forma que encontre de que no me devuelva una id undefined fue resolviendo todo adentro de la misma promesa
         try {
@@ -78,17 +43,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
     
     }
 
+    //Imito el div que tengo en el template detalle.tpl
     function set_comment(comment, id) {
-        //Imito el div que tengo en el template detalle.tpl
         let comment_box = document.getElementById('comment-box');
         let comment_div = document.createElement('div');
-        let btn = document.createElement('button');
-        btn.dataset.id = id;
-        btn.classList.add("delete", "btn", "btn-danger");
-        btn.type = "button";
-        let btns = [btn];
-        btn.innerHTML = "Borrar";
-        add_delete_listener(btns);
+        if (is_admin()){ 
+            var btn = document.createElement('button');
+            btn.dataset.id = id;
+            btn.classList.add("delete", "btn", "btn-danger");
+            btn.type = "button";
+            let btns = [btn];
+            btn.innerHTML = "Borrar";
+            add_delete_listener(btns);
+        }
         comment_div.innerHTML = 
         `
         <div id="comment-wrapper">
@@ -100,11 +67,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 <p>Puntaje: ${comment.puntaje}</p>
         </div>
         `;
-        comment_div.appendChild(btn);
+        if (is_admin())
+            comment_div.appendChild(btn);
+
         comment_div.appendChild(document.createElement('hr'));
         comment_box.appendChild(comment_div);
     }
 
+    function is_admin(){
+        let user_role = document.getElementById('comment-box').dataset.role;
+        return user_role == 'admin';
+    }
+
+    //Parseo el formulario y lo convierto en un objeto json
     function createJsonComment() {
         let comment = document.getElementById('comment').value;
         let puntaje = document.getElementById('puntaje').value;
@@ -117,4 +92,32 @@ document.addEventListener('DOMContentLoaded', (e) => {
         json.fk_nombre_usuario = formCommentInfo[0].value;
         return json;
      }
+
+     async function insert_comment(json) {
+        try {
+            let prom = await fetch(url,
+             {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body : JSON.stringify(json)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        render_comment(json);
+        delete_element(document.getElementById('no-comments'));
+    }
+
+    async function delete_comment(id) {
+        try {
+            let prom = await fetch(url + '/' + id,
+             {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 });

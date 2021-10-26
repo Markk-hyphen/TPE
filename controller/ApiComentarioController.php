@@ -63,7 +63,15 @@ class ApiComentarioController {
             $body = file_get_contents('php://input', true);
             return json_decode($body);
         }
-    
+        
+        public function getComentariosMateria($params = null){
+            $comentarios = $this->model->comentariosXmateria($params[':ID']);
+            if ($comentarios)
+                $this->view->response($comentarios, 200);
+            else
+                $this->view->response('Materia inexistente', 404);
+        }
+
         /*public function putComentario($id, $data) {
             $comentario = Comentario::getById($id);
             $comentario->setData($data);

@@ -10,7 +10,7 @@
     {if !$comentarios}
         <p id="no-comments" class="mb-3">Momentaneamente sin comentarios</p>
     {/if}
-    <div class="w-75" id="comment-box">
+    <div class="w-75" id="comment-box" {if $loggedUser}data-role="{$loggedUser->rol}"{/if}>
         {foreach from=$comentarios item=$comentario}
             <div id="comment-wrapper">
                 <hr>

@@ -29,7 +29,8 @@
                             </select>
                         {/if}
                     </td>
-                    <td><button type="submit" class="btn btn-primary">Aceptar</button></td>   
+                    <td><button type="submit" class="btn btn-primary">Aceptar</button></td>
+                    <td><a href="borrarUsuario/{$user->email}"><button type="button" class="btn btn-danger">Borrar</button></a></td>     
                 </form>
             </tr>
         {/foreach}

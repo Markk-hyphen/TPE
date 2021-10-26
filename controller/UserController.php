@@ -136,6 +136,15 @@ class UserController {
         return $checked;
     }
 
+    public function borrarUsuario($params = null){
+       if($this->helper->checkIsAdmin()){
+            $this->model->deleteUser($params[":ID"]);
+            $users = $this->model->getUsers();
+            $this->view->renderPanel($users);
+        }else
+            $this->redirectHome();
+    }
+
     public function logOut(){
         session_start();
         session_destroy();

@@ -29,4 +29,9 @@ class UserModel{
         $template = $this->db->prepare("UPDATE usuario SET rol= ? WHERE email = ?");
         $template->execute(array($nuevoRol, $email));
     }
+
+    public function deleteUser($email){
+        $template = $this->db->prepare("DELETE FROM usuario WHERE email = ?");
+        $template->execute(array($email));
+    }
 }

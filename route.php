@@ -2,6 +2,7 @@
 require_once "controller/CarreraController.php";
 require_once "controller/MateriaController.php";
 require_once "controller/UserController.php";
+require_once "libs/Router.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 // lee la acción
@@ -12,9 +13,13 @@ else
 
 $params = explode('/', $action);
 
+$router = new Router();
 $carreraController = new CarreraController();
 $materiaController = new MateriaController();
 $userController = new UserController();
+
+$router->addRoute('borrarUsuario/:ID', "GET", "UserController", 'borrarUsuario');
+$router->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 switch ($params[0]) {
     case 'carreras':

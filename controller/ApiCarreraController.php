@@ -20,6 +20,16 @@ class ApiCarreraController{
         
     }
 
+    public function getResource($params = null){
+        $id = $params[':ID'];
+        $resource = $params[':RESOURCE'];
+        $column = $this->model->getColumn($id, $resource);
+        if ($column)
+            $this->view->response($column);
+        else
+            $this->view->response("Vacio", 204);
+    }
+
     public function getCarrera($params = null){
         $id = $params[':ID'];
         $carrera = $this->model->getCarrera($id);

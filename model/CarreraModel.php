@@ -48,6 +48,13 @@ class CarreraModel
         return $this->db->lastInsertId();
     }      
     
+    public function getColumn($id, $column){
+        $sentencia = $this->db->prepare("SELECT $column FROM carrera WHERE id_carrera = ?");
+        $sentencia->execute(array($id));
+        $carrera = $sentencia->fetch(PDO::FETCH_OBJ);
+        return  $carrera;
+    }
+
     public function borrarCarrera($id_carrera){
         $sentencia = $this->db->prepare("DELETE FROM carrera WHERE id_carrera=?");
         $sentencia->execute(array($id_carrera));
