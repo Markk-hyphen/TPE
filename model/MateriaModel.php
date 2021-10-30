@@ -60,6 +60,17 @@ class MateriaModel
        return $this->db->lastInsertId();
     }
 
+    public function materiasPaginadas($pagina, $materias_x_pagina){
+        $inicio = ($pagina - 1) * $materias_x_pagina;
+        $sentencia = $this->db->prepare("SELECT * FROM materia LIMIT $inicio, $materias_x_pagina");
+        $sentencia->execute(array());
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function table_size(){
+        return $this->db->query("SELECT COUNT(*) FROM materia")->fetchColumn();
+    }
+
     public function deleteFile($id){
         $sentencia = $this->db->prepare("UPDATE materia SET imagen = NULL WHERE id_materia=?");
         $sentencia->execute(array($id));

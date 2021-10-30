@@ -12,7 +12,12 @@ class MateriaController {
     private $carrera_model;
     private $comentario_model;
     private $max_size;
-    public function __construct($max_size = 1000000) {
+    private $paginas;
+    private $materias_x_pagina_default = 7;
+    private $materias_x_pagina;
+    private $pagina_actual;
+
+    public function __construct($max_size = 1000000, $materias_x_pagina = 7) {
         $this->model = new MateriaModel();
         //Necesito datos de las carreras para una query, antes que repetir codigo preferi instanciar un objeto CarreraModel
         $this->carrera_model = new CarreraModel();
@@ -20,7 +25,21 @@ class MateriaController {
         $this->comentario_model = new ComentarioModel();
         $this->helper = new AuthHelper();
         $this->max_size = $max_size;
+        $this->setPaginationParams($materias_x_pagina);
     }   
+
+    private function setPaginationParams($materias_x_pagina){
+        $table_size = $this->model->table_size();
+        if ($table_size < $materias_x_pagina && $materias_x_pagina < 0){ 
+            $this->paginas = ceil($table_size / $this->paginas_default);
+            $this->materias_x_pagina = $this->materias_x_pagina_default;
+        }
+        else {
+            $this->paginas = ceil($table_size / $materias_x_pagina);
+            $this->materias_x_pagina = $materias_x_pagina;
+        }
+
+    }
 
     public function filtrarMateria($id_materia, $nombre){
         if ($this->model->getMateria($id_materia)){
@@ -58,8 +77,23 @@ class MateriaController {
     }
 
     public function materias(){
-        $materias = $this->model->getMaterias();
-        $this->view->renderMaterias($materias, false);
+        $this->materiasPagination([':PAGINA' => 1]);
+    }
+
+    public function materiasPagination($params = null){
+        $pagina = $this->check_page($params[':PAGINA']);
+        $materias = $this->model->materiasPaginadas($pagina, $this->materias_x_pagina);
+        $this->view->renderMaterias($materias, $this->paginas, $pagina);
+    }
+
+    private function check_page($page){
+        if (isset($page) && is_numeric($page)){
+            if ($page > $this->paginas)
+                return $this->paginas;
+            if ($page > 0)
+                return $page;
+        }
+        return 1;
     }
 
     //------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
@@ -88,8 +122,8 @@ class MateriaController {
             move_uploaded_file($_FILES['input_name']['tmp_name'], $filePath);
             $this->model->uploadFile($params[":ID"], $filePath);
             $this->goBack();
-        }else
-            $this->view->showTablaLocationMateria();
+        }//else
+            //$this->view->showTablaLocationMateria();
     }
 
     public function valid_file(){
@@ -97,22 +131,22 @@ class MateriaController {
         $file_name = $file['name'];
         $file_size = $file['size'];
         $file_error = $file['error'];
-        $file_ext = explode('.', $file_name);
-        $file_ext = strtolower(end($file_ext));
+        $file_parts = explode('.', $file_name);
+        $file_ext = strtolower(end($file_parts));
         $allowed = array('jpg', 'jpeg', 'png');
-        if (in_array($file_ext, $allowed)){
-            if ($file_error === 0){
-                if ($file_size <= $this->max_size){
+        if (in_array($file_ext, $allowed))
+            if ($file_error === 0)
+                if ($file_size <= $this->max_size)
                     return true;
-                }else{
+                else
                     echo "El archivo es demasiado grande";
-                }
-            }else{
+
+            else
                 echo "Error al subir el archivo";
-            }
-        }else{
+            
+        else
             echo "Extension invalida";
-        }
+        
         return false;
     }
 

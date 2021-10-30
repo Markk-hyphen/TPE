@@ -39,9 +39,10 @@ class MateriaView {
         header("Location: ".BASE_URL."carreras");
     }
     
-    public function renderMaterias($materias, $mostrarTodo = true){
+    public function renderMaterias($materias, $cantPaginas, $pagina_actual){
         $this->smarty->assign('materias', $materias);
-        $this->smarty->assign('mostrarTodo', $mostrarTodo);
+        $this->smarty->assign('cantPaginas', $cantPaginas);
+        $this->smarty->assign('pagina_actual', (int)$pagina_actual);
         $this->smarty->display("templates/materias.tpl");
     }
 }

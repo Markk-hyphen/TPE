@@ -8,7 +8,6 @@ class CarreraView {
 
     public function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign('mostrarTodo', true);
         $this->smarty->assign('nombre_carrera', "");
     }
 
@@ -22,7 +21,7 @@ class CarreraView {
     public function renderCarrera($materias, $nombre = ""){
         $this->smarty->assign('materias', $materias);
         $this->smarty->assign('nombre_carrera', $nombre);
-        $this->smarty->display('templates/materias.tpl');
+        $this->smarty->display('templates/materiasCarrera.tpl');
     }
 
     //vista carrera

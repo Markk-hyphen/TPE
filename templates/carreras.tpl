@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 
-<a href="materias" class="m-3"><button type="button" class="btn btn-info">Ver materias</button></a>
+<a href="materias/1" class="m-3"><button type="button" class="btn btn-info">Ver materias</button></a>
 <a href="tablacarreras" class="m-3"><button type="button" class="btn btn-info">Editar carreras</button></a>
 <a href="tablamaterias" class="m-3"><button type="button" class="btn btn-info">Editar materias</button></a>
 {if $logged}
