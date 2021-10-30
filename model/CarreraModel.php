@@ -65,5 +65,3 @@ class CarreraModel
         $sentencia->execute(array($nombre, $duracion, $id_carrera));
     }
 }
-
-

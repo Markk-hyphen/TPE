@@ -11,13 +11,15 @@ class MateriaController {
     private $helper;
     private $carrera_model;
     private $comentario_model;
-    public function __construct(){
+    private $max_size;
+    public function __construct($max_size = 1000000) {
         $this->model = new MateriaModel();
         //Necesito datos de las carreras para una query, antes que repetir codigo preferi instanciar un objeto CarreraModel
         $this->carrera_model = new CarreraModel();
         $this->view = new MateriaView();
         $this->comentario_model = new ComentarioModel();
         $this->helper = new AuthHelper();
+        $this->max_size = $max_size;
     }   
 
     public function filtrarMateria($id_materia, $nombre){
@@ -77,6 +79,52 @@ class MateriaController {
         if ($this->helper->checkLoggedIn())
             $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
         $this->view->showTablaLocationMateria();
+    }
+
+    public function uploadFile($params = null){
+        if ($this->helper->checkIsAdmin() && $this->valid_file()){
+            $filePath = "uploads/" . uniqid("", false) . "."
+                                   . strtolower(pathinfo($_FILES['input_name']['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($_FILES['input_name']['tmp_name'], $filePath);
+            $this->model->uploadFile($params[":ID"], $filePath);
+            $this->goBack();
+        }else
+            $this->view->showTablaLocationMateria();
+    }
+
+    public function valid_file(){
+        $file = $_FILES['input_name'];
+        $file_name = $file['name'];
+        $file_size = $file['size'];
+        $file_error = $file['error'];
+        $file_ext = explode('.', $file_name);
+        $file_ext = strtolower(end($file_ext));
+        $allowed = array('jpg', 'jpeg', 'png');
+        if (in_array($file_ext, $allowed)){
+            if ($file_error === 0){
+                if ($file_size <= $this->max_size){
+                    return true;
+                }else{
+                    echo "El archivo es demasiado grande";
+                }
+            }else{
+                echo "Error al subir el archivo";
+            }
+        }else{
+            echo "Extension invalida";
+        }
+        return false;
+    }
+
+    public function deleteFile($params = null){
+        if ($this->helper->checkIsAdmin())
+            $this->model->deleteFile($params[":ID"]);
+        $this->goBack();    
+        }
+        
+    private function goBack(){
+        //Navigate back para que vuelva a la misma pagina
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
     public function redirectHome(){

@@ -31,5 +31,6 @@ $router->addRoute("comentarios", "POST", "ApiComentarioController", "insertComen
 $router->addRoute("comentarios/materia/:ID", "GET", "ApiComentarioController", "getComentariosMateria");
 
 $router->setDefaultRoute("ApiCarreraController", "getCarreras");
+
 //Le paso el resource y el metodo a la clase Router
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

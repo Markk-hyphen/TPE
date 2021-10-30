@@ -48,9 +48,21 @@ class MateriaModel
         $sentencia->execute(array($nombre, $profesor, $id_carrera, $id_materia));
     }
 
-    function getMaterias(){
+    public function getMaterias(){
         $sentencia = $this->db->prepare('SELECT * FROM materia');
         $sentencia->execute(array());
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
      }
+
+    public function uploadFile($id, $file){    
+       $sentencia = $this->db->prepare("UPDATE materia SET imagen = ? WHERE id_materia=?");
+       $sentencia->execute(array($file, $id));
+       return $this->db->lastInsertId();
+    }
+
+    public function deleteFile($id){
+        $sentencia = $this->db->prepare("UPDATE materia SET imagen = NULL WHERE id_materia=?");
+        $sentencia->execute(array($id));
+        return $this->db->lastInsertId();
+    }
 }
