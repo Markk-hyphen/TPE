@@ -10,10 +10,11 @@ class MateriaView {
     }
 
     
-    public function renderMateria($materia, $comentarios = null, $user = null) {
+    public function renderMateria($materia, $comentarios = null, $user = null, $nombre = null) {
         $this->smarty->assign('materia', $materia);
         $this->smarty->assign('comentarios', $comentarios);
         $this->smarty->assign('loggedUser', $user);
+        $this->smarty->assign('nombre', $nombre);
         $this->smarty->display("templates/detalle.tpl");
     }
     //-------------------VISTAS AGREGAR-----------------------------------
@@ -25,9 +26,9 @@ class MateriaView {
     }
 
     //-----------------------------VISTA TABLAS MATERIA----------------------------------------
-    public function rendertablaMateria($tablaMaterias, $logged){
+    public function rendertablaMateria($tablaMaterias, $loggedUser){
         $this->smarty->assign('tablaMaterias', $tablaMaterias);
-        $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('user', $loggedUser);
         $this->smarty->display("templates/tablaMateria.tpl");
     }
   

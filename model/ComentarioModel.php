@@ -13,11 +13,19 @@ class ComentarioModel
         return $template->fetchall(PDO::FETCH_OBJ);
     }
 
+    public function comentariosXpuntaje($id, $puntaje){
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? AND puntaje = ?");
+        $template->execute(array($id, $puntaje));
+        return $template->fetchall(PDO::FETCH_OBJ);
+    }
+
     public function getComentarios(){
         $template = $this->db->prepare("SELECT * FROM comentario");
         $template->execute();
         return $template->fetchall(PDO::FETCH_OBJ);
     }
+
+
 
     public function getComentario($id_comentario){
         $template = $this->db->prepare("SELECT * FROM comentario WHERE id = ?");

@@ -16,9 +16,8 @@ class CarreraController {
 
     public function showHome(){
         $carreras = $this->model->getCarreras();
-        $logged = $this->helper->checkLoggedIn();
-        $rol = $this->helper->getRol();
-        $this->view->showHome($carreras, $logged, $rol);   
+        $user = $this->helper->loggedUser();
+        $this->view->showHome($carreras, $user);   
     }
 
 
@@ -32,7 +31,7 @@ class CarreraController {
     }
 
     public function formCarrera() {
-        if ($this->helper->checkLoggedIn())
+        if ($this->helper->checkIsAdmin())
             $this->view->renderFormAgregarCarrera();
         else 
             $this->redirectHome();
@@ -48,7 +47,7 @@ class CarreraController {
 
     Public function tablaCarreras(){
         $tablasCarrera=$this->model->getTablaCarreras();
-        $this->view->renderTablaCarrera($tablasCarrera, $this->helper->checkLoggedIn());
+        $this->view->renderTablaCarrera($tablasCarrera, $this->helper->loggedUser());
     }
 
     Public function borrarCarrera($id){

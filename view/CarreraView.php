@@ -11,10 +11,9 @@ class CarreraView {
         $this->smarty->assign('nombre_carrera', "");
     }
 
-    public function showHome($carreras, $logged, $rol = null){
+    public function showHome($carreras, $user){
         $this->smarty->assign('carreras', $carreras);
-        $this->smarty->assign('logged', $logged);
-        $this->smarty->assign('rol', $rol);
+        $this->smarty->assign('user', $user);
         $this->smarty->display('templates/carreras.tpl');
     }
 
@@ -30,9 +29,9 @@ class CarreraView {
     }
 
     //   -----------------------------VISTA TABLAS CARRERA----------------------------------------
-     public function renderTablaCarrera($tablaCarreras, $logged){
+     public function renderTablaCarrera($tablaCarreras, $user){
         $this->smarty->assign('tablaCarreras', $tablaCarreras);
-        $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('user', $user);
         $this->smarty->display("templates/tablaCarrera.tpl");
     }
     

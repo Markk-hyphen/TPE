@@ -22,7 +22,8 @@ $router->addRoute('borrarUsuario/:ID', "GET", "UserController", 'borrarUsuario')
 $router->addRoute('materias/:PAGINA', "GET", "MateriaController", 'materiasPagination');
 $router->addRoute('materias', "GET", "MateriaController", 'materias');
 $router->addRoute('uploadFile/:ID', "POST", "MateriaController", 'uploadFile');
-//Consultar: si no pongo GET me ignora el addRoute y se va al switch
+$router->addRoute('detalle/:NOMBRE/:ID', "GET", "MateriaController", 'filtrarMateria');
+$router->addRoute('detalle/:NOMBRE/:ID', "POST", "MateriaController", 'filtrarComentarios');
 $router->addRoute('deleteFile/:ID', "GET", "MateriaController", 'deleteFile');
 
 $router->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
@@ -45,14 +46,6 @@ switch ($params[0]) {
         else
             $carreraController->redirectHome();
         break;
-    
-    case 'detalle':
-        if (isset($params[2], $params[1]))
-            $materiaController->filtrarMateria($params[2], $params[1]);
-        else
-            $materiaController->redirectHome();
-        break;
-
     case 'login':
         $userController->login();
         break;

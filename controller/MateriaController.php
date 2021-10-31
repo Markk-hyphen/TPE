@@ -41,18 +41,70 @@ class MateriaController {
 
     }
 
-    public function filtrarMateria($id_materia, $nombre){
-        if ($this->model->getMateria($id_materia)){
+    public function filtrarMateria($params = null){
+        $id = $params[':ID'];
+        $nombre = $params[':NOMBRE'];
+        if ($this->model->getMateria($id)){
             $loggedUser = $this->helper->loggedUser();
-            $materia = $this->model->getMateria($id_materia);
-            $comentarios = $this->comentario_model->comentariosXmateria($id_materia);
-            $this->view->renderMateria($materia, $comentarios, $loggedUser);
+            $materia = $this->model->getMateria($id);
+            if (isset($params[':COMENTARIOS']))
+                $comentarios = $params[':COMENTARIOS'];
+            else
+                $comentarios = $this->comentario_model->comentariosXmateria($id);
+           // $comentariosOrdenados = $this->sort_array($comentarios);
+            $this->view->renderMateria($materia, $comentarios, $loggedUser, $nombre);
         }else
             $this->redirectHome();   
     }
 
+    public function filtrarComentarios($params = null){
+        $puntaje = $this->check_puntaje();
+        if(!empty($puntaje)){
+            $comentarios = $this->comentario_model->comentariosXpuntaje($params[':ID'], $puntaje);
+            $params = array_merge($params, array(':COMENTARIOS' => $comentarios));
+            $this->filtrarMateria($params);   
+        }else
+            $this->filtrarMateria($params);
+    }
+
+    private function check_puntaje(){
+        $puntaje = $_POST['puntaje'];
+        if (!empty($puntaje)){
+            if ($puntaje <= 0)
+                return 1;
+            elseif ($puntaje > 5)
+                return 5;
+            else
+                return $puntaje;
+        }
+        return 0;
+    }
+
+    /*private function sort_array($array) {
+        $sorted = array();
+        foreach($array as $value) {
+           $this->sort_insertion($sorted, $value);
+        }
+        die();
+        return $sorted;
+    }*/
+
+  /*  private function sort_insertion(&$array, $value) {
+        $max = count($array);
+        while($i > 0 && $array[$i-1]->puntaje < $value->puntaje) {
+            $array[$i] = $array[$i-1];
+            $i--;
+        }
+        $i = 0;
+        while ($i < ($max-1) && $array[$i]->puntaje < $value->puntaje)
+            $i++;
+        $aux = $array[$i];
+        $array[$i] = $value;
+        $array[$i+1] = $aux;
+    }*/
+
     public function formMateria(){
-        if ($this->helper->checkLoggedIn()) {
+        if ($this->helper->checkIsAdmin()) {
             $carreras = $this->carrera_model->getCarreras();
             $this->view->renderFormMateria($carreras);
 
@@ -61,7 +113,7 @@ class MateriaController {
     }
     
     public function insertMateria(){
-        if ($this->helper->checkLoggedIn()) {
+        if ($this->helper->checkIsAdmin()) {
             if ( isset($_POST['nombre'], $_POST['profesor'], $_POST['id_carrera']) )  
             //Compruebo que la materia no tenga ya una carrera asociada
                 if ( !$this->materiaHasCareer() )
@@ -100,30 +152,34 @@ class MateriaController {
        //mostrar tabla materias:
     public function tablaMaterias(){
         $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombre de la base de datos para el select
-        $this->view->rendertablaMateria($tablasMaterias, $this->helper->checkLoggedIn());
+        $this->view->rendertablaMateria($tablasMaterias, $this->helper->loggedUser());
     }
 
     public function borrarMateria($id){
-       if ($this->helper->checkLoggedIn())
+       if ($this->helper->checkIsAdmin())
            $this->model->borrarMateria($id);
        $this->view->showTablaLocationMateria();
     }
 
     public function modificarMateria($id_materia){
-        if ($this->helper->checkLoggedIn())
+        if ($this->helper->checkIsAdmin()){
+            $this->uploadFile(null, $id_materia);
             $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
+        }
         $this->view->showTablaLocationMateria();
     }
 
-    public function uploadFile($params = null){
+    public function uploadFile($params = null, $id_materia = null){
         if ($this->helper->checkIsAdmin() && $this->valid_file()){
             $filePath = "uploads/" . uniqid("", false) . "."
                                    . strtolower(pathinfo($_FILES['input_name']['name'], PATHINFO_EXTENSION));
             move_uploaded_file($_FILES['input_name']['tmp_name'], $filePath);
-            $this->model->uploadFile($params[":ID"], $filePath);
-            $this->goBack();
-        }//else
-            //$this->view->showTablaLocationMateria();
+            if (isset($params[':ID'])){
+                $this->model->uploadFile($params[":ID"], $filePath);
+                $this->goBack();
+            }else
+                $this->model->uploadFile($id_materia, $filePath);
+        }
     }
 
     public function valid_file(){

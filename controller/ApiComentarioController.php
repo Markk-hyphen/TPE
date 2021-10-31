@@ -17,7 +17,7 @@ class ApiComentarioController {
             else
                 $this->view->response('No content', 204);
         }
-    
+
         public function getComentario($params = null) {
             $comentario = $this->model->getComentario($params[':ID']);
             if ($comentario)
@@ -71,18 +71,5 @@ class ApiComentarioController {
             else
                 $this->view->response('Materia inexistente', 404);
         }
-
-        /*public function putComentario($id, $data) {
-            $comentario = Comentario::getById($id);
-            $comentario->setData($data);
-            $comentario->save();
-            return $comentario->getData();
-        }
-    
-        public function deleteComentario($id) {
-            $comentario = Comentario::getById($id);
-            $comentario->delete();
-            return $comentario->getData();
-        }*/
     
 }
