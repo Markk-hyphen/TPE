@@ -10,7 +10,7 @@ class ApiComentarioController {
             $this->model = new ComentarioModel();
             $this->view = new ApiView();
         }
-        public function getComentarios() {
+        public function getComentarios($nombre = null, $puntaje = null) {
             $comentarios = $this->model->getComentarios();
             if ($comentarios)
                 $this->view->response($comentarios, 200);
@@ -18,7 +18,23 @@ class ApiComentarioController {
                 $this->view->response('No content', 204);
         }
 
+        public function getByPuntaje($params = null){
+            $comentarios = $this->model->comentariosXpuntaje($params[':ID'], $params[':puntaje']);
+            if ($comentarios)
+                $this->view->response($comentarios, 200);
+            else
+                $this->view->response('No content', 204);
+        }
+
         public function getComentario($params = null) {
+            $comentario = $this->model->getComentario($params[':ID']);
+            if ($comentario)
+                $this->view->response($comentario, 200);
+            else
+                $this->view->response('Comentario inexistente', 404);
+        }
+
+        public function getComentario2($params = null) {
             $comentario = $this->model->getComentario($params[':ID']);
             if ($comentario)
                 $this->view->response($comentario, 200);

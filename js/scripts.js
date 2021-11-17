@@ -1,18 +1,56 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     'use strict';
     let url = 'http://localhost/TPE_backend/TPE/api/comentarios';
-
     let commentBtn = document.getElementById('comment-btn');
+
     commentBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let comment_json = createJsonComment();
         insert_comment(comment_json);
     });
-
     //Agrego un evento a cada boton para eliminarlo
     let deleteBtns = document.querySelectorAll('.delete');
     add_delete_listener(deleteBtns);
 
+    //Filtro de comentarios por puntaje
+    let filterBtn = document.querySelector('#formPuntaje button');
+    //La arrow function no me sirve ya que mantiene el contexto del this
+    filterBtn.addEventListener('click', function(e) {
+        let id = this.dataset.subject;
+        let puntaje = check_puntaje(this.previousElementSibling.value);
+        let url_filter = "";
+        if (puntaje)
+            url_filter = url + "/" + id + "/" + puntaje;
+        else
+            url_filter = url + "/" + "materia" + "/" + id;
+        console.log(url_filter);
+        insert_commentaries(url_filter, puntaje);
+    });
+
+    function check_puntaje(puntaje) {
+        if (puntaje > 0 && puntaje <= 5)
+            return puntaje; 
+        return 0;
+    }
+    async function insert_commentaries(url, puntaje) {
+        let comments;
+        try {
+            let response = await fetch(url);
+            comments = await response.json();
+            
+        } catch (error) {
+            comments = [];
+        }
+        let commentBox = document.getElementById('comment-box');
+        if (comments.length == 0){
+            commentBox.innerHTML = `<p>No hay comentarios con puntaje ${puntaje}</p>`;
+            return;
+        }
+        commentBox.innerHTML = "";
+        comments.forEach(comment => {
+            set_comment(comment, comment.id);
+        });
+    }
     
     function delete_element(element) {
         if (element)

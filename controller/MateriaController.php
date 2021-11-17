@@ -40,7 +40,7 @@ class MateriaController {
         }
 
     }
-
+   
     public function filtrarMateria($params = null){
         $id = $params[':ID'];
         $nombre = $params[':NOMBRE'];

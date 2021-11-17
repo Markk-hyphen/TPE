@@ -27,8 +27,10 @@ $router->addRoute("comentarios", "GET", "ApiComentarioController", "getComentari
 $router->addRoute("comentarios/:ID", "GET", "ApiComentarioController", "getComentario");
 $router->addRoute("comentarios/:ID", "PUT", "ApiComentarioController", "editarComentario");
 $router->addRoute("comentarios/:ID", "DELETE", "ApiComentarioController", "borrarComentario");
+// ----- 
 $router->addRoute("comentarios", "POST", "ApiComentarioController", "insertComentario");
 $router->addRoute("comentarios/materia/:ID", "GET", "ApiComentarioController", "getComentariosMateria");
+$router->addRoute("comentarios/:ID/:puntaje", "GET", "ApiComentarioController", "getByPuntaje");;
 
 $router->setDefaultRoute("ApiCarreraController", "getCarreras");
 

@@ -19,7 +19,7 @@ class ApiView{
             204 => "No Content",
             404 => "Not found",
             500 => "Internal Server Error",
-            501 => "Internal Error in Tasks web"
+            501 => "Internal Error web"
           );
     }
 }
