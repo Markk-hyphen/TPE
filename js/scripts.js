@@ -2,21 +2,28 @@ document.addEventListener('DOMContentLoaded', (e) => {
     'use strict';
     let url = 'http://localhost/TPE_backend/TPE/api/comentarios';
     let commentBtn = document.getElementById('comment-btn');
-
+    let id_subject = document.getElementById('subject').value;
+    let sortBtn = document.getElementById('sort-comments');
+    let deleteBtns = document.querySelectorAll('.delete');
+    let filterBtn = document.querySelector('#formPuntaje button');
+    let svgUp = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-sort-up" viewBox="0 0 16 16">
+                    <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>`;
+    let svgDown = ` <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-sort-down" viewBox="0 0 16 16">
+                        <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    </svg>`;
+  
+    add_delete_listener(deleteBtns);
     commentBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let comment_json = createJsonComment();
         insert_comment(comment_json);
     });
     //Agrego un evento a cada boton para eliminarlo
-    let deleteBtns = document.querySelectorAll('.delete');
-    add_delete_listener(deleteBtns);
-
     //Filtro de comentarios por puntaje
-    let filterBtn = document.querySelector('#formPuntaje button');
     //La arrow function no me sirve ya que mantiene el contexto del this
     filterBtn.addEventListener('click', function(e) {
-        let id = this.dataset.subject;
+        let id = id_subject;
         let puntaje = check_puntaje(this.previousElementSibling.value);
         let url_filter = "";
         if (puntaje)
@@ -27,23 +34,48 @@ document.addEventListener('DOMContentLoaded', (e) => {
         insert_commentaries(url_filter, puntaje);
     });
 
+    sortBtn.addEventListener('click', function() {
+        let url_sort = url + "/" + "materia" + "/" + id_subject + "/";
+        let order = this.dataset.order;
+        if (order == "asc") {
+            this.dataset.order = "desc";
+            toggle_message(this, "Mayor a menor", svgUp);
+            url_sort += "desc";
+        } else {
+            this.dataset.order = "asc";
+            toggle_message(this, "Menor a mayor", svgDown);
+            url_sort += "asc";
+        }
+        insert_commentaries(url_sort);
+    });
+
+    function toggle_message(element, message, svg = null) {
+        element.innerHTML = "";
+        if(svg){
+            element.innerHTML = svg;
+            element.innerHTML += "&nbsp";
+        }
+        element.innerHTML += message;
+
+    }
+
     function check_puntaje(puntaje) {
         if (puntaje > 0 && puntaje <= 5)
             return puntaje; 
         return 0;
     }
-    async function insert_commentaries(url, puntaje) {
+    async function insert_commentaries(url, puntaje = 0) {
         let comments;
         try {
             let response = await fetch(url);
             comments = await response.json();
-            
         } catch (error) {
             comments = [];
         }
         let commentBox = document.getElementById('comment-box');
         if (comments.length == 0){
-            commentBox.innerHTML = `<p>No hay comentarios con puntaje ${puntaje}</p>`;
+            if (puntaje)
+                commentBox.innerHTML = `<p>No hay comentarios con puntaje ${puntaje}</p>`;
             return;
         }
         commentBox.innerHTML = "";
@@ -124,7 +156,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         let formCommentInfo = document.querySelectorAll('#comment-info form input');
         let json = {};
         json.detalle = comment;
-        json.fk_id_materia = formCommentInfo[2].value;
+        json.fk_id_materia = id_subject;
         json.fk_email_usuario = formCommentInfo[1].value;
         json.puntaje = puntaje;
         json.fk_nombre_usuario = formCommentInfo[0].value;

@@ -29,8 +29,10 @@ $router->addRoute("comentarios/:ID", "PUT", "ApiComentarioController", "editarCo
 $router->addRoute("comentarios/:ID", "DELETE", "ApiComentarioController", "borrarComentario");
 // ----- 
 $router->addRoute("comentarios", "POST", "ApiComentarioController", "insertComentario");
+//Le pongo materia a la ruta para desambiguarla
 $router->addRoute("comentarios/materia/:ID", "GET", "ApiComentarioController", "getComentariosMateria");
-$router->addRoute("comentarios/:ID/:puntaje", "GET", "ApiComentarioController", "getByPuntaje");;
+$router->addRoute("comentarios/materia/:ID/:ORDER", "GET", "ApiComentarioController", "getByOrder");
+$router->addRoute("comentarios/:ID/:puntaje", "GET", "ApiComentarioController", "getByPuntaje");
 
 $router->setDefaultRoute("ApiCarreraController", "getCarreras");
 

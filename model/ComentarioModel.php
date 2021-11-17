@@ -8,7 +8,7 @@ class ComentarioModel
     }
 
     public function comentariosXmateria($id_materia){
-        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ?");
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY puntaje");
         $template->execute(array($id_materia));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
@@ -16,6 +16,18 @@ class ComentarioModel
     public function comentariosXpuntaje($id, $puntaje){
         $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? AND puntaje = ?");
         $template->execute(array($id, $puntaje));
+        return $template->fetchall(PDO::FETCH_OBJ);
+    }
+
+    public function comentariosXOrdenAsc($id){
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY puntaje ASC");
+        $template->execute(array($id));
+        return $template->fetchall(PDO::FETCH_OBJ);
+    }
+
+    public function comentariosXOrdenDesc($id){
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY puntaje DESC");
+        $template->execute(array($id));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
 
