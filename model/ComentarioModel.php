@@ -12,21 +12,21 @@ class ComentarioModel
         $template->execute(array($id_materia));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
-
+    // Probar si se puede bindear el nombre de la columna, para reutilizar con date.
     public function comentariosXpuntaje($id, $puntaje){
         $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? AND puntaje = ?");
         $template->execute(array($id, $puntaje));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
 
-    public function comentariosXOrdenAsc($id){
-        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY puntaje ASC");
+    public function comentariosXOrdenAsc($id, $col = "puntaje"){
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY $col ASC");
         $template->execute(array($id));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
 
-    public function comentariosXOrdenDesc($id){
-        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY puntaje DESC");
+    public function comentariosXOrdenDesc($id, $col = "puntaje"){
+        $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? ORDER BY $col DESC");
         $template->execute(array($id));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
@@ -36,8 +36,6 @@ class ComentarioModel
         $template->execute();
         return $template->fetchall(PDO::FETCH_OBJ);
     }
-
-
 
     public function getComentario($id_comentario){
         $template = $this->db->prepare("SELECT * FROM comentario WHERE id = ?");

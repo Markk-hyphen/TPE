@@ -25,7 +25,6 @@ $router->addRoute('uploadFile/:ID', "POST", "MateriaController", 'uploadFile');
 $router->addRoute('detalle/:NOMBRE/:ID', "GET", "MateriaController", 'filtrarMateria');
 $router->addRoute('detalle/:NOMBRE/:ID', "POST", "MateriaController", 'filtrarComentarios');
 $router->addRoute('deleteFile/:ID', "GET", "MateriaController", 'deleteFile');
-
 $router->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 switch ($params[0]) {
@@ -146,9 +145,4 @@ switch ($params[0]) {
         else
             $materiaController->redirectHome();
         break;
-
-    default :
-        echo "404 NOT FOUND";
-        break;
-
 }

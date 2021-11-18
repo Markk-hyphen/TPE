@@ -11,7 +11,7 @@ class ApiComentarioController {
         $this->view = new ApiView();
     }
 
-    public function getComentarios($nombre = null, $puntaje = null) {
+    public function getComentarios() {
         $comentarios = $this->model->getComentarios();
         if ($comentarios)
             $this->view->response($comentarios, 200);
@@ -38,6 +38,18 @@ class ApiComentarioController {
         else
             $this->view->response('No content', 204);
     }
+
+    public function getByOrderedColumn($params = null){
+        if ($params[':ORDER'] == 'asc')
+            $comentarios = $this->model->comentariosXordenAsc($params[':ID'], $params[':COLUMN']);
+        else
+            $comentarios = $this->model->comentariosXordenDesc($params[':ID'], $params[':COLUMN']);
+
+        if ($comentarios)
+            $this->view->response($comentarios, 200);
+        else
+            $this->view->response('No content', 204);
+        }
 
     public function getComentario($params = null) {
         $comentario = $this->model->getComentario($params[':ID']);

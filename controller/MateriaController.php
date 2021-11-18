@@ -51,57 +51,10 @@ class MateriaController {
                 $comentarios = $params[':COMENTARIOS'];
             else
                 $comentarios = $this->comentario_model->comentariosXmateria($id);
-           // $comentariosOrdenados = $this->sort_array($comentarios);
             $this->view->renderMateria($materia, $comentarios, $loggedUser, $nombre);
         }else
             $this->redirectHome();   
     }
-
-    public function filtrarComentarios($params = null){
-        $puntaje = $this->check_puntaje();
-        if(!empty($puntaje)){
-            $comentarios = $this->comentario_model->comentariosXpuntaje($params[':ID'], $puntaje);
-            $params = array_merge($params, array(':COMENTARIOS' => $comentarios));
-            $this->filtrarMateria($params);   
-        }else
-            $this->filtrarMateria($params);
-    }
-
-    private function check_puntaje(){
-        $puntaje = $_POST['puntaje'];
-        if (!empty($puntaje)){
-            if ($puntaje <= 0)
-                return 1;
-            elseif ($puntaje > 5)
-                return 5;
-            else
-                return $puntaje;
-        }
-        return 0;
-    }
-
-    /*private function sort_array($array) {
-        $sorted = array();
-        foreach($array as $value) {
-           $this->sort_insertion($sorted, $value);
-        }
-        die();
-        return $sorted;
-    }*/
-
-  /*  private function sort_insertion(&$array, $value) {
-        $max = count($array);
-        while($i > 0 && $array[$i-1]->puntaje < $value->puntaje) {
-            $array[$i] = $array[$i-1];
-            $i--;
-        }
-        $i = 0;
-        while ($i < ($max-1) && $array[$i]->puntaje < $value->puntaje)
-            $i++;
-        $aux = $array[$i];
-        $array[$i] = $value;
-        $array[$i+1] = $aux;
-    }*/
 
     public function formMateria(){
         if ($this->helper->checkIsAdmin()) {

@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     'use strict';
+    initialize_tooltips();
     let url = 'http://localhost/TPE_backend/TPE/api/comentarios';
     let commentBtn = document.getElementById('comment-btn');
     let id_subject = document.getElementById('subject').value;
-    let sortBtn = document.getElementById('sort-comments');
+    let sortBtns = document.querySelectorAll('.filters-wrapper > button');
     let deleteBtns = document.querySelectorAll('.delete');
     let filterBtn = document.querySelector('#formPuntaje button');
     let svgUp = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-sort-up" viewBox="0 0 16 16">
@@ -34,18 +35,41 @@ document.addEventListener('DOMContentLoaded', (e) => {
         insert_commentaries(url_filter, puntaje);
     });
 
-    sortBtn.addEventListener('click', function() {
-        let url_sort = url + "/" + "materia" + "/" + id_subject + "/";
+    sortBtns.forEach(sortBtn => {
+        sortBtn.addEventListener('click', function() {
+            let url_sort = url + "/" + id_subject + "/";
+            let order = sortBtn.dataset.order;
+            if (order == "asc") {
+                sortBtn.dataset.order = "desc";
+                if (sortBtn.dataset.col == "puntaje")
+                    toggle_message(sortBtn, "Mayor a menor", svgUp);
+                url_sort += "desc";
+            } else {
+                sortBtn.dataset.order = "asc";
+                if (sortBtn.dataset.col == "puntaje")
+                    toggle_message(sortBtn, "Menor a mayor", svgDown);
+                url_sort += "asc";
+            }
+            url_sort += "/" + sortBtn.dataset.col;
+            insert_commentaries(url_sort);
+        });
+    });
+
+    sortBtn1.addEventListener('click', function() {
+        let url_sort = url + "/" + id_subject + "/";
         let order = this.dataset.order;
         if (order == "asc") {
             this.dataset.order = "desc";
-            toggle_message(this, "Mayor a menor", svgUp);
+            if (this.dataset.col == "puntaje")
+                toggle_message(this, "Mayor a menor", svgUp);
             url_sort += "desc";
         } else {
             this.dataset.order = "asc";
-            toggle_message(this, "Menor a mayor", svgDown);
+            if (this.dataset.col == "puntaje")
+                toggle_message(this, "Menor a mayor", svgDown);
             url_sort += "asc";
         }
+        url_sort += "/" + this.dataset.col;
         insert_commentaries(url_sort);
     });
 
@@ -67,11 +91,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
     async function insert_commentaries(url, puntaje = 0) {
         let comments;
         try {
+            console.log(url);
             let response = await fetch(url);
             comments = await response.json();
         } catch (error) {
+            console.log(error);
             comments = [];
         }
+        console.log(comments);
         let commentBox = document.getElementById('comment-box');
         if (comments.length == 0){
             if (puntaje)
@@ -133,6 +160,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             <div class="d-flex">
                 <p class="text-break">${comment.detalle}</p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
                 <p class="comment-user">${comment.fk_nombre_usuario}</p>
+                <span class="ms-auto">${comment.fecha}</span>
             </div>
                 <p>Puntaje: ${comment.puntaje}</p>
         </div>
@@ -153,13 +181,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
     function createJsonComment() {
         let comment = document.getElementById('comment').value;
         let puntaje = document.getElementById('puntaje').value;
+        let date = new Date().toISOString().slice(0, 10); 
         let formCommentInfo = document.querySelectorAll('#comment-info form input');
         let json = {};
         json.detalle = comment;
         json.fk_id_materia = id_subject;
+        json.fk_nombre_usuario = formCommentInfo[0].value;
         json.fk_email_usuario = formCommentInfo[1].value;
         json.puntaje = puntaje;
-        json.fk_nombre_usuario = formCommentInfo[0].value;
+        json.fecha = date;
         return json;
      }
 
@@ -189,5 +219,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    function initialize_tooltips(){
+        let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     }
 });
