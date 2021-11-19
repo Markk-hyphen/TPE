@@ -64,4 +64,16 @@ class CarreraModel
         $sentencia = $this->db->prepare("UPDATE `carrera` SET `nombre`=?,`duracion`=?WHERE `id_carrera`=?");
         $sentencia->execute(array($nombre, $duracion, $id_carrera));
     }
+
+    public function nombre_carrera($id){
+        $sentencia = $this->db->prepare("SELECT nombre FROM carrera WHERE id_carrera = ?");
+        $sentencia->execute(array($id));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function nombre_carreras(){
+        $sentencia = $this->db->prepare("SELECT nombre FROM carrera");
+        $sentencia->execute(array());
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 }

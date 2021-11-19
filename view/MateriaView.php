@@ -26,8 +26,8 @@ class MateriaView {
     }
 
     //-----------------------------VISTA TABLAS MATERIA----------------------------------------
-    public function rendertablaMateria($tablaMaterias, $loggedUser){
-        $this->smarty->assign('tablaMaterias', $tablaMaterias);
+    public function rendertablaMateria($materias, $loggedUser){
+        $this->smarty->assign('materias', $materias);
         $this->smarty->assign('user', $loggedUser);
         $this->smarty->display("templates/tablaMateria.tpl");
     }
@@ -45,5 +45,11 @@ class MateriaView {
         $this->smarty->assign('cantPaginas', $cantPaginas);
         $this->smarty->assign('pagina_actual', (int)$pagina_actual);
         $this->smarty->display("templates/materias.tpl");
+    }
+
+    public function renderMateriasAvanzada($materias, $error = ""){
+        $this->smarty->assign('materias', $materias);
+        $this->smarty->assign('error', $error);
+        $this->smarty->display("templates/filtro.tpl");
     }
 }

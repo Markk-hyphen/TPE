@@ -23,14 +23,14 @@ $router->addRoute("materias/:ID", "DELETE", "ApiMateriaController", "borrarMater
 $router->addRoute("materias", "POST", "ApiMateriaController", "insertMateria");
 
 //Ruteo de la ApiComentario
+//Las rutas con materia son para desambiguar
 $router->addRoute("comentarios", "GET", "ApiComentarioController", "getComentarios");
 $router->addRoute("comentarios", "POST", "ApiComentarioController", "insertComentario");
 $router->addRoute("comentarios/:ID", "GET", "ApiComentarioController", "getComentario");
 $router->addRoute("comentarios/:ID", "PUT", "ApiComentarioController", "editarComentario");
 $router->addRoute("comentarios/:ID", "DELETE", "ApiComentarioController", "borrarComentario");
-$router->addRoute("comentarios/:ID/:puntaje", "GET", "ApiComentarioController", "getByPuntaje");
-//Le pongo materia a la ruta para desambiguarla
 $router->addRoute("comentarios/materia/:ID", "GET", "ApiComentarioController", "getComentariosMateria");
+$router->addRoute("comentarios/:ID/:puntaje", "GET", "ApiComentarioController", "getByPuntaje");
 $router->addRoute("comentarios/materia/:ID/:ORDER", "GET", "ApiComentarioController", "getByOrder");
 $router->addRoute("comentarios/:ID/:ORDER/:COLUMN", "GET", "ApiComentarioController", "getByOrderedColumn");
 

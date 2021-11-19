@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
             url_filter = url + "/" + id + "/" + puntaje;
         else
             url_filter = url + "/" + "materia" + "/" + id;
-        console.log(url_filter);
         insert_commentaries(url_filter, puntaje);
     });
 
@@ -55,23 +54,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         });
     });
 
-    sortBtn1.addEventListener('click', function() {
-        let url_sort = url + "/" + id_subject + "/";
-        let order = this.dataset.order;
-        if (order == "asc") {
-            this.dataset.order = "desc";
-            if (this.dataset.col == "puntaje")
-                toggle_message(this, "Mayor a menor", svgUp);
-            url_sort += "desc";
-        } else {
-            this.dataset.order = "asc";
-            if (this.dataset.col == "puntaje")
-                toggle_message(this, "Menor a mayor", svgDown);
-            url_sort += "asc";
-        }
-        url_sort += "/" + this.dataset.col;
-        insert_commentaries(url_sort);
-    });
 
     function toggle_message(element, message, svg = null) {
         element.innerHTML = "";
@@ -91,14 +73,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
     async function insert_commentaries(url, puntaje = 0) {
         let comments;
         try {
-            console.log(url);
             let response = await fetch(url);
             comments = await response.json();
         } catch (error) {
-            console.log(error);
             comments = [];
         }
-        console.log(comments);
         let commentBox = document.getElementById('comment-box');
         if (comments.length == 0){
             if (puntaje)

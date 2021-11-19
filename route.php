@@ -25,6 +25,8 @@ $router->addRoute('uploadFile/:ID', "POST", "MateriaController", 'uploadFile');
 $router->addRoute('detalle/:NOMBRE/:ID', "GET", "MateriaController", 'filtrarMateria');
 $router->addRoute('detalle/:NOMBRE/:ID', "POST", "MateriaController", 'filtrarComentarios');
 $router->addRoute('deleteFile/:ID', "GET", "MateriaController", 'deleteFile');
+$router->addRoute('busquedaAvanzada', "GET", "MateriaController", 'busquedaAvanzada');
+$router->addRoute('busquedaAvanzada', "POST", "MateriaController", 'busquedaAvanzada');
 $router->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 switch ($params[0]) {

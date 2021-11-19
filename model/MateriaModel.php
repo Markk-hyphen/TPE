@@ -35,7 +35,7 @@ class MateriaModel
         $sentencia = $this->db->prepare('SELECT * FROM materia');
         $sentencia->execute(array());
         $tablaMaterias = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return  $tablaMaterias;
+        return $tablaMaterias;
     }
      
     public function borrarMateria($id_materia){
@@ -75,5 +75,11 @@ class MateriaModel
         $sentencia = $this->db->prepare("UPDATE materia SET imagen = NULL WHERE id_materia=?");
         $sentencia->execute(array($id));
         return $this->db->lastInsertId();
+    }
+
+    public function busquedaAvanzada($nombre, $profesor, $modalidad){
+        $sentencia = $this->db->prepare("SELECT * FROM materia WHERE nombre LIKE ? OR profesor LIKE ? OR modalidad LIKE ?");
+        $sentencia->execute(array("%$nombre%", "%$profesor%", "%$modalidad%"));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 }

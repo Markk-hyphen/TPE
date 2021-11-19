@@ -102,10 +102,15 @@ class MateriaController {
     }
 
     //------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
-       //mostrar tabla materias:
     public function tablaMaterias(){
-        $tablasMaterias=$this->model->getTablaMaterias();  //traigo el id y el nombre de la base de datos para el select
-        $this->view->rendertablaMateria($tablasMaterias, $this->helper->loggedUser());
+        $materias=$this->model->getTablaMaterias();
+        $this->assign_carreras($materias);
+        $this->view->rendertablaMateria($materias, $this->helper->loggedUser());
+    }
+
+    private function assign_carreras(&$materias){
+        foreach ($materias as $materia)
+            $materia->carrera = $this->carrera_model->getCarrera($materia->id_carrera)->nombre;
     }
 
     public function borrarMateria($id){
@@ -173,5 +178,28 @@ class MateriaController {
     public function redirectHome(){
         $this->view->showHome();
     }
+
+    public function busquedaAvanzada(){
+        if (!empty($_POST['nombre']) && !empty($_POST['profesor']) && !empty($_POST['modalidad'])){
+            $materias = $this->model->busquedaAvanzada($_POST['nombre'], $_POST['profesor'], $_POST['modalidad']);
+        }
+        else if (!empty($_POST['nombre'])){
+            $materias = $this->model->busquedaAvanzada($_POST['nombre'], "-1", "-1");
+        }
+        else if (!empty($_POST['profesor'])){
+            $materias = $this->model->busquedaAvanzada("-1", $_POST['profesor'], "-1");
+        }else if (!empty($_POST['modalidad'])){
+            $materias = $this->model->busquedaAvanzada("-1","-1",$_POST["modalidad"]);
+        }
+        else
+            $materias = $this->model->getTablaMaterias();
+
+        $this->assign_carreras($materias);
+        if ($materias)
+            $this->view->renderMateriasAvanzada($materias);
+        else
+            $this->view->renderMateriasAvanzada(null, "No se encontraron materias con esos parametros");
+    }
+    
 
 }
