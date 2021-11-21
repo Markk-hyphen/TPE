@@ -12,7 +12,7 @@ class ComentarioModel
         $template->execute(array($id_materia));
         return $template->fetchall(PDO::FETCH_OBJ);
     }
-    // Probar si se puede bindear el nombre de la columna, para reutilizar con date.
+
     public function comentariosXpuntaje($id, $puntaje){
         $template = $this->db->prepare("SELECT * FROM comentario WHERE fk_id_materia = ? AND puntaje = ?");
         $template->execute(array($id, $puntaje));

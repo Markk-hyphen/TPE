@@ -50,6 +50,6 @@ class MateriaView {
     public function renderMateriasAvanzada($materias, $error = ""){
         $this->smarty->assign('materias', $materias);
         $this->smarty->assign('error', $error);
-        $this->smarty->display("templates/filtro.tpl");
+        $this->smarty->display("templates/filtroAvanzado.tpl");
     }
 }

@@ -8,7 +8,6 @@ class CarreraView {
 
     public function __construct() {
         $this->smarty = new Smarty();
-        $this->smarty->assign('nombre_carrera', "");
     }
 
     public function showHome($carreras, $user){

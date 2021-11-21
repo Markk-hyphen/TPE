@@ -107,7 +107,7 @@ switch ($params[0]) {
             $materiaController->redirectHome();
         break;
     case 'editarmateria':
-        if(isset($params[1])) 
+        if(!empty($params[1])) 
             $materiaController->modificarMateria($params[1]);
         else
             $materiaController->redirectHome();

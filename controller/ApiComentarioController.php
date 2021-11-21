@@ -5,10 +5,11 @@ require_once 'view/ApiView.php';
 class ApiComentarioController {
     private $model;
     private $view;
-
+    private $allowed_cols;
     public function __construct() {
         $this->model = new ComentarioModel();
         $this->view = new ApiView();
+        $this->allowed_cols= array("1" => "puntaje", "2" => "fecha");
     }
 
     public function getComentarios() {
@@ -40,16 +41,27 @@ class ApiComentarioController {
     }
 
     public function getByOrderedColumn($params = null){
-        if ($params[':ORDER'] == 'asc')
-            $comentarios = $this->model->comentariosXordenAsc($params[':ID'], $params[':COLUMN']);
-        else
-            $comentarios = $this->model->comentariosXordenDesc($params[':ID'], $params[':COLUMN']);
+        if ($this->sanitized_column($params[':COLUMN'])) {
+            $col = $this->allowed_cols[$params[':COLUMN']];
+            if ($params[':ORDER'] == 'asc')
+                $comentarios = $this->model->comentariosXordenAsc($params[':ID'], $col);
+            else
+                $comentarios = $this->model->comentariosXordenDesc($params[':ID'], $col);       
+        }
 
         if ($comentarios)
             $this->view->response($comentarios, 200);
         else
             $this->view->response('No content', 204);
-        }
+    }
+
+
+    public function sanitized_column($column){
+        if (array_key_exists($column, $this->allowed_cols))
+            return true;
+        else
+            return false;
+    }
 
     public function getComentario($params = null) {
         $comentario = $this->model->getComentario($params[':ID']);

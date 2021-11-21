@@ -46,7 +46,7 @@ class CarreraController {
     }
 
     Public function tablaCarreras(){
-        $tablasCarrera=$this->model->getTablaCarreras();
+        $tablasCarrera=$this->model->getCarreras();
         $this->view->renderTablaCarrera($tablasCarrera, $this->helper->loggedUser());
     }
 

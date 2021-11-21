@@ -38,14 +38,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
         sortBtn.addEventListener('click', function() {
             let url_sort = url + "/" + id_subject + "/";
             let order = sortBtn.dataset.order;
+            //Hago un toggle del tipo de ordenamiento.
             if (order == "asc") {
                 sortBtn.dataset.order = "desc";
-                if (sortBtn.dataset.col == "puntaje")
+                if (sortBtn.dataset.col == "1")
                     toggle_message(sortBtn, "Mayor a menor", svgUp);
                 url_sort += "desc";
             } else {
                 sortBtn.dataset.order = "asc";
-                if (sortBtn.dataset.col == "puntaje")
+                if (sortBtn.dataset.col == "1")
                     toggle_message(sortBtn, "Menor a mayor", svgDown);
                 url_sort += "asc";
             }
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     function toggle_message(element, message, svg = null) {
         element.innerHTML = "";
+        //Icono svg que representa el ordenamiento
         if(svg){
             element.innerHTML = svg;
             element.innerHTML += "&nbsp";
@@ -89,13 +91,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
             set_comment(comment, comment.id);
         });
     }
-    
+    //Funcion generica para borrar cualquier elemento
     function delete_element(element) {
         if (element)
             element.parentNode.removeChild(element);
     }
 
     function add_delete_listener(buttons){
+        //Agrega a cada boton un evento para eliminar el comentario
         buttons.forEach(button => button.addEventListener('click',  () => {
             let id = button.getAttribute('data-id');
             delete_comment(id);
@@ -119,7 +122,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     
     }
 
-    //Imito el div que tengo en el template detalle.tpl
+    //Imito el div de comentario que tengo en el template detalle.tpl
     function set_comment(comment, id) {
         let comment_box = document.getElementById('comment-box');
         let comment_div = document.createElement('div');

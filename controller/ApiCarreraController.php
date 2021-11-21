@@ -5,14 +5,14 @@ require_once "model/CarreraModel.php";
 class ApiCarreraController{
     private $model;
     private $view;
-
+    private $allowed_cols = array("nombre", "descripcion");
     public function __construct(){
         $this->view = new ApiView();
         $this->model = new CarreraModel();
     }
 
     public function getCarreras(){
-        $carreras = $this->model->getTablaCarreras();
+        $carreras = $this->model->getCarreras();
         if ($carreras)
             $this->view->response($carreras);
         else
@@ -22,12 +22,19 @@ class ApiCarreraController{
 
     public function getResource($params = null){
         $id = $params[':ID'];
-        $resource = $params[':RESOURCE'];
+        $resource = $this->sanitize_column($params[':RESOURCE']);
         $column = $this->model->getColumn($id, $resource);
         if ($column)
             $this->view->response($column);
         else
             $this->view->response("Vacio", 204);
+    }
+
+    private function sanitize_column($column){
+        if (in_array($column, $this->allowed_cols))
+            return $column;
+        else
+            return $this->allowed_cols[0];
     }
 
     public function getCarrera($params = null){

@@ -30,22 +30,15 @@ class MateriaModel
         $sentencia->execute(array($nombre, $profesor, $id_carrera));
         return $this->db->lastInsertId();
     }
-
-    function getTablaMaterias(){
-        $sentencia = $this->db->prepare('SELECT * FROM materia');
-        $sentencia->execute(array());
-        $tablaMaterias = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $tablaMaterias;
-    }
      
     public function borrarMateria($id_materia){
         $sentencia = $this->db->prepare("DELETE FROM materia WHERE id_materia=?");
         $sentencia->execute(array($id_materia));
     }
 
-    public function editarMateria($nombre, $profesor, $id_carrera, $id_materia){
-        $sentencia = $this->db->prepare("UPDATE `materia` SET `nombre`=?,`profesor`=?,`id_carrera`=? WHERE `id_materia`=?");
-        $sentencia->execute(array($nombre, $profesor, $id_carrera, $id_materia));
+    public function editarMateria($nombre, $profesor, $id_materia){
+        $sentencia = $this->db->prepare("UPDATE `materia` SET `nombre`=?,`profesor`=? WHERE `id_materia`=?");
+        $sentencia->execute(array($nombre, $profesor, $id_materia));
     }
 
     public function getMaterias(){
@@ -62,9 +55,9 @@ class MateriaModel
 
     public function materiasPaginadas($pagina, $materias_x_pagina){
         $inicio = ($pagina - 1) * $materias_x_pagina;
-        $sentencia = $this->db->prepare("SELECT * FROM materia LIMIT $inicio, $materias_x_pagina");
-        $sentencia->execute(array());
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $template = $this->db->prepare("SELECT * FROM materia LIMIT $inicio, $materias_x_pagina");
+        $template->execute(array());
+        return $template->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function table_size(){

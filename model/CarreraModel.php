@@ -11,20 +11,11 @@ class CarreraModel
     public function __destruct(){
         $this->db = null;
     }
-
-    function getTablaCarreras(){
-        $sentencia = $this->db->prepare('SELECT * FROM carrera');
-        $sentencia->execute(array());
-        $tablaCarreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return  $tablaCarreras;
-    }
-
     //PARA LA VISTA PRINCIPAL, Y PARA EL SELECT
     function getCarreras(){
-        $sentencia = $this->db->prepare('SELECT nombre, id_carrera FROM carrera');
+        $sentencia = $this->db->prepare('SELECT * FROM carrera');
         $sentencia->execute(array());
-        $carreras = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return  $carreras;
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
     function getCarrera($id_carrera){

@@ -13,9 +13,8 @@ class MateriaController {
     private $comentario_model;
     private $max_size;
     private $paginas;
-    private $materias_x_pagina_default = 7;
+    private $paginas_default = 5;
     private $materias_x_pagina;
-    private $pagina_actual;
 
     public function __construct($max_size = 1000000, $materias_x_pagina = 7) {
         $this->model = new MateriaModel();
@@ -30,9 +29,9 @@ class MateriaController {
 
     private function setPaginationParams($materias_x_pagina){
         $table_size = $this->model->table_size();
-        if ($table_size < $materias_x_pagina && $materias_x_pagina < 0){ 
+        if ( ($table_size < $materias_x_pagina) || ($materias_x_pagina < 0) ){ 
             $this->paginas = ceil($table_size / $this->paginas_default);
-            $this->materias_x_pagina = $this->materias_x_pagina_default;
+            $this->materias_x_pagina = floor($table_size/$this->paginas);
         }
         else {
             $this->paginas = ceil($table_size / $materias_x_pagina);
@@ -86,13 +85,13 @@ class MateriaController {
     }
 
     public function materiasPagination($params = null){
-        $pagina = $this->check_page($params[':PAGINA']);
-        $materias = $this->model->materiasPaginadas($pagina, $this->materias_x_pagina);
-        $this->view->renderMaterias($materias, $this->paginas, $pagina);
+        $pagina_actual = $this->check_page($params[':PAGINA']);
+        $materias = $this->model->materiasPaginadas($pagina_actual, $this->materias_x_pagina);
+        $this->view->renderMaterias($materias, $this->paginas, $pagina_actual);
     }
 
     private function check_page($page){
-        if (isset($page) && is_numeric($page)){
+        if (is_numeric($page)){
             if ($page > $this->paginas)
                 return $this->paginas;
             if ($page > 0)
@@ -103,7 +102,7 @@ class MateriaController {
 
     //------------------------------EDITAR BORRAR MATERIAS----------------------------------------------
     public function tablaMaterias(){
-        $materias=$this->model->getTablaMaterias();
+        $materias=$this->model->getMaterias();
         $this->assign_carreras($materias);
         $this->view->rendertablaMateria($materias, $this->helper->loggedUser());
     }
@@ -122,7 +121,7 @@ class MateriaController {
     public function modificarMateria($id_materia){
         if ($this->helper->checkIsAdmin()){
             $this->uploadFile(null, $id_materia);
-            $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$_POST['id_carrera'],$id_materia);
+            $this->model->editarMateria($_POST['nombre'], $_POST['profesor'],$id_materia);
         }
         $this->view->showTablaLocationMateria();
     }
@@ -192,7 +191,7 @@ class MateriaController {
             $materias = $this->model->busquedaAvanzada("-1","-1",$_POST["modalidad"]);
         }
         else
-            $materias = $this->model->getTablaMaterias();
+            $materias = $this->model->getMaterias();
 
         $this->assign_carreras($materias);
         if ($materias)

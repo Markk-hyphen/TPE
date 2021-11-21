@@ -80,6 +80,7 @@ class UserController {
             $this->redirectHome();
     }   
 
+    //Respuesta personalizada para errores en el registro
     private function errores_segun_campo(){
         $errores = [];
         if (empty($_POST['email']))
@@ -121,6 +122,7 @@ class UserController {
             $this->redirectHome();
     }
 
+    //Respuesta personalizada para errores en el login
     public function login_check($user, $password, $email, &$errores){
         $errores = [];
         $checked = ( $user && password_verify($password , $user->passwd) ) ? true : false;
